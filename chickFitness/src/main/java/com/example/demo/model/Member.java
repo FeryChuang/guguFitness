@@ -1,6 +1,10 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,38 +12,62 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "member")
+@EntityListeners(MemberEntityListener.class)
 public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer member_id;
-	private String user_name, password, name, email;
+	@Column(name="member_id")
+	private Integer memberId;
+	
+	@Column(name="user_name")
+	private String userName;
+	
+	private String password, name, email;
+	
+	@Column(name="registration_date")
+	private Date registrationDate;
+	
+	@Column(name="last_login_date")
+	private Date lastLoginDate;
 
 	public Member() {
 	}
 
-	public Member(Integer member_id, String user_name, String password, String name, String email) {
+	public Member(String userName, String password, String name, String email) {
+		this.userName = userName;
+		this.password = password;
+		this.name = name;
+		this.email = email;		
+	}
+	
+	
+
+	public Member(Integer memberId, String userName, String password, String name, String email, Date registrationDate,
+			Date lastLoginDate) {
 		super();
-		this.member_id = member_id;
-		this.user_name = user_name;
+		this.memberId = memberId;
+		this.userName = userName;
 		this.password = password;
 		this.name = name;
 		this.email = email;
+		this.registrationDate = registrationDate;
+		this.lastLoginDate = lastLoginDate;
 	}
 
-	public Integer getMember_id() {
-		return member_id;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -66,10 +94,31 @@ public class Member {
 		this.email = email;
 	}
 
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+	public Date getLastLoginDate() {
+		return lastLoginDate;
+	}
+
+	public void setLastLoginDate(Date lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Member [member_id=" + member_id + ", user_name=" + user_name + ", password=" + password + ", name="
-				+ name + ", email=" + email + "]";
+		return "Member [memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", name=" + name
+				+ ", email=" + email + ", registrationDate=" + registrationDate + ", lastLoginDate=" + lastLoginDate
+				+ "]";
 	}
+
+	
+
+	
 
 }
