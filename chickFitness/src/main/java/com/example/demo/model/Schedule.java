@@ -21,13 +21,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Schedule {
 //field
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer schedule_id;
+	@Column(name = "schedule_id")
+	private Integer sid;
 //待處理ManyToOne與OnToMany的對應
-	private Integer member_id;
-	private Integer course_id;
+	@Column(name = "member_id")
+	private Integer mid;
+	@Column(name = "course_id")
+	private Integer cid;
 	
 //	@ManyToOne
 //	@JoinColumn(name = "member_id", nullable = false, referencedColumnName="member_id")
@@ -40,47 +42,16 @@ public class Schedule {
 	private Date redate;
 	private String status;
 	private Integer sort;
-	private String schedule_name;
-	private Date start_time;
-	private Date end_time;
+	
+	@Column(name = "schedule_name")
+	private String sname;
+	
+	@Column(name = "start_time")
+	private Date startime;
+	
+	@Column(name = "end_time")
+	private Date endtime;
 	
 //constructors
-	public Schedule(Integer member_id, Integer course_id, Date redate, String status, Integer sort,
-			String schedule_name) {
-		super();
-		this.member_id = member_id;
-		this.course_id = course_id;
-		this.redate = redate;
-		this.status = status;
-		this.sort = sort;
-		this.schedule_name = schedule_name;
-	}
-	public Schedule(Integer course_id, Date redate, String status, Integer sort, String schedule_name) {
-		super();
-		this.course_id = course_id;
-		this.redate = redate;
-		this.status = status;
-		this.sort = sort;
-		this.schedule_name = schedule_name;
-	}
-	
-//	public Schedule(Courses course, Date redate, String status, Integer sort, String schedule_name) {
-//		super();
-//		this.course = course;
-//		this.redate = redate;
-//		this.status = status;
-//		this.sort = sort;
-//		this.schedule_name = schedule_name;
-//	}
-//
-//	public Schedule(Member member, Courses course, Date redate, String status, Integer sort, String schedule_name) {
-//		super();
-//		this.member = member;
-//		this.course = course;
-//		this.redate = redate;
-//		this.status = status;
-//		this.sort = sort;
-//		this.schedule_name = schedule_name;
-//	}
-	
+
 }
