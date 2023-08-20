@@ -14,10 +14,10 @@ import javax.annotation.PostConstruct;
 
 @RestController
 public class CoursesController {
-
+	@Autowired
     private final CoursesService coursesService;
 
-    @Autowired
+    
     public CoursesController(CoursesService coursesService) {
         this.coursesService = coursesService;
     }
@@ -25,13 +25,13 @@ public class CoursesController {
     @PostConstruct
     //新增課程
     public void initFixedCourses() {
-        Courses course1 = new Courses(null, "課程名稱1", "課程介紹1", "中", "有氧舞蹈", "your-video1.mp4", 10, 200);
-        Courses course2 = new Courses(null, "課程名稱2", "課程介紹2", "低", "跑步", "your-video2.mp4", 10, 100);
-        // 類似地創建其他固定內容的 Courses 物件
-
-        coursesService.createCourse(course1);
-        coursesService.createCourse(course2);
-        // 儲存到資料庫
+//        Courses course1 = new Courses(null, "課程名稱1", "課程介紹1", "中", "有氧舞蹈", "your-video1.mp4", 10, 200);
+//        Courses course2 = new Courses(null, "課程名稱2", "課程介紹2", "低", "跑步", "your-video2.mp4", 10, 100);
+//        // 類似地創建其他固定內容的 Courses 物件
+//
+//        coursesService.createCourse(course1);
+//        coursesService.createCourse(course2);
+//        // 儲存到資料庫
     }
 
     @RequestMapping(value = "/courses", method = RequestMethod.GET)
