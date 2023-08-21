@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>Home Page</title> <!-- 設置網頁標題為"Home Page" -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- 引入jQuery庫，使用Google的CDN服務 -->
+</head>
+<body>
+    <h1>Welcome to Your Home Page</h1> <!-- 顯示頁面標題 -->
+    <p id="welcome-message">Hello, Loading...</p> <!-- 顯示歡迎信息的段落，具有"id"屬性以便在JavaScript中識別 -->
+    <a id="chickInfoLink" href="chickinfo.html">View Your Chick Info</a>
+    <!-- 包含一個連結到"chickinfo.html"的超鏈接，具有"id"屬性以便在JavaScript中識別 -->
+    
+    <script>
+   $(document).ready(start); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
+   function start(){
+       $.get('http://localhost:8080/session', function(data) {
+           // 發送一個AJAX GET請求到"http://localhost:8080/session"，並在成功後執行一個回調函數
+           // "data" 是從伺服器返回的數據
+           $("#welcome-message").html(data.userName);
+           // 將"welcome-message"段落的內容設置為從伺服器返回的數據中的"userNamen"
+       }); 
+   }
+</script>
+<!-- 包含JavaScript代碼，使用jQuery在文檔載入後執行AJAX請求並更新頁面內容 -->
+</body>
+</html>
