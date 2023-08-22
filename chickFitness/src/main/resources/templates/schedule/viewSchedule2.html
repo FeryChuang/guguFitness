@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>viewSchedule</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<!-- 陽春能抓到資料版，美美排版之類待處理 -->
+<body>
+<div class="container">
+	<a href="/courses.html">所有課程</a>
+	<table class="table table-info table-striped table-hover" style="width:60%">
+	<thead>
+		<tr class="table-warning">
+			<th>排程編號sid</th>
+			<th>會員編號mid</th>
+			<th>課程編號cid</th>
+			<th>排定位置week</th>
+			<th>功能</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="scheList : ${fc_data_1} " th:object="${scheList}">
+		<!-- 已宣告th:object="${scheList}故下方可用*替代scheList -->
+			<td th:text="*{sid}"></td>
+			<td th:text="*{mid}"></td>
+			<td th:text="*{cid}"></td>
+			<td th:text="*{week}"></td>
+			<td><a href="#"><button type="button" class="btn btn-warning">修改</button></a><br/>
+				<a href="#"><button type="button" class="btn btn-danger">刪除</button></a></td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+</body>
+</html>
