@@ -37,7 +37,7 @@ public class CoursesServiceImpl implements CoursesService {
     public void updateCourse(Integer id, Courses course) {
         Optional<Courses> existingCourse = coursesRepository.findById(id);
         if (existingCourse.isPresent()) {
-            course.setCourese_id(id);
+            course.setCourse_id(id);
             coursesRepository.save(course);
         }
     }
