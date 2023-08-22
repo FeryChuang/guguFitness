@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `workout` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `workout`;
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: localhost    Database: workout
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.0.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,14 +26,14 @@ DROP TABLE IF EXISTS `chick`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chick` (
   `chick_id` int NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) NOT NULL,
+  `member_id` int NOT NULL,
   `chick_stage` varchar(45) NOT NULL,
   `current_level` int NOT NULL,
   `current_exp` int NOT NULL,
   `lifecount` int NOT NULL,
   PRIMARY KEY (`chick_id`),
-  UNIQUE KEY `user_name_UNIQUE` (`user_name`),
-  CONSTRAINT `user_name` FOREIGN KEY (`user_name`) REFERENCES `member` (`user_name`)
+  UNIQUE KEY `member_id_UNIQUE` (`member_id`),
+  CONSTRAINT `mamber_chick` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-21 22:12:29
+-- Dump completed on 2023-08-22 14:24:05

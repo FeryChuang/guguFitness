@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `workout` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `workout`;
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: localhost    Database: workout
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.0.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -43,7 +41,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'超慢跑20分鐘-2','初學者請勿赤足跑，我赤足的目的是為了讓大家看腳的動作，建議初學者練習要穿鞋保護',20,'初階',150,'跑步','https://www.youtube.com/watch?v=nAsKSo93blY'),(2,'超慢跑初學專用','超慢跑初學必看',30,'初階',225,'跑步','https://www.youtube.com/watch?v=25NwcTHvRzQ'),(3,'站立式全身消脂運動','適合大基數減重人士',30,'初階',300,'全身','https://www.youtube.com/watch?v=glJexaQx9C0'),(5,'10分鐘高強度居家運動','只要你肯付出肯努力，你的回報就會反映在你的身材上',10,'中階',80,'全身','https://www.youtube.com/watch?v=7iC8LaBuU1E'),(6,'45分鐘中級流瑜珈','完美的瑜珈是種平衡，動與靜，呼與吸，柔韌與力量，體式與冥想等的平衡。',45,'中階',150,'瑜珈','https://www.youtube.com/watch?v=V9TiRwtj0jA'),(7,'初學瑜伽第一課','零基礎瑜伽入門系列',19,'初階',50,'瑜珈','https://www.youtube.com/watch?v=X4z-NBQCq9E'),(8,'15 分鐘高强度全身肌肉徒手訓練','無需器材又能在家做的運動',15,'中階',50,'徒手','https://www.youtube.com/watch?v=20uf1EcGqjY'),(9,'45分鐘深度鍛煉','腰腹大腿瘦不停',45,'高階',200,'深蹲','https://www.youtube.com/watch?v=FsdNR3agkhg'),(10,'12分鐘進階腹肌訓練','地獄訓練',12,'高階',50,'徒手','https://www.youtube.com/watch?v=4CPNOjRJ4aU'),(11,'15 分鐘居家徒手腹肌訓練','非常適合初學者入門也有效加强核心的訓練',15,'初階',50,'徒手','https://www.youtube.com/watch?v=YGFPr93uaAA'),(12,'12分鐘 站立式開肩背部訓練','即時減低頸痛及圓背',12,'中階',30,'背部','https://www.youtube.com/watch?v=cqEFLH1XPmE'),(13,'18分鐘 初學者之站立式練腹肌','有助增強核心力量提升運動表現',18,'初階',75,'徒手','https://www.youtube.com/watch?v=VdS5UHtmoho');
+INSERT INTO `courses` VALUES (1,'超慢跑20分鐘-2','初學者請勿赤足跑，我赤足的目的是為了讓大家看腳的動作，建議初學者練習要穿鞋保護',20,'初階',150,'跑步','nAsKSo93blY'),(2,'超慢跑初學專用','超慢跑初學必看',30,'初階',225,'跑步','25NwcTHvRzQ'),(3,'站立式全身消脂運動','適合大基數減重人士',30,'初階',300,'全身','glJexaQx9C0'),(5,'10分鐘高強度居家運動','只要你肯付出肯努力，你的回報就會反映在你的身材上',10,'中階',80,'全身','7iC8LaBuU1E'),(6,'45分鐘中級流瑜珈','完美的瑜珈是種平衡，動與靜，呼與吸，柔韌與力量，體式與冥想等的平衡。',45,'中階',150,'瑜珈','V9TiRwtj0jA'),(7,'初學瑜伽第一課','零基礎瑜伽入門系列',19,'初階',50,'瑜珈','X4z-NBQCq9E'),(8,'15 分鐘高强度全身肌肉徒手訓練','無需器材又能在家做的運動',15,'中階',50,'徒手','20uf1EcGqjY'),(9,'45分鐘深度鍛煉','腰腹大腿瘦不停',45,'高階',200,'深蹲','FsdNR3agkhg'),(10,'12分鐘進階腹肌訓練','地獄訓練',12,'高階',50,'徒手','4CPNOjRJ4aU'),(11,'15 分鐘居家徒手腹肌訓練','非常適合初學者入門也有效加强核心的訓練',15,'初階',50,'徒手','YGFPr93uaAA'),(12,'12分鐘 站立式開肩背部訓練','即時減低頸痛及圓背',12,'中階',30,'背部','cqEFLH1XPmE'),(13,'18分鐘 初學者之站立式練腹肌','有助增強核心力量提升運動表現',18,'初階',75,'徒手','VdS5UHtmoho');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-21 22:12:29
+-- Dump completed on 2023-08-22 14:29:49
