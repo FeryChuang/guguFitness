@@ -13,4 +13,5 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
 	List<Schedule> findByRedate(Date redate);
 	List<Schedule> findByRedateOrderBySname(Date redate);
 	List<Schedule> findByRedateOrderBySnameAscSortAsc(Date redate);
+	List<Schedule> findBySidOrderBySort(Integer sid);
 }
