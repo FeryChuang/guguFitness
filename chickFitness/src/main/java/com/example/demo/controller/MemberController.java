@@ -36,11 +36,11 @@ public class MemberController {
         Member savedMember = memberRepository.save(member);
         
         // 新增對應的 Chick 資料，設定預設值
-        Chick chick = new Chick();
-        chick.setUser_name(savedMember.getUserName()); // 使用相同的使用者名稱
-        chick.setChick_stage("手無縛雞"); // 設定預設階段
-        chick.setCurrent_level(1); // 設定預設等級
-        chick.setCurrent_exp(0); // 設定預設經驗值
+         Chick chick = new Chick();
+        chick.setUserName(savedMember.getUserName()); // 使用相同的使用者名稱
+        chick.setChickStage("手無縛雞"); // 設定預設階段
+        chick.setCurrentLevel(1); // 設定預設等級
+        chick.setCurrentExp(0); // 設定預設經驗值
         chick.setLifecount(0); // 設定預設生命數量
         chickRepository.save(chick);
         
