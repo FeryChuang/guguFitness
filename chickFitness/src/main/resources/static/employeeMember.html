@@ -3,114 +3,222 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.101.0">
     <title>會員管理系統</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/dashboard/">
-
-    <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p.lead {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
         .themed-grid-col {
-            background-color: #f8f9fa;
+            background-color: #fff;
             padding: 10px;
             border: 1px solid #e0e0e0;
             text-align: center;
         }
 
-        .themed-container {
-            background-color: #f8f9fa;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #e0e0e0;
-            text-align: center;
+        .form-row {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .custom-btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .custom-btn-group .btn {
+            margin: 0 5px;
         }
     </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="dashbord.css" rel="stylesheet">
 </head>
 <body class="py-4">
+    <div class="container">
+        <h2>會員管理系統</h2>
+        <p class="lead">請在以下表單中新增、修改和刪除會員資料。</p>
 
-<div class="container">
-    <h1>會員管理系統</h1>
-    <p class="lead">請在以下表單中新增、修改和刪除會員資料。</p>
+        <div class="row mb-3">
+            <div class="col-md-2 themed-grid-col">會員ID</div>
+            <div class="col-md-2 themed-grid-col">帳號</div>
+            <div class="col-md-2 themed-grid-col">密碼</div>
+            <div class="col-md-2 themed-grid-col">姓名</div>
+            <div class="col-md-2 themed-grid-col">信箱</div>
+        </div>
 
-    <div class="row mb-3">
-        <div class="col-md-2 themed-grid-col">會員ID</div>
-        <div class="col-md-2 themed-grid-col">帳號</div>
-        <div class="col-md-2 themed-grid-col">密碼</div>
-        <div class="col-md-2 themed-grid-col">姓名</div>
-        <div class="col-md-2 themed-grid-col">信箱</div>
+        <!-- 動態生成的會員資料表格 -->
+        <div id="membersTable"></div>
+
+        <!-- 新增/修改/刪除會員表單 -->
+        <form id="memberForm">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <input type="text" class="form-control" placeholder="會員ID" id="memberId">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="text" class="form-control" placeholder="帳號" id="account">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="text" class="form-control" placeholder="密碼" id="password">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="text" class="form-control" placeholder="姓名" id="name">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="email" class="form-control" placeholder="信箱" id="email">
+                </div>
+                <div class="form-group col-md-12 custom-btn-group">
+                    <input type="button" class="btn btn-warning custom-btn" value="新增" onclick="showConfirmation('add')">
+                    <input type="button" class="btn btn-primary custom-btn" value="修改" onclick="showConfirmation('update')">
+                    <input type="button" class="btn btn-danger custom-btn" value="刪除" onclick="showConfirmation('delete')">
+                </div>
+            </div>
+        </form>
     </div>
 
-    <!-- 動態生成的會員資料表格 -->
-    <div id="membersTable"></div>
+    <script>
+        // 模擬從後端獲取的會員資料
+        const membersData = [
+            { id: 1, account: 'user1', password: 'pass1', name: 'User One', email: 'user1@example.com' },
+            { id: 2, account: 'user2', password: 'pass2', name: 'User Two', email: 'user2@example.com' },
+            // ... 其他會員資料
+        ];
 
-    <h2 class="mt-4">新增/修改/刪除會員</h2>
-    <!-- 新增/修改/刪除會員表單 -->
-    <form id="memberForm">
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <input type="text" class="form-control" placeholder="會員ID" id="memberId">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="text" class="form-control" placeholder="帳號" id="account">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="text" class="form-control" placeholder="密碼" id="password">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="text" class="form-control" placeholder="姓名" id="name">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="email" class="form-control" placeholder="信箱" id="email">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="button" class="btn btn-warning btn-block custom-btn" value="新增" onclick="memberManagement.showConfirmation('add')">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="button" class="btn btn-primary btn-block custom-btn" value="修改" onclick="memberManagement.showConfirmation('update')">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="button" class="btn btn-danger btn-block custom-btn" value="刪除" onclick="memberManagement.showConfirmation('delete')">
-            </div>
-        </div>
-    </form>
-</div>
+        // 初始化顯示會員資料表格
+        function initMembersTable() {
+            const tableContainer = document.getElementById('membersTable');
+            tableContainer.innerHTML = '';
 
-<!-- 匯入 memberManagement.js -->
+            membersData.forEach(member => {
+                const row = document.createElement('div');
+                row.className = 'row mb-3 themed-grid-col';
+                row.innerHTML = `
+                    <div class="col-md-2">${member.id}</div>
+                    <div class="col-md-2">${member.account}</div>
+                    <div class="col-md-2">${member.password}</div>
+                    <div class="col-md-2">${member.name}</div>
+                    <div class="col-md-2">${member.email}</div>
+                `;
+                tableContainer.appendChild(row);
+            });
+        }
 
-<script src="memberManagement.js"></script>
-<script>
-    // 導入具名導出的 MemberManagement 類別
-    import { MemberManagement } from './memberManagement.js';
+        // 新增會員
+        function addMember() {
+            const memberId = document.getElementById('memberId').value;
+            const account = document.getElementById('account').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
 
-    // 創建一個 MemberManagement 的實例
-    const memberManagement = new MemberManagement();
+            membersData.push({ id: parseInt(memberId), account, password, name, email });
 
-    // 初始化
-    memberManagement.initMembersTable();
-</script>
+            initMembersTable();
+            resetForm();
+        }
 
+        // 修改會員
+        function updateMember() {
+            const memberId = document.getElementById('memberId').value;
+            const account = document.getElementById('account').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            const existingMember = membersData.find(member => member.id === parseInt(memberId));
+            if (existingMember) {
+                existingMember.account = account;
+                existingMember.password = password;
+                existingMember.name = name;
+                existingMember.email = email;
+            }
+
+            initMembersTable();
+            resetForm();
+        }
+
+        // 刪除會員
+        function deleteMember() {
+            const memberId = document.getElementById('memberId').value;
+
+            const index = membersData.findIndex(member => member.id === parseInt(memberId));
+            if (index !== -1) {
+                membersData.splice(index, 1);
+            }
+
+            initMembersTable();
+            resetForm();
+        }
+
+        // 重置表單
+        function resetForm() {
+            document.getElementById('memberId').value = '';
+            document.getElementById('account').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+        }
+
+        // 顯示確認視窗
+        function showConfirmation(action) {
+            let message = '';
+            switch (action) {
+                case 'add':
+                    message = '確定要新增會員嗎？';
+                    break;
+                case 'update':
+                    message = '確定要修改會員嗎？';
+                    break;
+                case 'delete':
+                    message = '確定要刪除會員嗎？';
+                    break;
+                default:
+                    break;
+            }
+
+            if (confirm(message)) {
+                // 使用者確認後執行對應的動作
+                switch (action) {
+                    case 'add':
+                        addMember();
+                        break;
+                    case 'update':
+                        updateMember();
+                        break;
+                    case 'delete':
+                        deleteMember();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        // 初始化
+        initMembersTable();
+    </script>
 </body>
 </html>
