@@ -1,0 +1,31 @@
+/* 自定義的 CSS 樣式 */
+.container {
+    max-width: 400px; /* 控制容器的最大寬度 */
+    margin: 0 auto; /* 自動水平居中 */
+    padding: 20px; /* 添加內距 */
+    text-align: center; /* 文字居中對齊 */
+}
+
+.mb-4 {
+    margin-bottom: 1rem; /* 設定下方外邊距 */
+}
+
+.employee-title {
+    font-size: 1.3rem; /* 設定標題的字體大小 */
+    margin-top: 10px; /* 調整與 logo 的距離 */
+    padding: 5px 10px; /* 添加內距，增加標題區塊的大小 */
+    border-radius: 10px; /* 設定圓角效果 */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 添加陰影效果 */
+}
+
+.btn {
+    font-size: 1.2rem; /* 設定按鈕的字體大小 */
+    padding: 8px 16px; /* 設定按鈕的內距 */
+    margin-bottom: 10px; /* 設定下方外邊距 */
+    border-radius: 8px; /* 設定按鈕的圓角效果 */
+}
+
+.btn-block {
+    display: block; /* 讓按鈕佔滿整個寬度 */
+    width: 100%;
+}
