@@ -1,9 +1,12 @@
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,96 +16,67 @@ import java.util.Objects;
 public class Chick implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer chick_id;
-    private Integer current_level;
-    private Integer current_exp;
+    @Column(name="chick_id")
+    private Integer chickId;
+    @Column(name="current_level")
+    private Integer currentLevel;
+    @Column(name="current_exp")
+    private Integer currentExp;
     private Integer lifecount;
-    private String user_name;
-    private String chick_stage;
-
-    public Chick() {
-    }
-
-    public Chick(Integer chick_id, Integer current_level, Integer current_exp, Integer lifecount,
-                 String user_name, String chick_stage) {
-        this.chick_id = chick_id;
-        this.current_level = current_level;
-        this.current_exp = current_exp;
-        this.lifecount = lifecount;
-        this.user_name = user_name;
-        this.chick_stage = chick_stage;
-    }
-
-    public Integer getChick_id() {
-        return chick_id;
-    }
-
-    public void setChick_id(Integer chick_id) {
-        this.chick_id = chick_id;
-    }
-
-    public Integer getCurrent_level() {
-        return current_level;
-    }
-
-    public void setCurrent_level(Integer current_level) {
-        this.current_level = current_level;
-    }
-
-    public Integer getCurrent_exp() {
-        return current_exp;
-    }
-
-    public void setCurrent_exp(Integer current_exp) {
-        this.current_exp = current_exp;
-    }
-
-    public Integer getLifecount() {
-        return lifecount;
-    }
-
-    public void setLifecount(Integer lifecount) {
-        this.lifecount = lifecount;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public String getChick_stage() {
-        return chick_stage;
-    }
-
-    public void setChick_stage(String chick_stage) {
-        this.chick_stage = chick_stage;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Chick chick = (Chick) o;
-        return Objects.equals(chick_id, chick.chick_id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(chick_id);
-    }
-
-    @Override
-    public String toString() {
-        return "Chick{" +
-                "chick_id=" + chick_id +
-                ", current_level=" + current_level +
-                ", current_exp=" + current_exp +
-                ", lifecount=" + lifecount +
-                ", user_name='" + user_name + '\'' +
-                ", chick_stage='" + chick_stage + '\'' +
-                '}';
-    }
+    @Column(name="user_name")
+    private String userName;
+    @Column(name="chick_stage")
+    private String chickStage;
+	public Chick() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Chick(Integer chickId, Integer currentLevel, Integer currentExp, Integer lifecount, String userName,
+			String chickStage) {
+		super();
+		this.chickId = chickId;
+		this.currentLevel = currentLevel;
+		this.currentExp = currentExp;
+		this.lifecount = lifecount;
+		this.userName = userName;
+		this.chickStage = chickStage;
+	}
+	public Integer getChickId() {
+		return chickId;
+	}
+	public void setChickId(Integer chickId) {
+		this.chickId = chickId;
+	}
+	public Integer getCurrentLevel() {
+		return currentLevel;
+	}
+	public void setCurrentLevel(Integer currentLevel) {
+		this.currentLevel = currentLevel;
+	}
+	public Integer getCurrentExp() {
+		return currentExp;
+	}
+	public void setCurrentExp(Integer currentExp) {
+		this.currentExp = currentExp;
+	}
+	public Integer getLifecount() {
+		return lifecount;
+	}
+	public void setLifecount(Integer lifecount) {
+		this.lifecount = lifecount;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getChickStage() {
+		return chickStage;
+	}
+	public void setChickStage(String chickStage) {
+		this.chickStage = chickStage;
+	}
+    
 }
+    
