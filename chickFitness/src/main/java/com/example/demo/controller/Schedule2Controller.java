@@ -73,6 +73,18 @@ public class Schedule2Controller implements CommandLineRunner {
 		return data;
 	}
 
+	//拿上面方法的資料做修改成返回星期的純數字
+	@GetMapping("/get/mc/{mid}/{cid}/weeks")
+	public List<Integer> findWeekByMidAndCid(@PathVariable("mid") Integer mid, @PathVariable("cid") Integer cid) {
+	    List<Schedule2> data = sReps.findByMidAndCidOrderByWeek(mid, cid);
+	    List<Integer> weeks = data.stream()
+	        .map(Schedule2::getWeek) // 提取 week 字段值
+	        .collect(Collectors.toList());
+	    
+	    return weeks;
+	}
+
+	
 	// 網址 http://localhost:8080/schedule2/view/mc/{mid}/{cid}
 	@GetMapping("/view/mc/{mid}/{cid}")
 	public ModelAndView viewMidCidObyWeek(@PathVariable("mid") Integer mid, @PathVariable("cid") Integer cid) {
