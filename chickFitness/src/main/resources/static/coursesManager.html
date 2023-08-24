@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.101.0">
-  <title>Dashboard Template · Bootstrap v4.6</title>
+  <title>Courses</title>
 
   <!-- 引入 jQuery 库 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -137,46 +137,112 @@
 
       
        <!-- 動態生成的會員資料表格 -->
-        <div id="coursesTable"></div>
+        <div id="coursesTable">
       
       
-      <table class="table">
+     <table class="table">
       <div class="table-responsive">
         <table class="table table-striped table-sm">
+		  
            <thead>
         		<tr>
-            		<th class="text-center">ID</th>
-            		<th class="text-center">課程名稱</th>
-            		<th class="text-center">課程描述</th>
-           			<th class="text-center">難度</th>
-            		<th class="text-center">類型</th>
-            		<th class="text-center">URL</th>
-            		<th class="text-center">卡路里</th>
-            		<th class="text-center">影片時長</th>
+            		<th id="courseId"   class="text-center">ID</th>
+            		<th id="courseName"   class="text-center">課程名稱</th>
+            		<th id="description"   class="text-center">課程描述</th>
+           			<th id="difficulty"   class="text-center">難度</th>
+            		<th id="calories"   class="text-center">卡路里</th>
+            		<th id="type"   class="text-center">類型</th>
+            		<th id="url"   class="text-center">URL</th>
+            		<th id="courseRange"   class="text-center">影片時長</th>
         		</tr>
     		</thead>
 		
-	
 	<tbody id="courseTableBody">
-        <tr>
-    			<td class="align-middle text-center">1,001</td>
-    			<td class="align-middle text-center">random</td>
-   				<td class="align-middle text-center">data</td>
-    			<td class="align-middle text-center">placeholder</td>
-    			<td class="align-middle text-center">text</td>
-  			</tr>
-    </tbody>
+	</tbody>
          
 
-        </table>
+         </table>
+        </div>
       </div>
     </main>
   </div>
 </div>
 
 <script>
-// Your JavaScript code here (if any)
+$(document).ready(function() {
+      const saveCourseButton = document.getElementById("saveCourseButton");
+      saveCourseButton.addEventListener("click", saveCourse);
+      searchCourse();
+})
+
+function searchCourse() {
+	$.get('http://localhost:8080/courses/all',function(data){
+		updateTable(data);
+	});
+}
+      
+ 
+function updateTable(data) {
+    const tableBody = $("#courseTableBody"); // 使用 jQuery 選擇元素
+    tableBody.empty(); // 清空表格內容
+
+    $(data).each(function(index, course) {
+        const newRow = $("<tr>");
+        newRow.append(`<td class="align-middle text-center">${course.courseId}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.courseName}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.description}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.difficulty}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.calories}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.type}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.url}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.courseRange}</td>`);
+        tableBody.append(newRow);
+    });
+}
+
+
+function saveCourse() {
+        // 收集對話框中的資料
+        const courseName = $("#courseNameInput").val();
+        const description = $("#descriptionInput").val();
+        const difficulty = $("#difficultyInput").val();
+        const calories = $("#caloriesInput").val();
+        const type = $("#typeInput").val();
+        const url = $("#urlInput").val();
+        const courseRange = $("#courseRangeInput").val();
+
+        // 將資料傳送到後端
+        $.ajax({
+          url: '/courses',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            courseName: courseName,
+            description: description,
+            difficulty: difficulty,
+            calories: calories,
+            type: type,
+            url: url,
+            courseRange: courseRange
+          }),
+          success: function(creatdata) {
+            // 成功儲存後更新表格
+            updateTable(creatdata);
+            
+            // 關閉對話框
+            $('#addCourseModal').modal('hide');
+            searchCourse();
+          },
+          error: function(error) {
+            console.error('Error creating course:', error);
+            // 處理錯誤
+          }
+        });
+        
+      }
+
 </script>
+
 
 
 
