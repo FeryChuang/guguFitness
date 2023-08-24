@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmployeeRepository extends JpaRepository<Employee , Integer>{
-	//Employee findByUserNameAndPassword (String userName, String Password);
+	// 查詢員工帳號和密碼
+	Employee findByEmployeeUserNameAndEmployeePassword (String employeeUserName, String employeePassword);
 	
 	// 以員工ID查詢
-	Employee findByEmployeeId(Integer getEmployeeId);
+	Employee findByEmployeeId(Integer EmployeeId);
 }

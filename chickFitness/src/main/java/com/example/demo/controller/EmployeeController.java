@@ -4,20 +4,26 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.Courses;
 import com.example.demo.model.Employee;
 import com.example.demo.model.EmployeeRepository;
+import com.example.demo.model.Member;
+import com.example.demo.model.MemberRepository;
 import com.example.demo.model.Schedule2;
 
 
@@ -95,5 +101,35 @@ public class EmployeeController {
 		}
 
 	}
+	
+	// 登入
+	 @Autowired
+	    public EmployeeController(EmployeeRepository employeeRepository) {
+	        this.employeeRepository = employeeRepository;
+	    }
+
+	    @PostMapping("/employee/login")
+	    public ModelAndView login(@RequestParam String employeeUserName, @RequestParam String employeePassword, HttpSession session) {
+	    	Employee employee = employeeRepository.findByEmployeeUserNameAndEmployeePassword(employeeUserName, employeePassword);
+
+	        if (employee != null) {
+	            
+	            session.setAttribute("loggedInEmployee", employee);
+	            System.out.println(session.getAttribute("loggedInEmployee"));
+	            ModelAndView model = new ModelAndView("redirect:/employeeMember.html");
+	            return model;
+	        } else {
+	            ModelAndView model = new ModelAndView("redirect:/employeeSignin.html");
+	            model.addObject("info", "Login failed"); 
+	            return model;
+	        }
+	    }
+	    
+	    // 取得session
+	    @RequestMapping(value="/employee/session",method=RequestMethod.GET)
+	    public Employee getSession(HttpSession session) {
+	   	 return (Employee)session.getAttribute("loggedInEmployee");
+	    }
+	
 
 }
