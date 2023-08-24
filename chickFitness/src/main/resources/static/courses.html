@@ -217,7 +217,7 @@
 
 	function seeplan(card) {
 		var mId = $("#memberId").text();
-		var cId = card.find(".course_id").text(); // 获取所选卡片的course_id的值
+		var cId = card.find(".courese_id").text(); // 获取所选卡片的course_id的值
 		$.get('http://localhost:8080/schedule2/get/mc/' + mId + '/' + cId
 				+ '/weeks', function(dataS) {
 			// 获取从服务器返回的数据，这是一个包含星期几的数组，例如 [1, 3, 5] 表示星期一、星期三和星期五
