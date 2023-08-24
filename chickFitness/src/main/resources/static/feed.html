@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -34,9 +34,12 @@
 </div>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <div class="card-header rounded-pill bg-warning border-warning " style="text-align: center; color: ghostwhite; font-size: 25px;">UserName</div>
+   <div class="card-header rounded-pill bg-warning border-warning " style="text-align: center; color: ghostwhite; font-size: 25px;">
+    <span id="welcome-message">UserName</span>
+</div>
     <br>
-    <img id="clickableImage" src="img/egg.png" class="rounded mx-auto d-block" width="200px" height="200px">
+    <!-- 这里是显示不同等级图片的 img 元素 -->
+    <img id="chickImage" class="rounded mx-auto d-block" width="200px" height="200px">
     <br>
 
     <div class="container">
@@ -53,21 +56,13 @@
         </div>
 
         <br>
-        <div class="card border-warning mb-3" style="max-width: 100rem; min-width: 0rem;">
-            <div class="card-body text-warning">
-                <h5 class="card-title">Success card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <button id="increaseButton" class="btn btn-primary mt-3">Increase Experience</button>
-            </div>
-        </div>
+       
         <div class="container">
             <div class="chick-card">
                 <div class="avatar-frame">
                 </div>
                 <div class="chick-info">
-                    <p class="chick-label">主人名稱: <span class="chick-value" id="userNameValue"></span></p>
-                    <p class="chick-label">等级: <span class="chick-value" id="currentLevelValue"></span></p>
+                   
                     <p class="chick-label">重生次數: <span class="chick-value" id="lifecountValue"></span></p>
                     <p class="chick-label">階級: <span class="chick-value" id="chickStageValue"></span></p>
                     <p class="chick-label">經驗值: <span class="chick-value" id="currentExpValue"></span></p>
@@ -85,9 +80,9 @@
 
             if (data) {
                 // 如果会话数据存在，将小鸡信息显示在页面上
-                $('#userNameValue').html(data.userName);
+              
                 $('#lifecountValue').html(data.lifecount);
-                $('#chickStageValue').html(data.chickStage);
+               
                 $('#currentExpValue').html(data.currentExp);
 
                 // 计算等级和更新经验条
@@ -95,6 +90,8 @@
                 $('#currentLevelValue').html(level + 1); // 显示等级为当前结果加1
 
                 updateProgressBar(data.currentExp, level);
+                // 调用更新階級的函数
+                stage();
             } else {
                 // 如果会话数据不存在，显示相应的消息
                 $('#userNameValue').text("Chick Info Not Available");
@@ -119,25 +116,109 @@
             var requiredExpByLevel = [0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500];
             var requiredExp = requiredExpByLevel[currentLevel];
             var nextLevelExp = requiredExpByLevel[currentLevel + 1];
-            var expPercentage = ((currentExp - requiredExp) / (nextLevelExp - requiredExp)) * 100;
+            
+            // 将经验百分比默认值设置为0
+            var expPercentage = 0;
+
+            if (currentExp >= 4500) {
+                // 如果经验值大于等于4500，将经验条百分比设置为100%
+                expPercentage = 100;
+            } else {
+                expPercentage = ((currentExp - requiredExp) / (nextLevelExp - requiredExp)) * 100;
+            }
 
             // 更新经验条显示
             $("#progressBar").css("width", expPercentage + "%").attr("aria-valuenow", expPercentage).text(expPercentage.toFixed(2) + "%");
+            
+            // 在这里调用 updateChickImage 函数
+            updateChickImage(currentLevel + 1);
         }
+
     }
 
-    $(document).ready(function () {
-        var currentProgress = 0; // 初始进度为 0
+    // 更新階級的函数
+    function stage() {
+        // 从页面中获取 lifecountValue 的值
+        var lifecountValue = parseInt($('#lifecountValue').text());
 
-        // 按钮点击事件
-        $("#increaseButton").click(function () {
-            if (currentProgress < 25) {
-                currentProgress += 5; // 每次增加 5%
-                $("#progressBar").css("width", currentProgress + "%").attr("aria-valuenow", currentProgress).text(currentProgress + "%");
-            }
-        });
+        // 根据 lifecountValue 的值设置階級后面的内容
+        var levelText = ""; // 初始化内容
+
+        switch (lifecountValue) {
+            case 0:
+                levelText = "手無縛雞";
+                break;
+            case 1:
+                levelText = "小菜雞";
+                break;
+            case 2:
+                levelText = "練出六塊雞";
+                break;
+            case 3:
+                levelText = "老司雞";
+                break;
+            // 添加更多的情况根据需要
+            default:
+                levelText = "未知";
+        }
+
+        // 将階級后面的内容显示在页面上
+        $('#chickStageValue').html(levelText);
+    }
+
+    //隨等級變換圖片//////////////
+    function updateChickImage(currentLevel) {
+        var imagePath = ""; // 初始化图片路径
+
+        // 根据不同的等级设置不同的图片路径
+        switch (currentLevel) {
+            case 1:
+                imagePath = "img/level1.png";
+                break;
+            case 2:
+                imagePath = "img/level2.png";
+                break;
+            case 3:
+                // 等级4时显示等级3的图片
+                imagePath = "img/level3.png";
+                break;
+            case 4:
+                imagePath = "img/level3.png";
+                break;
+            case 5:
+                // 等级6时显示等级5的图片
+                imagePath = "img/level5.png";
+                break;
+            case 6:
+                imagePath = "img/level5.png";
+                break;
+            case 7:
+                // 等级8时显示等级7的图片
+                imagePath = "img/level7.png";
+                break;
+            case 8:
+                imagePath = "img/level7.png";
+                break;
+            case 9:
+                imagePath = "img/level9.png";
+                break;
+            case 10:
+                imagePath = "img/level9.png";
+                break;
+          
+        }
+
+        // 更新图片的 src 属性
+        $("#chickImage").attr("src", imagePath);
+    }
+
+    // 获取会话中的 Member 对象
+    $.get('http://localhost:8080/chick/info', function (data) {
+        if (data) {
+            // 如果会话数据存在，将用户名显示在页面上
+            $('#welcome-message').text("Welcome, " + data.userName + "!");
+        }
     });
-
     </script>
 </body>
 </html>
