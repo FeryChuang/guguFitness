@@ -40,8 +40,7 @@
 							Chickie</a></li>
       </ul>
       <form class="d-flex">
-        	<p id="welcome-message"></p>
-					<p id="memberId"></p>
+					<p id="memberId" style="display:none;"></p>
         <a class="btn btn-outline-dark" href="member.html">會員專區</a>
       </form>
     </div>
@@ -111,6 +110,8 @@
 							<div class="offcanvas-body position-relative">
 								<p>Select which days to add the workout to</p>
 								<div class="btn-group-vertical " role="group">
+									<p id="sid" style="display:none;"></p>
+									<p id="cid" style="display:none;"></p>
 									<input type="checkbox" class="btn-check" id="mon" autocomplete="off"> 
 									<label class="btn btn-outline-warning" for="mon">Monday</label>
 									
@@ -133,7 +134,7 @@
 									<label class="btn btn-outline-warning" for="sun">Sunday</label>
 								</div>
 								<div class="d-grid gap-2" style="margin-top: 30px;">
-									<a class="btn btn-warning" href="#" role="button">Update Planner</a>
+									<a class="btn btn-warning" href="#" role="button" onclick="sendPlan()">Update Planner</a>
 								</div>
 							</div>
 						</div>
@@ -216,40 +217,49 @@
 	}
 
 	function seeplan(card) {
+		$("input[type='checkbox']").prop("checked", false);
+		$("#cid").html("");
+		$("#sid").html("");
 		var mId = $("#memberId").text();
 		var cId = card.find(".courese_id").text(); // 获取所选卡片的course_id的值
-		$.get('http://localhost:8080/schedule2/get/mc/' + mId + '/' + cId
-				+ '/weeks', function(dataS) {
-			// 获取从服务器返回的数据，这是一个包含星期几的数组，例如 [1, 3, 5] 表示星期一、星期三和星期五
-			// 使用这些数据来设置offcanvas中的按钮组的选中状态
-			dataS.forEach(function(dayOfWeek) {
-				// 使用dayOfWeek设置对应的checkbox为选中状态
-				$("#" + getDayAbbreviation(dayOfWeek)).prop("checked", true);
-			});
+		$("#cid").html(cId);
+		$.get('http://localhost:8080/schedule3/get/mc/' + mId + '/' + cId
+				+ '/weeks', function(dataS) {			
+	        // 根据dataS中的数据来更新复选框状态
+	        $("#sid").html(dataS.sid);
+	        $("#mon").prop("checked", dataS.mon);
+	        $("#tue").prop("checked", dataS.tue);
+	        $("#wed").prop("checked", dataS.wed);
+	        $("#thu").prop("checked", dataS.thu);
+	        $("#fri").prop("checked", dataS.fri);
+	        $("#sat").prop("checked", dataS.sat);
+	        $("#sun").prop("checked", dataS.sun);
+			
 		});
 	}
 
-	function getDayAbbreviation(dayOfWeek) {
-		// 将从服务器返回的数字表示的星期几转换为缩写形式的字符串
-		switch (dayOfWeek) {
-		case 1:
-			return "mon";
-		case 2:
-			return "tue";
-		case 3:
-			return "wed";
-		case 4:
-			return "thu";
-		case 5:
-			return "fri";
-		case 6:
-			return "sat";
-		case 7:
-			return "sun";
-		default:
-			return "";
-		}
-	}
+
+	function sendPlan(card){
+			var obj={};	
+			obj.sid=$("#sid").text();
+	        obj.mid=$("#memberId").text();
+	        obj.cid=$("#cid").text();
+	        obj.mon=$("#mon").prop("checked");
+	        obj.tue=$("#tue").prop("checked");
+	        obj.wed=$("#wed").prop("checked");
+	        obj.thu=$("#thu").prop("checked");
+	        obj.fri=$("#fri").prop("checked");
+	        obj.sat=$("#sat").prop("checked");
+	        obj.sun=$("#sun").prop("checked");
+			$.ajax({
+				url:'http://localhost:8080/schedule3/add',
+				type:'post',
+				data:JSON.stringify(obj),
+				contentType :'application/json'
+				});
+			}
+		
+
 </script>
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script
