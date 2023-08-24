@@ -36,7 +36,8 @@ public class MemberController {
         Member savedMember = memberRepository.save(member);
         
         // 新增對應的 Chick 資料，設定預設值
-         Chick chick = new Chick();
+        Chick chick = new Chick();
+        chick.setMemberId(savedMember.getMemberId());
         chick.setUserName(savedMember.getUserName()); // 使用相同的使用者名稱
         chick.setChickStage("手無縛雞"); // 設定預設階段
         chick.setCurrentLevel(1); // 設定預設等級
