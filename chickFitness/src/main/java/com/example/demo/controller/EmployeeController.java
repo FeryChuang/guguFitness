@@ -1,15 +1,9 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,12 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.Courses;
 import com.example.demo.model.Employee;
 import com.example.demo.model.EmployeeRepository;
-import com.example.demo.model.Member;
-import com.example.demo.model.MemberRepository;
-import com.example.demo.model.Schedule2;
 
 
 @RestController
