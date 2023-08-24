@@ -18,6 +18,8 @@ public class Chick implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="chick_id")
     private Integer chickId;
+    @Column(name="member_id")
+	private Integer memberId;
     @Column(name="current_level")
     private Integer currentLevel;
     @Column(name="current_exp")
@@ -31,10 +33,11 @@ public class Chick implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Chick(Integer chickId, Integer currentLevel, Integer currentExp, Integer lifecount, String userName,
-			String chickStage) {
+	public Chick(Integer chickId, Integer memberId, Integer currentLevel, Integer currentExp, Integer lifecount,
+			String userName, String chickStage) {
 		super();
 		this.chickId = chickId;
+		this.memberId = memberId;
 		this.currentLevel = currentLevel;
 		this.currentExp = currentExp;
 		this.lifecount = lifecount;
@@ -46,6 +49,12 @@ public class Chick implements Serializable {
 	}
 	public void setChickId(Integer chickId) {
 		this.chickId = chickId;
+	}
+	public Integer getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 	public Integer getCurrentLevel() {
 		return currentLevel;
@@ -77,6 +86,4 @@ public class Chick implements Serializable {
 	public void setChickStage(String chickStage) {
 		this.chickStage = chickStage;
 	}
-    
 }
-    
