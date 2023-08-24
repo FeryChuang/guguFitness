@@ -12,9 +12,15 @@ import javax.persistence.Table;
 public class Courses {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer course_id;
-	private String course_name, description, difficulty, type, url;
+	@Column(name = "course_id")
+	private Integer courseId;
+	
+	@Column(name = "course_name")
+	private String courseName; 
+	
+	private String description, difficulty, type, url;
 	private Integer calories;
+	
 	@Column(name = "course_range")
 	private Integer courseRange;
 	
@@ -23,11 +29,11 @@ public class Courses {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Courses(Integer course_id, String course_name, String description, String difficulty, String type,
-			String url, Integer calories, Integer courseRange) {
+	public Courses(Integer courseId, String courseName, String description, String difficulty, String type, String url,
+			Integer calories, Integer courseRange) {
 		super();
-		this.course_id = course_id;
-		this.course_name = course_name;
+		this.courseId = courseId;
+		this.courseName = courseName;
 		this.description = description;
 		this.difficulty = difficulty;
 		this.type = type;
@@ -36,20 +42,20 @@ public class Courses {
 		this.courseRange = courseRange;
 	}
 
-	public Integer getCourse_id() {
-		return course_id;
+	public Integer getCourseId() {
+		return courseId;
 	}
 
-	public void setCourse_id(Integer course_id) {
-		this.course_id = course_id;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
 	}
 
-	public String getCourse_name() {
-		return course_name;
+	public String getCourseName() {
+		return courseName;
 	}
 
-	public void setCourse_name(String course_name) {
-		this.course_name = course_name;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 
 	public String getDescription() {
@@ -102,13 +108,9 @@ public class Courses {
 
 	@Override
 	public String toString() {
-		return "Courses [course_id=" + course_id + ", course_name=" + course_name + ", description=" + description
+		return "Courses [courseId=" + courseId + ", courseName=" + courseName + ", description=" + description
 				+ ", difficulty=" + difficulty + ", type=" + type + ", url=" + url + ", calories=" + calories
 				+ ", courseRange=" + courseRange + "]";
 	}
 
-	
-	
-	
-	
 }

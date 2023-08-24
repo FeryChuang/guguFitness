@@ -213,10 +213,10 @@
     }
 
     // 获取会话中的 Member 对象
-    $.get('http://localhost:8080/chick/info', function (data) {
+    $.get('http://localhost:8080/session', function (data) {
         if (data) {
             // 如果会话数据存在，将用户名显示在页面上
-            $('#welcome-message').text("Welcome, " + data.userName + "!");
+            $('#welcome-message').text("Welcome, " + data.name + "!");
         }
     });
     </script>

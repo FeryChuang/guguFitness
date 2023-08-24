@@ -43,22 +43,83 @@
                 font-size: 3.5rem;
             }
         }
+        /* 自定義按鈕樣式 */
+        .custom-btn {
+            margin-top: 15px; /* 調整按鈕之間的間距 */
+            border-radius: 8px; /* 設定按鈕圓角 */
+            font-size: 1.25rem; /* 設定按鈕字體大小 */
+            padding: 10px 20px; /* 設定按鈕內距 */
+        }
+        /* 新增的底部邊界樣式 */
+        .footer {
+            border-top: 1px solid #999;
+            padding: 20px 0;
+            text-align: center;
+        }
+        /* 新增的內容區域樣式 */
+        .content {
+            padding: 20px 0;
+        }
+        .content-text {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        /* 新增的頂部區域樣式 */
+        .top-bar {
+            background-color: rgb(84, 85, 85);
+            padding: 15px 0;
+            text-align: center;
+            color: #fff;
+        }
+        /* 新增的登出按鈕樣式 */
+        .logout-btn {
+            background-color: #ddd;
+            color: #333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: #bbb;
+        }
     </style>
 
     <!-- 自定義的 CSS 文件，通常是用來覆蓋 Bootstrap 的樣式 -->
     <link href="css/employeeEdit.css" rel="stylesheet">
 </head>
 <body class="text-center">
+    <!-- 新增的頂部區域 -->
+    <div class="top-bar">
+        <h3>歡迎來到員工管理系統</h3>
+        <p>請選擇相關功能以繼續</p>
+    </div>
+
     <!-- 包含所有頁面內容的容器 -->
     <div class="container">
         <!-- 顯示 logo 圖片 -->
         <img class="mb-4" src="img/chick.png" alt="" width="295">
         <!-- 顯示自定義的標題 -->
-        <h3 class="employee-title">員工管理系統</h3>
+        <h3 class="employee-title">員工後台管理系統</h3>
 
-        <!-- 兩個按鈕，分別有不同的樣式 -->
-        <a href="#" class="btn btn-lg btn-warning btn-block">會員管理</a>
-        <a href="#" class="btn btn-lg btn-warning btn-block">課程管理</a>
+        <!-- 兩個按鈕，應用自定義按鈕樣式 -->
+        <a href="#" class="btn btn-warning custom-btn">員工管理</a>
+        <a href="#" class="btn btn-warning custom-btn">會員管理</a>
+        <a href="#" class="btn btn-warning custom-btn">課程管理</a>
+
+        <!-- 新增的內容區域 -->
+        <div class="content">
+            <ul class="content-text"></ul>
+            <p class="content-text">請選擇上方的功能按鈕以繼續進行操作。如果有任何問題或需求，請隨時聯絡我們的資訊部門。</p>
+            <a href="#" class="logout-btn">登出</a>
+        </div>
+    </div>
+
+    <!-- 新增的底部邊界 -->
+    <div class="footer">
+        &copy; GUGU Fitness. 
     </div>
 </body>
 </html>
