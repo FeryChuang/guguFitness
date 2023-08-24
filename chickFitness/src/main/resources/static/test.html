@@ -1,45 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.101.0">
-    <title>Dashboard Template · Bootstrap v4.6</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.101.0">
+  <title>Dashboard Template · Bootstrap v4.6</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/dashboard/">
+  <!-- 引入 jQuery 库 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-     <!-- 引入 jQuery 库 -->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
+  </style>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="css/coursesManager.css" rel="stylesheet">
-  </head>
-  <body>
+  <!-- Custom styles for this template -->
+  <link href="css/coursesManager.css" rel="stylesheet">
+</head>
+ <body>
     
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>
@@ -75,7 +71,7 @@
     <h2>Section title</h2>
     		<div>
        			
-       			<button type="button" class="btn btn-secondary mx-1" id="addButton">新增</button>
+       			<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#addCourseModal">新增</button>
         		<button type="button" class="btn btn-secondary mx-1">刪除</button>
         		<button type="button" class="btn btn-secondary mx-1">修改</button>
    			</div>
@@ -149,14 +145,14 @@
         <table class="table table-striped table-sm">
            <thead>
         		<tr>
-            		<th id="course_id" class="text-center">ID</th>
-            		<th id="course_name" class="text-center">課程名稱</th>
-            		<th id="description" class="text-center">課程描述</th>
-           			<th id="difficulty" class="text-center">難度</th>
-            		<th id="calories" class="text-center">卡路里</th>
-            		<th id="type" class="text-center">類型</th>
-            		<th id="URL" class="text-center">URL</th>
-            		<th id="course_range" class="text-center">影片時長</th>
+            		<th class="text-center">ID</th>
+            		<th class="text-center">課程名稱</th>
+            		<th class="text-center">課程描述</th>
+           			<th class="text-center">難度</th>
+            		<th class="text-center">類型</th>
+            		<th class="text-center">URL</th>
+            		<th class="text-center">卡路里</th>
+            		<th class="text-center">影片時長</th>
         		</tr>
     		</thead>
 		
@@ -177,54 +173,12 @@
     </main>
   </div>
 </div>
-<!--
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-      
-       
-        
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const addButton = document.getElementById("addButton");
-    const saveCourseButton = document.getElementById("saveCourseButton");
-
-    addButton.addEventListener("click", function() {
-        // Show the modal when the "新增" button is clicked
-        $('#addCourseModal').modal('show');
-    });
-
-    saveCourseButton.addEventListener("click", function() {
-        // Retrieve input values
-        const courseName = document.getElementById("courseNameInput").value;
-        const description = document.getElementById("descriptionInput").value;
-        const difficulty = document.getElementById("difficultyInput").value;
-        const type = document.getElementById("typeInput").value;
-        const url = document.getElementById("urlInput").value;
-        const calories = parseInt(document.getElementById("caloriesInput").value);
-        const courseRange = parseInt(document.getElementById("courseRangeInput").value);
-
-        // Create an object to store the data
-        const courseData = {
-            courseName: courseName,
-            description: description,
-            difficulty: difficulty,
-            type: type,
-            url: url,
-            calories: calories,
-            courseRange: courseRange
-        };
-
-        // Here you can use AJAX or other methods to send the data to your server
-
-        $('#addCourseModal').modal('hide');
-    });
-});
+// Your JavaScript code here (if any)
 </script>
 
- <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-        <script src="css/coursesManager.js"></script>
 
-  </body>
+
+</body>
 </html>
