@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +33,8 @@ public class ChickController {
     
     @RequestMapping(value = "/info", method = RequestMethod.GET) // 修改映射路径
     public ResponseEntity<Chick> getChickInfo(@SessionAttribute("loggedInMember") Member member) {
-        String username = member.getUserName();
-        List<Chick> chickData = chickRepository.findByUserName(username);
+        Integer memberid = member.getMemberId();
+        List<Chick> chickData = chickRepository.findByMemberId(memberid);
 
         if (!chickData.isEmpty()) {
             return new ResponseEntity<>(chickData.get(0), HttpStatus.OK);
@@ -41,4 +42,7 @@ public class ChickController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+   
+    
 }
