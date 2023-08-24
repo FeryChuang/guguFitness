@@ -23,40 +23,35 @@ import com.example.demo.model.Schedule3Repository;
 
 
 @RestController
-@RequestMapping("/schedule3") // 網址 http://localhost:8080/schedule2
+@RequestMapping("/schedule3") // 網址 http://localhost:8080/schedule3
 public class Schedule3Controller implements CommandLineRunner {
 
 	@Autowired
 	Schedule3Repository sReps;
 
-	
-	@GetMapping("/get/mc/{mid}/{cid}/weeks")
+	// 網址 http://localhost:8080/schedule3/get/mc/{mid}/{cid}
+	@GetMapping("/get/mc/{mid}/{cid}")
 	public Schedule3 findByMidAndCid(@PathVariable("mid") Integer mid, @PathVariable("cid") Integer cid) {
 		Schedule3 sch=sReps.findByMidAndCid(mid,cid);
 		return sch;
 	}
 
-	//拿上面方法的資料做修改成返回星期的純數字
-//	@GetMapping("/get/mc/{mid}/{cid}/weeks")
-//	public List<Integer> findWeekByMidAndCid(@PathVariable("mid") Integer mid, @PathVariable("cid") Integer cid) {
-//	    List<Schedule3> data = sReps.findByMidAndCidOrderByWeek(mid, cid);
-//	    List<Integer> weeks = data.stream()
-//	        .map(Schedule3::getWeek) // 提取 week 字段值
-//	        .collect(Collectors.toList());
-//	    
-//	    return weeks;
-//	}	
-
 
 /////////////////新增功能/////////////////////
 // Postman測試語法↓↓
-//{
-//        "sid": null,
-//        "mid": 2,
-//        "cid": 3,
-//        "week": 6
-//}
-	// 網址 http://localhost:8080/schedule2/add
+//	{
+//        "sid": "",
+//        "mid": 1,
+//        "cid": 5,
+//        "mon": true,
+//        "tue": true,
+//        "wed": true,
+//        "thu": true,
+//        "fri": true,
+//        "sat": false,
+//        "sun": false
+//    }
+	// 網址 http://localhost:8080/schedule3/add
 	@PostMapping("/add")
 	public void addSchedule(@RequestBody Schedule3 schedule) {
 		// 手動設定 ID 為 null，以便讓 JPA 生成新的 ID

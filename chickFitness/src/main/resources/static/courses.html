@@ -224,7 +224,7 @@
 		var cId = card.find(".courese_id").text(); // 获取所选卡片的course_id的值
 		$("#cid").html(cId);
 		$.get('http://localhost:8080/schedule3/get/mc/' + mId + '/' + cId
-				+ '/weeks', function(dataS) {			
+			, function(dataS) {
 	        // 根据dataS中的数据来更新复选框状态
 	        $("#sid").html(dataS.sid);
 	        $("#mon").prop("checked", dataS.mon);
