@@ -190,12 +190,12 @@
 <script>
 	$(document).ready(getAll);
 	function getAll() {
-		$.get('http://localhost:8080/courses', function(dataC) {
+		$.get('http://localhost:8080/courses/all', function(dataC) {
 			$(dataC).each(
 					function(index, course) {
 						var newCard = $(".forClone").clone().removeClass(
 								"forClone");
-						newCard.find(".course_name").html(course.course_name);
+						newCard.find(".course_name").html(course.courseName);
 						newCard.find(".description").html(course.description);
 						newCard.find("iframe").attr("src",
 								'https://www.youtube.com/embed/' + course.url);
@@ -204,7 +204,7 @@
 						newCard.find(".difficulty").html(course.difficulty);
 						newCard.find(".range").html(course.courseRange + 'mins');
 						newCard.find(".type").html(course.type);
-						newCard.find(".courese_id").html(course.course_id);
+						newCard.find(".courese_id").html(course.courseId);
 						newCard.css("display", "");
 						//alert('done');
 						newCard.appendTo("#cardContainer");
