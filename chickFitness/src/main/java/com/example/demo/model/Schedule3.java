@@ -26,10 +26,15 @@ public class Schedule3 {
 	private 
 	Boolean mon, tue, wed, thu, fri, sat, sun;
 	
+	@Column(name = "course_name")
+	private String courseName; 
+	
+	private String url;
+	
 	public Schedule3() {}
 
 	public Schedule3(Integer sid, Integer mid, Integer cid, Boolean mon, Boolean tue, Boolean wed, Boolean thu,
-			Boolean fri, Boolean sat, Boolean sun) {
+			Boolean fri, Boolean sat, Boolean sun, String courseName, String url) {
 		super();
 		this.sid = sid;
 		this.mid = mid;
@@ -41,6 +46,8 @@ public class Schedule3 {
 		this.fri = fri;
 		this.sat = sat;
 		this.sun = sun;
+		this.courseName = courseName;
+		this.url = url;
 	}
 
 	public Integer getSid() {
@@ -123,12 +130,30 @@ public class Schedule3 {
 		this.sun = sun;
 	}
 
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	@Override
 	public String toString() {
 		return "Schedule3 [sid=" + sid + ", mid=" + mid + ", cid=" + cid + ", mon=" + mon + ", tue=" + tue + ", wed="
-				+ wed + ", thu=" + thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + "]";
+				+ wed + ", thu=" + thu + ", fri=" + fri + ", sat=" + sat + ", sun=" + sun + ", courseName=" + courseName
+				+ ", url=" + url + "]";
 	}
 
+	
 	
 	
 }
