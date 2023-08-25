@@ -35,10 +35,12 @@ CREATE TABLE `schedule3` (
   `fri` tinyint NOT NULL DEFAULT '0',
   `sat` tinyint NOT NULL DEFAULT '0',
   `sun` tinyint NOT NULL DEFAULT '0',
+  `course_name` varchar(45) NOT NULL,
+  `URL` varchar(45) NOT NULL,
   PRIMARY KEY (`schedule_id`),
   KEY `s2c_idx` (`course_id`),
   KEY `s2m_idx` (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +49,7 @@ CREATE TABLE `schedule3` (
 
 LOCK TABLES `schedule3` WRITE;
 /*!40000 ALTER TABLE `schedule3` DISABLE KEYS */;
-INSERT INTO `schedule3` VALUES (1,3,1,0,0,1,0,0,1,0),(2,1,1,0,0,1,1,0,0,0),(3,2,1,1,0,1,0,1,0,1),(4,6,1,0,1,0,1,0,1,0);
+INSERT INTO `schedule3` VALUES (1,1,3,1,1,0,0,0,0,0,'超慢跑20分鐘-2','nAsKSo93blY'),(2,2,3,0,1,1,1,0,0,0,'超慢跑初學專用','25NwcTHvRzQ'),(3,5,3,1,0,1,0,1,0,1,'10分鐘高強度居家運動','7iC8LaBuU1E'),(4,8,3,0,0,1,1,0,0,0,'15 分鐘高强度全身肌肉徒手訓練','20uf1EcGqjY'),(5,6,3,0,0,1,1,0,0,0,'45分鐘中級流瑜珈','V9TiRwtj0jA'),(6,7,3,0,0,1,1,0,0,0,'初學瑜伽第一課','X4z-NBQCq9E');
 /*!40000 ALTER TABLE `schedule3` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-24 16:19:56
+-- Dump completed on 2023-08-25 18:28:25
