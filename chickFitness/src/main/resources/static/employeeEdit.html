@@ -1,137 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>員工註冊</title>
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-        crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        form {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            font-weight: bold;
-        }
-        select.form-control {
-            appearance: auto;
-        }
-        button[type="submit"] {
-            background-color: #ffc107;
-            border: none;
-        }
-        a.btn {
-            background-color: #ffc107;
-            border: none;
-        }
-        footer {
-            margin-top: 50px;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.101.0">
+  <title>員工管理系統</title>
+
+  <!-- 引入 jQuery 库 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- 引入 Bootstrap 核心 CSS 和 JavaScript -->
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 自定義樣式 -->
+  <link href="css/coursesManager.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
 </head>
+<body> 
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-center" href="#">GuGU Fitness</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Sign out</a>
+    </li>
+  </ul>
+</nav>
 
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="text-center mb-4">
-                   <img class="d-block mx-auto mb-4" src="img/chick.png" alt=""
-				width="250">
-                    <h4 class="mt-2">員工註冊</h4>
-                </div>
-                <form class="needs-validation" novalidate>
-                    <div class="mb-3">
-                        <label for="name">姓名</label>
-                        <input type="text" class="form-control" id="name" value="LuckyEgg" required>
-                        <div class="invalid-feedback">請輸入有效的姓名。</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="eid">帳號</label>
-                        <input type="text" class="form-control" id="eid" placeholder="" value="root" required>
-                        <div class="invalid-feedback">請輸入有效的帳號。</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password">密碼</label>
-                        <input type="password" class="form-control" id="password" value="1234" required>
-                        <div class="invalid-feedback">請輸入有效的密碼。</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email">電子郵件</label>
-                        <input type="email" class="form-control" id="email" placeholder="email@example.com" value="root@test.com" required>
-                        <div class="invalid-feedback">請輸入有效的電子郵件地址。</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="role">職位</label>
-                        <select class="form-control" id="role" required>
-                            <option value="" disabled>請選擇職位</option>
-                            <option value="admin" selected>管理員</option>
-                        <!--<option value="user">一般員工</option> -->  
-                           
-                        </select>
-                        <div class="invalid-feedback">請選擇有效的職位。</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="status">狀態</label>
-                        <select class="form-control" id="status" required>
-                            <option value="" disabled>請選擇狀態</option>
-                            <option value="1" selected>啟用</option>
-                            <option value="0">停用</option>
-                        </select>
-                        <div class="invalid-feedback">請選擇有效的狀態。</div>
-                    </div>
-                    <br />
-                    <button class="btn btn-warning btn-lg btn-block" type="submit"
-                        onclick="employeeAdd(event)">提交</button>
-                         <br />
-                <a href="employeeSignin.html" class="btn btn-warning btn-lg btn-block">返回</a>
-                </form>
-               
-            </div>
-        </div>
+<main role="main" class="col-md-9 mx-auto col-lg-10 px-md-4">
+  <div class="d-flex flex-column justify-content-center align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <img class="mb-4" src="img/chick.png" alt="" width="295">
+    
+    <h3 >員工管理系統</h3>
+    
+      <div>
+		  <a href="employeeSignup.html" class="btn btn-secondary mx-1">新增</a>
+        <button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#editEmployeeModal">修改</button>
+
+        <button type="button" class="btn btn-secondary mx-3 deleteButton" data-toggle="modal" data-target="#deleteEmployeeModal">刪除</button>
+      </div>
     </div>
-    <script>
 
-	function employeeAdd(event) {
-		event.preventDefault();
-		var data = {
-			employeeName : $("#name").val(),
-			employeeUserName : $("#eid").val(),
-			employeePassword : $("#password").val(),
-			employeeEmail : $("#password").val(),
-            employeeRole : $("#role").val(),
-            employeeStatus : $("#status").val()
-		};
-		$.ajax({
-			url : '/employee/add',
-			type : 'POST',
-			contentType : 'application/json',
-			data : JSON.stringify(data),
-			success: function(response, status, xhr) {
-                if (xhr.status === 200) {
-                    // Handle success response as needed
-                    alert("恭喜您多了一位隸屬於"+data.employeeRole+"的養雞場員工"+data.employeeName+" (拍拍手)");
-                    window.location.href = "/employeeMember.html"; // Redirect to the desired page
-                }
-            },
-			error : function(xhr, status, error) {
-				alert("An error occurred: " + error);
-			}
-		});
-	}
+
+
+  
+  <!-- 修改會員 -->
+   <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCourseModalLabel">修改員工</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="memberIdInput">員工ID</label>
+            <input type="text" id="IdInput" class="form-control" placeholder=" 員工ID">
+          </div>
+           <div class="form-group">
+            <label for="NameInput">員工姓名</label>
+            <input type="text" id="NameInput" class="form-control" placeholder="員工姓名">
+          </div>
+          
+          <div class="form-group">
+            <label for="userNameInput">員工帳號</label>
+            <input type="text" id="userNameInput" class="form-control" placeholder="員工帳號">
+          </div>
+        
+          <div class="form-group">
+            <label for="passwordInput">員工密碼</label>
+            <input type="text" id="passwordInput" class="form-control" placeholder="員工密碼">
+          </div>
+          <div class="form-group">
+            <label for="emailInput">員工信箱</label>
+            <input type="text" id="emailInput" class="form-control" placeholder="員工信箱">
+          </div>
+             <div class="form-group">
+            <label for="emailInput">員工角色</label>
+            <input type="text" id="emailInput" class="form-control" placeholder="員工角色">
+          </div>
+             <div class="form-group">
+            <label for="emailInput">員工狀態</label>
+            <input type="text" id="emailInput" class="form-control" placeholder="員工狀態">
+          </div>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="saveCourseButton">儲存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 刪除會員 -->
+  
+ <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="deleteEmployeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteMemberModalLabel">刪除員工</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+   
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="deleteMemberIdInput">要刪除的員工ID</label>
+          <input type="text" id="deleteMemberIdInput" class="form-control" placeholder="會員ID">
+        </div>
+        <p class="text-danger">請輸入正確的員工ID，刪除後無法復原。</p>
+      </div>
+   
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-danger" id="deleteConfirmButton">刪除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+  
+
+   <!-- 動態生成的會員資料表格 -->
+    <div id="employeeTable"></div>
+
+    <table class="table">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th class="text-center">員工ID</th>
+              <th class="text-center">員工帳號</th>
+              <th class="text-center">員工密碼</th>
+              <th class="text-center">員工姓名</th>
+              <th class="text-center">員工信箱</th>
+              <th class="text-center">員工角色</th>
+              <th class="text-center">員工狀態</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTableBody">
+            <!-- ...（動態生成的內容）... -->
+          </tbody>
+        </table>
+      </div>
+    </table>
+  </main>
+ </body> 
+
+<script>
+$(document).ready(function() {
+  // 新增會員
+  $("#saveEmployeeButton").click(function() {
+    // 取得使用者輸入的資料
+    var employeeUserName = $("#userNameInput").val();
+    var employeePassword = $("#passwordInput").val();
+    var employeeName = $("#NameInput").val();
+    var employeeEmail = $("#emailInput").val();
+    var employeeRole = $("#roleInput").val();
+    var employeeStatus = $("#statusInput").val();
+
+    // 將資料以 POST 請求傳送給後端
+    $.post("/employee/add", {
+      employeeUserName: employeeUserName,
+      employeePassword: employeePassword,
+      employeeName: employeeName,
+      employeeEmail: employeeEmail,
+      employeeRole: employeeRole,
+      employeeStatus: employeeStatus
+    }, function() {
+      $("#addEmployeeModal").modal("hide");
+      loadEmployeeData();
+    });
+  });
+
+  // 刪除會員
+  $("#deleteConfirmButton").click(function() {
+    var employeeIdToDelete = $("#deleteEmployeeIdInput").val();
+
+    $.ajax({
+      url: `/employee/delete/${employeeIdToDelete}`,
+      type: "DELETE",
+      success: function() {
+        $("#deleteEmployeeModal").modal("hide");
+        loadEmployeeData();
+      }
+    });
+  });
+
+  // 編輯會員（展示編輯用的模態框）
+  $("#editEmployeeModal").on("show.bs.modal", function(event) {
+    // 取得點選按鈕上的自訂屬性值
+    var button = $(event.relatedTarget);
+    var employeeId = button.data("employee-id");
+
+    // 將 employeeId 帶到模態框中
+    var modal = $(this);
+    modal.find("#IdInput").val(employeeId);
+  });
+
+  // 編輯會員（儲存編輯後的資料）
+  $("#saveEditEmployeeButton").click(function() {
+    var employeeId = $("#IdInput").val();
+    var employeeUserName = $("#userNameInput").val();
+    var employeePassword = $("#passwordInput").val();
+    var employeeName = $("#NameInput").val();
+    var employeeEmail = $("#emailInput").val();
+    var employeeRole = $("#roleInput").val();
+    var employeeStatus = $("#statusInput").val();
+
+    $.ajax({
+      url: `/employee/update/${employeeId}`,
+      type: "PUT",
+      data: JSON.stringify({
+        employeeUserName: employeeUserName,
+        employeePassword: employeePassword,
+        employeeName: employeeName,
+        employeeEmail: employeeEmail,
+        employeeRole: employeeRole,
+        employeeStatus: employeeStatus
+      }),
+      contentType: "application/json",
+      success: function() {
+        $("#editEmployeeModal").modal("hide");
+        loadEmployeeData();
+      }
+    });
+  });
+
+  // 載入會員資料
+  function loadEmployeeData() {
+    $.get("/employee/getAll", function(data) {
+      var tableBody = $("#employeeTableBody");
+      tableBody.empty();
+
+      data.forEach(function(employee) {
+        var row = `
+          <tr>
+            <td class="align-middle text-center">${employee.employeeId}</td>
+            <td class="align-middle text-center">${employee.employeeUserName}</td>
+            <td class="align-middle text-center">${employee.employeePassword}</td>
+            <td class="align-middle text-center">${employee.employeeName}</td>
+            <td class="align-middle text-center">${employee.employeeEmail}</td>
+            <td class="align-middle text-center">${employee.employeeRole}</td>
+            <td class="align-middle text-center">${employee.employeeStatus}</td>
+          </tr>`;
+        tableBody.append(row);
+      });
+    });
+  }
+
+  // 初始載入會員資料
+  loadEmployeeData();
+});
 </script>
-</body>
 
+</body>
 </html>
