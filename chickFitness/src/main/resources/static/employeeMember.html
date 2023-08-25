@@ -34,6 +34,7 @@
 
   <!-- 自定義樣式 -->
   <link href="css/coursesManager.css" rel="stylesheet">
+  
 </head>
 <body>
     
@@ -83,29 +84,41 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="memberIdInput">會員ID</label>
-            <input type="text" id="IdInput" class="form-control" placeholder="會員ID">
-          </div>
+       <div class="modal-body">
+  <div class="form-group row">
+    <label for="memberIdInput" class="col-sm-4 col-form-label">會員ID</label>
+    <div class="col-sm-6">
+      <input type="text" id="IdInput" class="form-control" placeholder="會員ID">
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-primary" id="searchMemberButton">查詢</button>
+    </div>
+  </div>
            <div class="form-group">
-            <label for="NameInput">會員姓名</label>
-            <input type="text" id="NameInput" class="form-control" placeholder="會員姓名">
-          </div>
-          
-          <div class="form-group">
-            <label for="userNameInput">會員帳號</label>
-            <input type="text" id="userNameInput" class="form-control" placeholder="會員帳號">
-          </div>
-        
-          <div class="form-group">
-            <label for="passwordInput">會員密碼</label>
-            <input type="text" id="passwordInput" class="form-control" placeholder="會員密碼">
-          </div>
-          <div class="form-group">
-            <label for="emailInput">會員信箱</label>
-            <input type="text" id="emailInput" class="form-control" placeholder="會員信箱">
-          </div>
+    <label for="memberIdInput">會員ID</label>
+    <input type="text" id="memberIdInput" name="memberId" class="form-control" placeholder="會員ID">
+</div>
+
+<div class="form-group">
+    <label for="NameInput">會員姓名</label>
+    <input type="text" id="NameInput" name="name" class="form-control" placeholder="會員姓名">
+</div>
+
+<div class="form-group">
+    <label for="userNameInput">會員帳號</label>
+    <input type="text" id="userNameInput" name="userName" class="form-control" placeholder="會員帳號">
+</div>
+
+<div class="form-group">
+    <label for="passwordInput">會員密碼</label>
+    <input type="text" id="passwordInput" name="password" class="form-control" placeholder="會員密碼">
+</div>
+
+<div class="form-group">
+    <label for="emailInput">會員信箱</label>
+    <input type="text" id="emailInput" name="email" class="form-control" placeholder="會員信箱">
+</div>
+
          
         </div>
         <div class="modal-footer">
@@ -117,8 +130,7 @@
   </div>
   
   <!-- 刪除會員 -->
-  
- <div class="modal fade" id="deleteMemberModal" tabindex="-1" aria-labelledby="deleteMemberModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteMemberModal" tabindex="-1" aria-labelledby="deleteMemberModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -165,13 +177,7 @@
           </tr>
         </thead>
         <tbody id="courseTableBody">
-          <tr>
-            <td class="align-middle text-center">1,001</td>
-            <td class="align-middle text-center">random</td>
-            <td class="align-middle text-center">data</td>
-            <td class="align-middle text-center">placeholder</td>
-            <td class="align-middle text-center">text</td>
-          </tr>
+          
         </tbody>
       </table>
     </div>
@@ -179,7 +185,127 @@
 </main>
 
 <script>
-// 這裡JavaScript
+$(document).ready(function() {
+    // 擷取所有會員資料並填充表格
+    $.get('/members', function(data) {
+      var tableBody = $('#courseTableBody');
+      tableBody.empty(); // 清空現有的行
+
+      // 遍歷每個會員對象，為每個會員附加一行到表格中
+      for (var i = 0; i < data.length; i++) {
+        var member = data[i];
+        var row = '<tr>' +
+                  '<td class="align-middle text-center">' + member.memberId + '</td>' +
+                  '<td class="align-middle text-center">' + member.name + '</td>' +
+                  '<td class="align-middle text-center">' + member.userName + '</td>' +
+                  '<td class="align-middle text-center">' + member.password + '</td>' +
+                  '<td class="align-middle text-center">' + member.email + '</td>' +
+                  '</tr>';
+        tableBody.append(row);
+      }
+    });
+  });
+  ////////////////修改按鈕下的查詢按鈕/////////////////////////
+// 宣告全局變數 memberId
+var memberId;
+
+// 綁定查詢按鈕的點擊事件
+$('#searchMemberButton').click(function() {
+	console.log('Save button clicked');
+	console.log(memberId);
+	 // 獲取會員ID的值
+    memberId = $('#IdInput').val();
+
+    // 使用AJAX發送GET請求到後端以查詢會員資料
+    $.get('/members/' + memberId, function(member) {
+        // 檢查是否找到了會員
+        if (member) {
+            // 填充其他欄位
+            $('#memberIdInput').val(member.memberId);
+            $('#NameInput').val(member.name);
+            $('#userNameInput').val(member.userName);
+            $('#passwordInput').val(member.password);
+            $('#emailInput').val(member.email);
+
+            // 在此處設置 memberId，以確保它是最新的
+            memberId = member.memberId;
+        } else {
+            // 如果未找到會員，您可以顯示一個錯誤訊息
+            alert('找不到該會員');
+        }
+    });
+});
+
+//綁定保存按鈕的點擊事件
+$('#saveCourseButton').click(function() {
+    // 收集用戶在彈窗中输入的數據
+    var updatedMember = {
+        memberId: memberId, // 使用之前獲取的 memberId
+        name: $('#NameInput').val(),
+        userName: $('#userNameInput').val(),
+        password: $('#passwordInput').val(),
+        email: $('#emailInput').val()
+    };
+
+    // 使用AJAX發送POST請求到後端以保存更新的會員資料
+    $.ajax({
+        url: '/update',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(updatedMember),
+        success: function(response) {
+            // 更新成功後的處理
+            if (response) {
+                alert('會員資料已成功更新');
+                // 清空模态框中的输入框
+                $('#memberIdInput').val('');
+                $('#NameInput').val('');
+                $('#userNameInput').val('');
+                $('#passwordInput').val('');
+                $('#emailInput').val('');
+                // 關閉彈窗
+                $('#addCourseModal').modal('hide');
+                // 可以刷新會員列表等其他操作
+            } else {
+                alert('儲存失敗');
+            }
+        },
+        error: function() {
+            alert('儲存失敗');
+        }
+    });
+});
+///////刪除/////////////////////////////////
+// 綁定删除按钮的点击事件
+$('#deleteConfirmButton').click(function() {
+    // 获取要删除的会员ID
+    var deleteMemberId = $('#deleteMemberIdInput').val();
+
+    // 使用AJAX发起DELETE请求到后端以删除会员
+    $.ajax({
+        url: '/delete/' + deleteMemberId,
+        type: 'DELETE',
+        success: function(response) {
+            if (response) {
+                alert('會員已成功刪除');
+                // 清空输入框
+                $('#deleteMemberIdInput').val('');
+                // 关闭模态框
+                $('#deleteMemberModal').modal('hide');
+                // 可以刷新会员列表等其他操作
+            } else {
+                alert('刪除失敗');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("请求失敗：", xhr.responseText);
+            alert('刪除请求失敗，查看控制台獲取更多信息');
+        }
+    });
+
+});
+
+
 </script>
 
 </body>

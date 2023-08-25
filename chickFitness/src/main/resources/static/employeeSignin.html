@@ -10,8 +10,8 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sign-in/">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
-
     <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -62,6 +62,7 @@
   </div>
   
   <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
+  <div id="error-message" style="color: red;"></div>
    <p class="mt-5 mb-3 text-muted">&copy; GUGU Fitness</p>
 </form>
 
@@ -69,14 +70,18 @@
     
   </body>
   
-<script>
-$(document).ready(function(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const infoMessage = urlParams.get('info');
-    if (infoMessage) {
-        $("#error-message").text(infoMessage);
-        $("#error-message").show();
-    }
-});
-</script>
+  <script>
+    $(document).ready(function(){
+        // 使用ajax取得錯誤訊息
+        $.ajax({
+            url: "/employee/loginerror",
+            method: "GET",
+            success: function(errorMessage) {
+                if (errorMessage) {
+                    $("#error-message").text(errorMessage);
+                }
+            }
+        });
+    });
+  </script>
 </html>
