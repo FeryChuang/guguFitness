@@ -356,6 +356,7 @@ function delCourse() {
             searchCourse();
             // 關閉模態框
             $('#delCourseModal').modal('hide');
+             $("#delcourseIDInput").val("");
         },
         error: function(error) {
             console.error('Error deleting course:', error);
