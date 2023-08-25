@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.Date;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
 import com.example.demo.model.Employee;
 import com.example.demo.model.EmployeeRepository;
+
 
 @RestController
 public class EmployeeController {
@@ -29,6 +30,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/employee/add", method = RequestMethod.POST)
 	public Employee addEmployee(@RequestBody Employee employee) {
 		employee.setEmployeeId(null);
+		employee.setRegistrationTime(new Date());
 		return employeeRepository.save(employee);
 	}
 	
@@ -82,9 +84,12 @@ public class EmployeeController {
 	//登入
     @PostMapping("/employee/login")
     public ModelAndView login(@RequestParam String employeeUserName, @RequestParam String employeePassword, HttpSession session) {
-    	Employee employee = employeeRepository.findByEmployeeUserNameAndEmployeePassword(employeeUserName, employeePassword);
-        if (employee != null) {
-            session.setAttribute("loggedInEmployee", employee);
+    	Employee existEmployee = employeeRepository.findByEmployeeUserNameAndEmployeePassword(employeeUserName, employeePassword);
+        if (existEmployee != null) {
+            session.setAttribute("loggedInEmployee", existEmployee);
+            // 更新最後登入時間
+            existEmployee.setLastLoginTime(new Date());
+            employeeRepository.save(existEmployee);
             System.out.println(session.getAttribute("loggedInEmployee"));
             ModelAndView model = new ModelAndView("redirect:/employeeHome.html");
             return model;
@@ -95,6 +100,7 @@ public class EmployeeController {
         }
     }
     
+    // 登出
     @GetMapping("/employee/logout")
     public ModelAndView logout(HttpSession session) {
         // 清除登入session
