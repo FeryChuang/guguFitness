@@ -55,30 +55,30 @@
                 <form class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="name">姓名</label>
-                        <input type="text" class="form-control" id="name" required>
+                        <input type="text" class="form-control" id="name" value="ename2" required>
                         <div class="invalid-feedback">請輸入有效的姓名。</div>
                     </div>
                     <div class="mb-3">
-                        <label for="id">帳號</label>
-                        <input type="text" class="form-control" id="id" placeholder="" value="" required>
+                        <label for="eid">帳號</label>
+                        <input type="text" class="form-control" id="eid" placeholder="" value="euser2" required>
                         <div class="invalid-feedback">請輸入有效的帳號。</div>
                     </div>
                     <div class="mb-3">
                         <label for="password">密碼</label>
-                        <input type="password" class="form-control" id="password" required>
+                        <input type="password" class="form-control" id="password" value="epass2" required>
                         <div class="invalid-feedback">請輸入有效的密碼。</div>
                     </div>
                     <div class="mb-3">
                         <label for="email">電子郵件</label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com" value="eemail2@test.com" required>
                         <div class="invalid-feedback">請輸入有效的電子郵件地址。</div>
                     </div>
                     <div class="mb-3">
-                        <label for="position">職位</label>
-                        <select class="form-control" id="position" required>
+                        <label for="role">職位</label>
+                        <select class="form-control" id="role" required>
                             <option value="" disabled selected>請選擇職位</option>
                             <option value="manager">管理員</option>
-                            <option value="manager">一般員工</option>
+                            <option value="user">一般員工</option>
                            
                         </select>
                         <div class="invalid-feedback">請選擇有效的職位。</div>
@@ -87,14 +87,14 @@
                         <label for="status">狀態</label>
                         <select class="form-control" id="status" required>
                             <option value="" disabled selected>請選擇狀態</option>
-                            <option value="active">啟用</option>
-                            <option value="inactive">停用</option>
+                            <option value="1">啟用</option>
+                            <option value="0">停用</option>
                         </select>
                         <div class="invalid-feedback">請選擇有效的狀態。</div>
                     </div>
                     <br />
                     <button class="btn btn-warning btn-lg btn-block" type="submit"
-                        onclick="memberadd(event)">提交</button>
+                        onclick="employeeAdd(event)">提交</button>
                          <br />
                 <a href="employeeSignin.html" class="btn btn-warning btn-lg btn-block">返回</a>
                 </form>
@@ -103,10 +103,43 @@
         </div>
     </div>
     <script>
-        function memberadd(event) {
-            event.preventDefault(); // 阻止表單提交
-            // 執行您的表單處理邏輯...
-        }
+/*參考用
+"employeeName": name
+"employeeUserName": eid
+"employeePassword": password
+"employeeEmail": email
+"employeeRole": role
+"employeeStatus": status
+        
+*/
+	function employeeAdd(event) {
+		event.preventDefault();
+		var data = {
+			employeeName : $("#name").val(),
+			employeeUserName : $("#eid").val(),
+			employeePassword : $("#password").val(),
+			employeeEmail : $("#password").val(),
+            employeeRole : $("#role").val(),
+            employeeStatus : $("#status").val()
+		};
+		$.ajax({
+			url : '/employee/add',
+			type : 'POST',
+			contentType : 'application/json',
+			data : JSON.stringify(data),
+			success: function(response, status, xhr) {
+                if (xhr.status === 200) {
+                    // Handle success response as needed
+                    alert("恭喜您多了一位養雞場員工"+data.employeeName+"他是個"+data.employeeRole);
+                    window.location.href = "/employeeSignin.html"; // Redirect to the desired page
+                }
+            },
+			error : function(xhr, status, error) {
+				alert("An error occurred: " + error);
+			}
+		});
+	}
+</script>
     </script>
 </body>
 
