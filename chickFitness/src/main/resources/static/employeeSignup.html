@@ -70,17 +70,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="email">電子郵件</label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                        <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
                         <div class="invalid-feedback">請輸入有效的電子郵件地址。</div>
                     </div>
                     <div class="mb-3">
                         <label for="role">職位</label>
                         <select class="form-control" id="role" required>
                             <option value="" disabled selected>請選擇職位</option>
-                            <option value="manager">管理員</option>
+                            <option value="admin">管理員</option>
                         </select>
                         <div class="invalid-feedback">請選擇有效的職位。</div>
                     </div>
+
                     <div class="mb-3">
                         <label for="status">狀態</label>
                         <select class="form-control" id="status" required>
@@ -101,17 +102,28 @@
         </div>
     </div>
     <script>
-/*參考用
-"employeeName": name
-"employeeUserName": eid
-"employeePassword": password
-"employeeEmail": email
-"employeeRole": role
-"employeeStatus": status
-        
-*/
+
 	function employeeAdd(event) {
 		event.preventDefault();
+
+        // 執行表單驗證
+        var isValid = true;
+        var roleSelect = document.getElementById("role");
+
+        $("form :input").each(function() {
+            if ($(this).prop("required") && $(this).val().trim() === "") {
+                isValid = false;
+                $(this).addClass("is-invalid");
+            } else {
+                $(this).removeClass("is-invalid");
+            }
+        });
+
+        if (!isValid) {
+            return; // 如果驗證失敗，不執行後續的 AJAX 請求
+        }
+
+        // 如果驗證成功，繼續執行 AJAX 請求
 		var data = {
 			employeeName : $("#name").val(),
 			employeeUserName : $("#eid").val(),
@@ -128,7 +140,7 @@
 			success: function(response, status, xhr) {
                 if (xhr.status === 200) {
                     // Handle success response as needed
-                    alert("恭喜您多了一位養雞場員工"+data.employeeName);
+                    alert("恭喜您多了一位隸屬於"+data.employeeRole+"的養雞場員工"+data.employeeName+" (拍拍手)");
                     window.location.href = "/employeeEdit.html"; // Redirect to the desired page
                 }
             },
@@ -137,8 +149,8 @@
 			}
 		});
 	}
+
 </script>
-    </script>
 </body>
 
 </html>
