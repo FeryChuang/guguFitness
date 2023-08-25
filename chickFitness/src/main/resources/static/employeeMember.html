@@ -238,7 +238,6 @@ $('#searchMemberButton').click(function() {
 
 //綁定保存按鈕的點擊事件
 $('#saveCourseButton').click(function() {
-    // 收集用戶在彈窗中输入的數據
     var updatedMember = {
         memberId: memberId, // 使用之前獲取的 memberId
         name: $('#NameInput').val(),
@@ -247,25 +246,22 @@ $('#saveCourseButton').click(function() {
         email: $('#emailInput').val()
     };
 
-    // 使用AJAX發送POST請求到後端以保存更新的會員資料
     $.ajax({
         url: '/update',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(updatedMember),
         success: function(response) {
-            // 更新成功後的處理
             if (response) {
                 alert('會員資料已成功更新');
-                // 清空模态框中的输入框
                 $('#memberIdInput').val('');
                 $('#NameInput').val('');
                 $('#userNameInput').val('');
                 $('#passwordInput').val('');
                 $('#emailInput').val('');
-                // 關閉彈窗
                 $('#addCourseModal').modal('hide');
-                // 可以刷新會員列表等其他操作
+                // 重新加载当前页面
+                window.location.reload();
             } else {
                 alert('儲存失敗');
             }
@@ -275,24 +271,22 @@ $('#saveCourseButton').click(function() {
         }
     });
 });
+
 ///////刪除/////////////////////////////////
 // 綁定删除按钮的点击事件
 $('#deleteConfirmButton').click(function() {
-    // 获取要删除的会员ID
     var deleteMemberId = $('#deleteMemberIdInput').val();
 
-    // 使用AJAX发起DELETE请求到后端以删除会员
     $.ajax({
         url: '/delete/' + deleteMemberId,
         type: 'DELETE',
         success: function(response) {
             if (response) {
                 alert('會員已成功刪除');
-                // 清空输入框
                 $('#deleteMemberIdInput').val('');
-                // 关闭模态框
                 $('#deleteMemberModal').modal('hide');
-                // 可以刷新会员列表等其他操作
+                // 重新加载employeeMember.html
+                window.location.reload();
             } else {
                 alert('刪除失敗');
             }
@@ -302,8 +296,8 @@ $('#deleteConfirmButton').click(function() {
             alert('刪除请求失敗，查看控制台獲取更多信息');
         }
     });
-
 });
+
 
 
 </script>
