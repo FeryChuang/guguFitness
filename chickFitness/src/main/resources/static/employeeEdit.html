@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>員工註冊</title>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+        crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        form {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        select.form-control {
+            appearance: auto;
+        }
+        button[type="submit"] {
+            background-color: #ffc107;
+            border: none;
+        }
+        a.btn {
+            background-color: #ffc107;
+            border: none;
+        }
+        footer {
+            margin-top: 50px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="text-center mb-4">
+                   <img class="d-block mx-auto mb-4" src="img/chick.png" alt=""
+				width="250">
+                    <h4 class="mt-2">員工註冊</h4>
+                </div>
+                <form class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="name">姓名</label>
+                        <input type="text" class="form-control" id="name" value="LuckyEgg" required>
+                        <div class="invalid-feedback">請輸入有效的姓名。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eid">帳號</label>
+                        <input type="text" class="form-control" id="eid" placeholder="" value="root" required>
+                        <div class="invalid-feedback">請輸入有效的帳號。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password">密碼</label>
+                        <input type="password" class="form-control" id="password" value="1234" required>
+                        <div class="invalid-feedback">請輸入有效的密碼。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">電子郵件</label>
+                        <input type="email" class="form-control" id="email" placeholder="email@example.com" value="root@test.com" required>
+                        <div class="invalid-feedback">請輸入有效的電子郵件地址。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role">職位</label>
+                        <select class="form-control" id="role" required>
+                            <option value="" disabled>請選擇職位</option>
+                            <option value="admin" selected>管理員</option>
+                        <!--<option value="user">一般員工</option> -->  
+                           
+                        </select>
+                        <div class="invalid-feedback">請選擇有效的職位。</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status">狀態</label>
+                        <select class="form-control" id="status" required>
+                            <option value="" disabled>請選擇狀態</option>
+                            <option value="1" selected>啟用</option>
+                            <option value="0">停用</option>
+                        </select>
+                        <div class="invalid-feedback">請選擇有效的狀態。</div>
+                    </div>
+                    <br />
+                    <button class="btn btn-warning btn-lg btn-block" type="submit"
+                        onclick="employeeAdd(event)">提交</button>
+                         <br />
+                <a href="employeeSignin.html" class="btn btn-warning btn-lg btn-block">返回</a>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+    <script>
+
+	function employeeAdd(event) {
+		event.preventDefault();
+		var data = {
+			employeeName : $("#name").val(),
+			employeeUserName : $("#eid").val(),
+			employeePassword : $("#password").val(),
+			employeeEmail : $("#password").val(),
+            employeeRole : $("#role").val(),
+            employeeStatus : $("#status").val()
+		};
+		$.ajax({
+			url : '/employee/add',
+			type : 'POST',
+			contentType : 'application/json',
+			data : JSON.stringify(data),
+			success: function(response, status, xhr) {
+                if (xhr.status === 200) {
+                    // Handle success response as needed
+                    alert("恭喜您多了一位隸屬於"+data.employeeRole+"的養雞場員工"+data.employeeName+" (拍拍手)");
+                    window.location.href = "/employeeMember.html"; // Redirect to the desired page
+                }
+            },
+			error : function(xhr, status, error) {
+				alert("An error occurred: " + error);
+			}
+		});
+	}
+</script>
+</body>
+
+</html>
