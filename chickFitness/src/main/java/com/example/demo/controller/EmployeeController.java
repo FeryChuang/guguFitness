@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -94,9 +95,22 @@ public class EmployeeController {
             ModelAndView model = new ModelAndView("redirect:/employeeHome.html");
             return model;
         } else {
+        	session.setAttribute("loginFailedMessage", "登入失敗，請確認您輸入的帳號與密碼是否正確"); // 儲存錯誤訊息到Session
             ModelAndView model = new ModelAndView("redirect:/employeeSignin.html");
-            model.addObject("info", "Login failed"); 
             return model;
+        }
+    }
+    
+    // 登入錯誤訊息
+    @GetMapping("/employee/loginerror")
+    @ResponseBody
+    public String getErrorMessage(HttpSession session) {
+        String errorMessage = (String) session.getAttribute("loginFailedMessage");
+        if (errorMessage != null) {
+            session.removeAttribute("loginFailedMessage"); // 清除錯誤訊息
+            return errorMessage;
+        } else {
+            return ""; // 如果沒有錯誤訊息，回傳空字串
         }
     }
     
