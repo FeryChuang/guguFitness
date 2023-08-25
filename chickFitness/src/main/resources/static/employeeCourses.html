@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.101.0">
+  <title>課程管理</title>
+
+  <!-- 引入 jQuery 库 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <link href="css/coursesManager.css" rel="stylesheet">
+</head>
+ <body>
+    
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">GuGU Fitness</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Sign out</a>
+    </li>
+  </ul>
+</nav>
+
+
+    
+	<main role="main" class="col-md-9 mx-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+         <img class="mb-4 mx-auto" src="img/chick.png" alt="" width="295">
+        
+      </div>
+
+     <div class="d-flex justify-content-between align-items-center">
+    <h2>課程管理系統</h2>
+    		<div>
+       			
+       			<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#addCourseModal">新增</button>
+        		<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#delCourseModal">刪除</button>
+        		<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#upCourseModal">修改</button>
+   			</div>
+	</div>
+	
+	 <!-- 動態生成的會員資料表格 -->
+        <div id="coursesTable">
+      
+      
+     <table class="table">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+		  
+           <thead>
+        		<tr>
+            		<th id="courseId"   class="text-center">ID</th>
+            		<th id="courseName"   class="text-center">課程名稱</th>
+            		<th id="description"   class="text-center">課程描述</th>
+           			<th id="difficulty"   class="text-center">難度</th>
+            		<th id="calories"   class="text-center">卡路里</th>
+            		<th id="type"   class="text-center">類型</th>
+            		<th id="url"   class="text-center">URL</th>
+            		<th id="courseRange"   class="text-center">影片時長</th>
+        		</tr>
+    		</thead>
+		
+	<tbody id="courseTableBody">
+	</tbody>
+	
+	
+	<!-- Modal for adding a new course -->
+<div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCourseModalLabel">新增課程</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="courseNameInput">課程名稱</label>
+                    <input type="text" id="courseNameInput" class="form-control" placeholder="課程名稱">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionInput">課程描述</label>
+                    <input type="text" id="descriptionInput" class="form-control" placeholder="課程描述">
+                </div>
+                <div class="form-group">
+    				<label for="difficultyInput">難度</label>
+    					<select id="difficultyInput" class="form-control">
+        					<option value="初階">初階</option>
+        					<option value="中階">中階</option>
+        					<option value="高階">高階</option>
+    					</select>
+				</div>
+				<div class="form-group">
+   					 <label for="typeInput">類型</label>
+    					<select id="typeInput" class="form-control">
+        					<option value="跑步">跑步</option>
+       						<option value="瑜伽">瑜伽</option>
+        					<option value="徒手">徒手</option>
+        					<option value="重訓">重訓</option>
+    					</select>
+				</div>
+
+                <div class="form-group">
+                    <label for="urlInput">URL</label>
+                    <input type="text" id="urlInput" class="form-control" placeholder="URL">
+                </div>
+                <div class="form-group">
+                    <label for="caloriesInput">卡路里</label>
+                    <input type="number" id="caloriesInput" class="form-control" placeholder="卡路里">
+                </div>
+                <div class="form-group">
+                    <label for="courseRangeInput">影片時長</label>
+                    <input type="number" id="courseRangeInput" class="form-control" placeholder="課程範圍">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="saveCourseButton">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+      
+         <!-- Modal for delete a course -->
+<div class="modal fade" id="delCourseModal" tabindex="-1" aria-labelledby="delCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delCourseModalLabel">刪除課程</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           	<div class="modal-body">
+                <div class="form-group">
+                    <label for="delcourseIdInput">課程ID</label>
+                    <input type="text" id="delcourseIDInput" class="form-control" placeholder="輸入課程ID">
+                </div>
+             	<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="delCourseButton">儲存</button>
+           		</div>
+          	</div>
+          </div>
+        </div>
+      </div>
+      
+      
+          <!-- Modal for adding a update course -->
+<div class="modal fade" id="upCourseModal" tabindex="-1" aria-labelledby="upCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="upCourseModalLabel">修改課程</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+				<div class="form-group">
+                    <label for="updateCourseIdInput">課程ID</label>
+                    <input type="text" id="updateCourseIdInput" class="form-control" placeholder="輸入課程ID">
+                <br>
+                <button type="button" class="btn btn-primary" id="searchCourseButton">查詢</button>
+                </div>
+        
+             <div id="updateForm" style="display: none;">
+                <div class="form-group">
+                    <label for="updatecourseNameInput">課程名稱</label>
+                    <input type="text" id="updatecourseNameInput" class="form-control" placeholder="課程名稱">
+                </div>
+                <div class="form-group">
+                    <label for="updatedescriptionInput">課程描述</label>
+                    <input type="text" id="updatedescriptionInput" class="form-control" placeholder="課程描述">
+                </div>
+                <div class="form-group">
+    				<label for="updatedifficultyInput">難度</label>
+    					<select id="updatedifficultyInput" class="form-control">
+        					<option value="初階">初階</option>
+        					<option value="中階">中階</option>
+        					<option value="高階">高階</option>
+    					</select>
+				</div>
+				<div class="form-group">
+   					 <label for="updatetypeInput">類型</label>
+    					<select id="updatetypeInput" class="form-control">
+        					<option value="跑步">跑步</option>
+       						<option value="瑜伽">瑜伽</option>
+        					<option value="徒手">徒手</option>
+        					<option value="重訓">重訓</option>
+    					</select>
+				</div>
+
+                <div class="form-group">
+                    <label for="updateurlInput">URL</label>
+                    <input type="text" id="updateurlInput" class="form-control" placeholder="URL">
+                </div>
+                <div class="form-group">
+                    <label for="updatecaloriesInput">卡路里</label>
+                    <input type="number" id="updatecaloriesInput" class="form-control" placeholder="卡路里">
+                </div>
+                <div class="form-group">
+                    <label for="updatecourseRangeInput">影片時長</label>
+                    <input type="number" id="updatecourseRangeInput" class="form-control" placeholder="課程範圍">
+                </div>
+            
+            	<div class="modal-footer">
+                	<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                	<button type="button" class="btn btn-primary" id="upCourseButton">儲存</button>
+            	</div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+         </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+
+<script>
+$(document).ready(function() {
+      const saveCourseButton = document.getElementById("saveCourseButton");
+      saveCourseButton.addEventListener("click", saveCourse);
+      searchCourse();
+      
+      const delCourseButton = document.getElementById("delCourseButton");
+      delCourseButton.addEventListener("click", delCourse);
+      
+      const searchCourseButton = $("#searchCourseButton");
+      searchCourseButton.click(searchIdCourse);
+
+      const upCourseButton = $("#upCourseButton");
+      upCourseButton.click(updateCourse);
+      
+     
+})
+
+function searchCourse() {
+	$.get('http://localhost:8080/courses/all',function(data){
+		updateTable(data);
+	});
+}
+      
+ 
+function updateTable(data) {
+    const tableBody = $("#courseTableBody"); // 使用 jQuery 選擇元素
+    tableBody.empty(); // 清空表格內容
+
+    $(data).each(function(index, course) {
+        const newRow = $("<tr>");
+        newRow.append(`<td class="align-middle text-center">${course.courseId}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.courseName}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.description}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.difficulty}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.calories}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.type}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.url}</td>`);
+        newRow.append(`<td class="align-middle text-center">${course.courseRange}</td>`);
+        tableBody.append(newRow);
+    });
+}
+
+
+function saveCourse() {
+        // 收集對話框中的資料
+        const courseName = $("#courseNameInput").val();
+        const description = $("#descriptionInput").val();
+        const difficulty = $("#difficultyInput").val();
+        const calories = $("#caloriesInput").val();
+        const type = $("#typeInput").val();
+        const url = $("#urlInput").val();
+        const courseRange = $("#courseRangeInput").val();
+
+        // 將資料傳送到後端
+        $.ajax({
+          url: '/courses',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            courseName: courseName,
+            description: description,
+            difficulty: difficulty,
+            calories: calories,
+            type: type,
+            url: url,
+            courseRange: courseRange
+          }),
+          success: function(creatdata) {
+            // 成功儲存後更新表格
+            updateTable(creatdata);
+            
+            // 關閉對話框
+            $('#addCourseModal').modal('hide');
+            $("#courseNameInput").val("");
+            $("#descriptionInput").val("");
+            $("#difficultyInput").val("");
+            $("#caloriesInput").val("");
+            $("#typeInput").val("");
+            $("#urlInput").val("");
+            $("#courseRangeInput").val("");
+            searchCourse();
+          },
+          error: function(error) {
+            console.error('Error creating course:', error);
+            // 處理錯誤
+          }
+        });
+        
+      }
+
+function delCourse() {
+    const courseId = $("#delcourseIDInput").val(); // 獲取課程ID
+    $.ajax({
+        url: `http://localhost:8080/courses/${courseId}`,
+        type: 'DELETE',
+        success: function() {
+            // 刪除成功後重新加載課程列表
+            searchCourse();
+            // 關閉模態框
+            $('#delCourseModal').modal('hide');
+        },
+        error: function(error) {
+            console.error('Error deleting course:', error);
+            // 處理錯誤
+        }
+    });
+}
+function searchIdCourse() {
+        const courseId = $("#updateCourseIdInput").val();
+
+        $.get(`http://localhost:8080/courses/${courseId}`, function(course) {
+            if (course) {
+                $("#updateForm").show();
+                $("#updatecourseNameInput").val(course.courseName);
+                $("#updatedescriptionInput").val(course.description);
+                $("#updatedifficultyInput").val(course.difficulty);
+                $("#updatecaloriesInput").val(course.calories);
+                $("#updatetypeInput").val(course.type);
+                $("#updateurlInput").val(course.url);
+                $("#updatecourseRangeInput").val(course.courseRange);
+            } else {
+                $("#updateForm").hide();
+            }
+        });
+    }
+
+    function updateCourse() {
+        const courseId = $("#updateCourseIdInput").val();
+        const courseName = $("#updatecourseNameInput").val();
+        const description = $("#updatedescriptionInput").val();
+        const difficulty = $("#updatedifficultyInput").val();
+        const calories = $("#updatecaloriesInput").val();
+        const type = $("#updatetypeInput").val();
+        const url = $("#updateurlInput").val();
+        const courseRange = $("#updatecourseRangeInput").val();
+
+        $.ajax({
+            url: `http://localhost:8080/courses/update/${courseId}`,
+            method: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                courseName: courseName,
+            	description: description,
+            	difficulty: difficulty,
+            	calories: calories,
+            	type: type,
+            	url: url,
+            	courseRange: courseRange
+            }),
+            success: function(updatedata) {
+                updateTable(updatedata);
+                
+                $('#upCourseModal').modal('hide');
+                $("#updateCourseIdInput").val("");
+             	$("#updateForm").hide();
+                $("#updatecourseNameInput").val("");
+            	$("#updatedescriptionInput").val("");
+            	$("#updatedifficultyInput").val("");
+            	$("#updatecaloriesInput").val("");
+            	$("#updatetypeInput").val("");
+            	$("#updateurlInput").val("");
+            	$("#updatecourseRangeInput").val("");
+                searchCourse();
+                
+            }
+        });
+    }
+
+
+</script>
+
+
+
+
+</body>
+</html>
