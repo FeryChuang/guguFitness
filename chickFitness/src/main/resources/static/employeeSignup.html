@@ -55,22 +55,22 @@
                 <form class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="name">姓名</label>
-                        <input type="text" class="form-control" id="name" value="ename2" required>
+                        <input type="text" class="form-control" id="name" required>
                         <div class="invalid-feedback">請輸入有效的姓名。</div>
                     </div>
                     <div class="mb-3">
                         <label for="eid">帳號</label>
-                        <input type="text" class="form-control" id="eid" placeholder="" value="euser2" required>
+                        <input type="text" class="form-control" id="eid" placeholder="" required>
                         <div class="invalid-feedback">請輸入有效的帳號。</div>
                     </div>
                     <div class="mb-3">
                         <label for="password">密碼</label>
-                        <input type="password" class="form-control" id="password" value="epass2" required>
+                        <input type="password" class="form-control" id="password" required>
                         <div class="invalid-feedback">請輸入有效的密碼。</div>
                     </div>
                     <div class="mb-3">
                         <label for="email">電子郵件</label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com" value="eemail2@test.com" required>
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
                         <div class="invalid-feedback">請輸入有效的電子郵件地址。</div>
                     </div>
                     <div class="mb-3">
@@ -78,8 +78,6 @@
                         <select class="form-control" id="role" required>
                             <option value="" disabled selected>請選擇職位</option>
                             <option value="manager">管理員</option>
-                           
-                           
                         </select>
                         <div class="invalid-feedback">請選擇有效的職位。</div>
                     </div>
@@ -130,7 +128,7 @@
 			success: function(response, status, xhr) {
                 if (xhr.status === 200) {
                     // Handle success response as needed
-                    alert("恭喜您多了一位養雞場員工"+data.employeeName+"他是個"+data.employeeRole);
+                    alert("恭喜您多了一位養雞場員工"+data.employeeName);
                     window.location.href = "/employeeEdit.html"; // Redirect to the desired page
                 }
             },
