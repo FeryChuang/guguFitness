@@ -96,7 +96,7 @@
                     <button class="btn btn-warning btn-lg btn-block" type="submit"
                         onclick="employeeAdd(event)">提交</button>
                          <br />
-                <a href="employeeSignin.html" class="btn btn-warning btn-lg btn-block">返回</a>
+                <a href="employeeEdit.html" class="btn btn-warning btn-lg btn-block">返回</a>
                 </form>
                
             </div>
@@ -131,7 +131,7 @@
                 if (xhr.status === 200) {
                     // Handle success response as needed
                     alert("恭喜您多了一位養雞場員工"+data.employeeName+"他是個"+data.employeeRole);
-                    window.location.href = "/employeeSignin.html"; // Redirect to the desired page
+                    window.location.href = "/employeeEdit.html"; // Redirect to the desired page
                 }
             },
 			error : function(xhr, status, error) {
