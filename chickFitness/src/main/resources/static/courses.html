@@ -74,7 +74,7 @@
 						<div class="row">
 							<div class="card forClone" style="width: 270px; margin: 10px; display: none;">
 								<div class="ratio ratio-16x9">
-									<iframe src="" title="YouTube video"></iframe>
+									<iframe src="" title="YouTube video" ></iframe>
 								</div>
 								<div class="card-body">
 									<div class="btn-group btn-group-sm" style="padding-bottom: 10px;">
@@ -88,6 +88,7 @@
 										build on the card title and make up the bulk of the card's
 										content.</p>
 									<p class="courese_id" style="display: none;"></p>
+									<p class="curl" style="display: none;"></p>
 									<div class="text-end">
 										<a class="btn btn-warning" data-bs-toggle="offcanvas"
 											href="#offcanvasExample" role="button"
@@ -108,10 +109,12 @@
 									data-bs-dismiss="offcanvas" aria-label="Close"></button>
 							</div>
 							<div class="offcanvas-body position-relative">
+								<p id="cName" style="font-size:20pt"></p>
 								<p>Select which days to add the workout to</p>
 								<div class="btn-group-vertical " role="group">
 									<p id="sid" style="display:none;"></p>
 									<p id="cid" style="display:none;"></p>
+									<p id="url" style="display:none;"></p>
 									<input type="checkbox" class="btn-check" id="mon" autocomplete="off"> 
 									<label class="btn btn-outline-warning" for="mon">Monday</label>
 									
@@ -144,6 +147,22 @@
 			<div class="col"></div>
 		</div>
 	</div>
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Your workout plan has been added successfully.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<footer class="footer"
 		style="padding: 50px 50px; background-color: gray;">
@@ -199,6 +218,7 @@
 						newCard.find(".description").html(course.description);
 						newCard.find("iframe").attr("src",
 								'https://www.youtube.com/embed/' + course.url);
+						newCard.find(".curl").html(course.url);
 						newCard.find(".calories")
 								.html(course.calories + 'kcal');
 						newCard.find(".difficulty").html(course.difficulty);
@@ -222,7 +242,10 @@
 		$("#sid").html("");
 		var mId = $("#memberId").text();
 		var cId = card.find(".courese_id").text(); // 获取所选卡片的course_id的值
+		var cName = card.find(".course_name").text();
 		$("#cid").html(cId);
+		$("#cName").html(cName);
+		$("#url").html(card.find(".curl").text());
 		$.get('http://localhost:8080/schedule3/get/mc/' + mId + '/' + cId
 			, function(dataS) {
 	        // 根据dataS中的数据来更新复选框状态
@@ -244,6 +267,8 @@
 			obj.sid=$("#sid").text();
 	        obj.mid=$("#memberId").text();
 	        obj.cid=$("#cid").text();
+	        obj.courseName=$("#cName").text();;
+	        obj.url=$("#url").text();
 	        obj.mon=$("#mon").prop("checked");
 	        obj.tue=$("#tue").prop("checked");
 	        obj.wed=$("#wed").prop("checked");
@@ -255,7 +280,18 @@
 				url:'http://localhost:8080/schedule3/add',
 				type:'post',
 				data:JSON.stringify(obj),
-				contentType :'application/json'
+				contentType :'application/json',
+			    success: function () {
+			        // 显示成功模态框
+			        $('#successModal').modal('show');
+
+			        // 关闭 offcanvas
+			        $('#offcanvasExample').offcanvas('hide');
+			      },
+			      error: function () {
+			        // 处理错误情况
+			        alert('An error occurred while adding the workout plan.');
+			      }
 				});
 			}
 		
