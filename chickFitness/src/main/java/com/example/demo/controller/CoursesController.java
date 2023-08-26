@@ -28,15 +28,9 @@ public class CoursesController {
     }
     
     @PostConstruct
-    //新增課程
+   
     public void initFixedCourses() {
-//        Courses course1 = new Courses(null, "課程名稱1", "課程介紹1", "中", "有氧舞蹈", "your-video1.mp4", 10, 200);
-//        Courses course2 = new Courses(null, "課程名稱2", "課程介紹2", "低", "跑步", "your-video2.mp4", 10, 100);
-//        // 類似地創建其他固定內容的 Courses 物件
-//
-//        coursesService.createCourse(course1);
-//        coursesService.createCourse(course2);
-//        // 儲存到資料庫
+
     }
 
     @RequestMapping(value = "/courses/all", method = RequestMethod.GET)
@@ -61,11 +55,29 @@ public class CoursesController {
         return new ResponseEntity<>("Course is created successfully", HttpStatus.CREATED);
     }
     
-    @RequestMapping(value = "/courses/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/courses/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateCourse(@PathVariable("id") Integer id, @RequestBody Courses course) {
-        coursesService.updateCourse(id, course);
-        return new ResponseEntity<>("Course is updated successfully", HttpStatus.OK);
+        Optional<Courses> existingCourse = coursesService.getCourseById(id);
+        
+        if (existingCourse.isPresent()) {
+            Courses updatedCourse = existingCourse.get();
+            // 更新課程資訊
+            updatedCourse.setCourseName(course.getCourseName());
+            updatedCourse.setDescription(course.getDescription());
+            updatedCourse.setDifficulty(course.getDifficulty());
+            updatedCourse.setCalories(course.getCalories());
+            updatedCourse.setType(course.getType());
+            updatedCourse.setUrl(course.getUrl());
+            updatedCourse.setCourseRange(course.getCourseRange());
+           
+            
+            coursesService.updateCourse(id, updatedCourse);
+            return new ResponseEntity<>("Course is updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Course with specified ID not found", HttpStatus.NOT_FOUND);
+        }
     }
+
     
 
     @RequestMapping(value = "/courses/{id}", method = RequestMethod.DELETE)
