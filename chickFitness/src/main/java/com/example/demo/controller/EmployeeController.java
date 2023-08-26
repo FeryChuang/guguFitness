@@ -2,10 +2,13 @@ package com.example.demo.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.Courses;
 import com.example.demo.model.Employee;
 import com.example.demo.model.EmployeeRepository;
 
@@ -34,6 +38,8 @@ public class EmployeeController {
 		employee.setRegistrationTime(new Date());
 		return employeeRepository.save(employee);
 	}
+	
+	
 	
 	// 查詢
 	// 查詢所有管理員
@@ -57,12 +63,30 @@ public class EmployeeController {
 		
 	}
 	
+	// 查詢
+	@RequestMapping(value = "/employee/search/{employeeId}", method = RequestMethod.GET)
+    public ResponseEntity<Object> getEmployeeById(@PathVariable("employeeId") Integer employeeId) {
+        Employee employee = employeeRepository.findByEmployeeId(employeeId);
+
+        if (employee != null) {
+            return new ResponseEntity<>(employee, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Employee with specified ID not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+	
+	
+	
+	
 	// 修改
 	@RequestMapping(value = "/employee/update/{employeeId}", method = RequestMethod.PUT)
 	public String updateEmployee(@PathVariable("employeeId") Integer employeeId, @RequestBody Employee employee) {
 	
 		Employee existEmployee = employeeRepository.findByEmployeeId(employeeId);
 
+		 
 		if(existEmployee != null) {
 			existEmployee.setEmployeePassword(employee.getEmployeePassword());
 			existEmployee.setEmployeeName(employee.getEmployeeName());
