@@ -6,17 +6,14 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.101.0">
-  <title>員工管理系統</title>
+  <title>課程管理</title>
 
   <!-- 引入 jQuery 库 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- 引入 Bootstrap 核心 CSS 和 JavaScript -->
+  <!-- Bootstrap core CSS -->
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- 自定義樣式 -->
-  <link href="css/coursesManager.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -33,14 +30,12 @@
         font-size: 3.5rem;
       }
     }
-
-    /* 新增或修改的自定義樣式 */
-    .modal-dialog {
-      max-width: 800px; /* 調整模態框的最大寬度 */
-    }
   </style>
+
+  <!-- Custom styles for this template -->
+  <link href="css/coursesManager.css" rel="stylesheet">
 </head>
-<body>
+ <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-center" href="#">GuGU Fitness</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,141 +50,251 @@
 </nav>
 
 <main role="main" class="col-md-9 mx-auto col-lg-10 px-md-4">
-  <div class="d-flex flex-column justify-content-center align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <img class="mb-4" src="img/chick.png" alt="" width="295">
-    
-    <h3>員工管理系統</h3>
-    
-    <div>
-      <a href="employeeSignup.html" class="btn btn-secondary mx-1">新增</a>
-      <button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#editEmployeeModal">修改</button>
-      <button type="button" class="btn btn-secondary mx-3 deleteButton" data-toggle="modal" data-target="#deleteEmployeeModal">刪除</button>
-    </div>
-  </div>
-
-  <!-- 修改員工 -->
-  <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editEmployeeModalLabel">修改員工</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-         <div class="form-group row">
-    <label for="employeeIdInput" class="col-sm-4 col-form-label">員工ID</label>
-    <div class="col-sm-6">
-      <input type="text" id="IdInput" class="form-control" placeholder="員工ID">
-    </div>
-    <div class="col-sm-2">
-      <button type="button" class="btn btn-primary" id="searchMemberButton">查詢</button>
-    </div>
-  </div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+         <img class="mb-4 mx-auto" src="img/chick.png" alt="" width="295">
         
-        
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="memberIdInput">員工ID</label>
-            <input type="text" id="IdInput" class="form-control" placeholder="員工ID">
-           
-          </div>
-           <div class="form-group">
-            <label for="NameInput">員工姓名</label>
-            <input type="text" id="NameInput" class="form-control" placeholder="員工姓名">
-          </div>
-          
-          <div class="form-group">
-            <label for="userNameInput">員工帳號</label>
-            <input type="text" id="userNameInput" class="form-control" placeholder="員工帳號">
-          </div>
-        
-          <div class="form-group">
-            <label for="passwordInput">員工密碼</label>
-            <input type="text" id="passwordInput" class="form-control" placeholder="員工密碼">
-          </div>
-          <div class="form-group">
-            <label for="emailInput">員工信箱</label>
-            <input type="text" id="emailInput" class="form-control" placeholder="員工信箱">
-          </div>
-             <div class="form-group">
-            <label for="emailInput">員工角色</label>
-            <input type="text" id="emailInput" class="form-control" placeholder="員工角色">
-          </div>
-             <div class="form-group">
-            <label for="emailInput">員工狀態</label>
-            <input type="text" id="emailInput" class="form-control" placeholder="員工狀態">
-          </div>
-         
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="saveCourseButton">儲存</button>
-        </div>
       </div>
-    </div>
-  </div>
-  
-  <!-- 刪除員工 -->
-  <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="deleteEmployeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteEmployeeModalLabel">刪除員工</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="deleteEmployeeIdInput">要刪除的員工ID</label>
-            <input type="text" id="deleteEmployeeIdInput" class="form-control" placeholder="員工ID">
-          </div>
-          <p class="text-danger">請輸入正確的員工ID，刪除後無法復原。</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-danger" id="deleteConfirmButton">刪除</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
+     <div class="d-flex justify-content-between align-items-center">
+    <h2>員工管理系統</h2>
+    		<div>
+       			
 
-  
-  
-
-   <!-- 動態生成的會員資料表格 -->
-    <div id="employeeTable"></div>
+        		<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#delemployeeModal">刪除</button>
+        		<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#updateemployeeModal">修改</button>
+   			</div>
+	</div>
+	
+	<!-- 動態生成的會員資料表格 -->
+    <div id="employeeTable">
 
     <table class="table">
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th class="text-center">員工ID</th>
-              <th class="text-center">員工帳號</th>
-              <th class="text-center">員工密碼</th>
-              <th class="text-center">員工姓名</th>
-              <th class="text-center">員工信箱</th>
-              <th class="text-center">員工角色</th>
-              <th class="text-center">員工狀態</th>
+              <th id="employeeId" class="text-center">員工ID</th>
+              <th id="employeeUserName" class="text-center">員工帳號</th>
+              <th id="employeePassword" class="text-center">員工密碼</th>
+              <th id="employeeName" class="text-center">員工姓名</th>
+              <th id="employeeEmail" class="text-center">員工信箱</th>
+              <th id="employeeRole" class="text-center">員工角色</th>
+              <th id="employeeStatus" class="text-center">員工狀態</th>
             </tr>
           </thead>
-          <tbody id="employeeTableBody">
-            <!-- ...（動態生成的內容）... -->
-          </tbody>
-        </table>
+         <tbody id="employeeTableBody">
+	</tbody>
+            
+   <!-- Modal for adding a update course -->
+<div class="modal fade" id="updateemployeeModal" tabindex="-1" aria-labelledby="updateemployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateemployeeModalLabel">修改員工</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+				<div class="form-group">
+                    <label for="updateemployeeIdInput">員工ID</label>
+                    <input type="text" id="updateemployeeIdInput" class="form-control" placeholder="輸入員工ID">
+                <br>
+                <button type="button" class="btn btn-primary" id="searchEmployeeButton">查詢</button>
+                </div>
+        
+             <div id="updateForm" style="display: none;">
+
+                <div class="form-group">
+                    <label for="updateemployeeNameInput">員工姓名</label>
+                    <input type="text" id="updateemployeeNameInput" class="form-control" placeholder="員工姓名">
+                </div>
+                <div class="form-group">
+                    <label for="updateemployeepasswordInput">員工密碼</label>
+                    <input type="text" id="updateemployeepasswordInput" class="form-control" placeholder="員工密碼">
+		</div>
+				 <div class="form-group">
+                    <label for="updateemployeeemailInput">員工信箱</label>
+                    <input type="text" id="updateemployeeemailInput" class="form-control" placeholder="員工信箱">
+		</div>
+
+                <div class="form-group">
+                    <label for="updateemployeeRoleInput">員工角色</label>
+                    <input type="text" id="updateemployeeRoleInput" class="form-control" placeholder="員工角色">
+                </div>
+                <div class="form-group">
+                    <label for="updateemployeeStatusInput">員工狀態</label>
+                    <input type="number" id="updateemployeeStatusInput" class="form-control" placeholder="員工狀態">
+                </div>
+               
+            
+            	<div class="modal-footer">
+                	<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                	<button type="button" class="btn btn-primary" id="updateEmployeeButton">儲存</button>
+            	</div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+  <!-- 刪除員工 -->
+<div class="modal fade" id="delemployeeModal" tabindex="-1" aria-labelledby="delemployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delemployeeModalLabel">刪除員工</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           	<div class="modal-body">
+                <div class="form-group">
+                    <label for="delemployeeIdInput">員工ID</label>
+                    <input type="text" id="delemployeeIdInput" class="form-control" placeholder="輸入員工ID">
+                </div>
+             	<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="delemployeeButton">儲存</button>
+           		</div>
+          	</div>
+          </div>
+        </div>
       </div>
-    </table>
-  </main>
- </body> 
+
+         </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
 
 <script>
+$(document).ready(function() {
+
+searchEmployee()
 
 // 获取查詢按鈕元素
-const searchButton = document.getElementById('searchMemberButton');
-$(document).ready(function() {
+const searchEmployeeButton = $("#searchEmployeeButton");
+searchEmployeeButton.click(searchIdEmployee);
+
+
+const updateEmployeeButton = $("#updateEmployeeButton");
+updateEmployeeButton.click(updateEmployee);
+
+const delemployeeButton = $("#delemployeeButton");
+delemployeeButton.click(delEmployee);
+
+})
+function searchIdEmployee() {
+        const employeeId = $("#updateemployeeIdInput").val();
+
+        $.get(`http://localhost:8080/employee/search/${employeeId}`, function(employee) {
+            if (employee) {
+                $("#updateForm").show();
+                $("#updateemployeeNameInput").val(employee.employeeName);
+                $("#updateemployeeuserNameInput").val(employee.employeeUserName);
+                $("#updateemployeepasswordInput").val(employee.employeePassword);
+                $("#updateemployeeemailInput").val(employee.employeeEmail);
+                $("#updateemployeeRoleInput").val(employee.employeeRole);
+                $("#updateemployeeStatusInput").val(employee.employeeStatus);
+            } else {
+                $("#updateForm").hide();
+            }
+        });
+    }
+
+function updateEmployee() {
+        const employeeId = $("#updateemployeeIdInput").val();
+        const employeeName = $("#updateemployeeNameInput").val();
+        const employeeUserName = $("#updateemployeeuserNameInput").val();
+        const employeePassword = $("#updateemployeepasswordInput").val();
+        const employeeEmail = $("#updateemployeeemailInput").val();
+        const employeeRole = $("#updateemployeeRoleInput").val();
+        const employeeStatus = $("#updateemployeeStatusInput").val();
+
+        $.ajax({
+            url: `http://localhost:8080/employee/update/${employeeId}`,
+            method: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                employeeName: employeeName,
+            	employeeUserName: employeeUserName,
+            	employeePassword: employeePassword,
+            	employeeEmail: employeeEmail,
+            	employeeRole: employeeRole,
+            	employeeStatus: employeeStatus,
+            }),
+            success: function(updatedata) {
+                updateTable(updatedata);
+                
+                $('#updateemployeeModal').modal('hide');
+                $("#updateemployeeIdInput").val("");
+             	$("#updateForm").hide();
+                $("#updateemployeeNameInput").val("");
+            	$("#updateemployeeuserNameInput").val("");
+            	$("#updateemployeepasswordInput").val("");
+            	$("#updateemployeeemailInput").val("");
+            	$("#updateemployeeRoleInput").val("");
+            	$("#updateemployeeStatusInput").val("");
+                searchEmployee() ;
+                
+            }
+        });
+    }
+
+
+
+
+
+
+function searchEmployee() {
+	$.get('http://localhost:8080/employee/getAll',function(data){
+		updateTable(data);
+	});
+}
+      
+ 
+function updateTable(data) {
+    const tableBody = $("#employeeTableBody"); // 使用 jQuery 選擇元素
+    tableBody.empty(); // 清空表格內容
+
+    $(data).each(function(index, employee) {
+        const newRow = $("<tr>");
+        newRow.append(`<td class="align-middle text-center">${employee.employeeId}</td>`);
+        newRow.append(`<td class="align-middle text-center">${employee.employeeName}</td>`);
+        newRow.append(`<td class="align-middle text-center">${employee.employeeUserName}</td>`);
+        newRow.append(`<td class="align-middle text-center">${employee.employeePassword}</td>`);
+        newRow.append(`<td class="align-middle text-center">${employee.employeeEmail}</td>`);
+        newRow.append(`<td class="align-middle text-center">${employee.employeeRole}</td>`);
+        newRow.append(`<td class="align-middle text-center">${employee.employeeStatus}</td>`);
+       
+        tableBody.append(newRow);
+    });
+}
+
+function delEmployee() {
+    const employeeId = $("#delemployeeIdInput").val(); // 獲取課程ID
+    $.ajax({
+        url: `http://localhost:8080/employee/delete/${employeeId}`,
+        type: 'DELETE',
+        success: function() {
+            // 刪除成功後重新加載課程列表
+            searchEmployee();
+            // 關閉模態框
+            $('#delemployeeModal').modal('hide');
+             $("#delemployeeIdInput").val("");
+        },
+        error: function(error) {
+            console.error('Error deleting employee:', error);
+            // 處理錯誤
+        }
+    });
+}
+
+
+/*$(document).ready(function() {
   // 擷取所有員工資料並填充表格
   $.get('/employees', function(data) {
     var tableBody = $('#employeeTableBody');
@@ -251,8 +356,9 @@ $("#deleteConfirmButton").click(function() {
   }
 
   // 初始載入會員資料
-  loadEmployeeData();
-});
+  loadEmployeeData();*/
+
+
 </script>
 
 </body>
