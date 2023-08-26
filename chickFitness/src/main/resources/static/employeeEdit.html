@@ -59,7 +59,7 @@
     <h2>員工管理系統</h2>
     		<div>
        			
-
+                <a href="employeeSignup.html" class="btn btn-secondary mx-1">新增</a>
         		<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#delemployeeModal">刪除</button>
         		<button type="button" class="btn btn-secondary mx-1" data-toggle="modal" data-target="#updateemployeeModal">修改</button>
    			</div>
@@ -294,69 +294,6 @@ function delEmployee() {
 }
 
 
-/*$(document).ready(function() {
-  // 擷取所有員工資料並填充表格
-  $.get('/employees', function(data) {
-    var tableBody = $('#employeeTableBody');
-    tableBody.empty(); // 清空現有的行
-
-    // 遍歷每個員工對象，為每個員工附加一行到表格中
-    for (var i = 0; i < data.length; i++) {
-      var employee = data[i];
-      var row = '<tr>' +
-                '<td class="align-middle text-center">' + employee.employeeId + '</td>' +
-                '<td class="align-middle text-center">' + employee.employeeUserName + '</td>' +
-                '<td class="align-middle text-center">' + employee.employeePassword + '</td>' +
-                '<td class="align-middle text-center">' + employee.employeeName + '</td>' +
-                '<td class="align-middle text-center">' + employee.employeeEmail + '</td>' +
-                '<td class="align-middle text-center">' + employee.employeeRole + '</td>' +
-                '<td class="align-middle text-center">' + employee.employeeStatus + '</td>' +
-                '</tr>';
-      tableBody.append(row);
-    }
-  });
-
- // 刪除會員
-$("#deleteConfirmButton").click(function() {
-  var employeeIdToDelete = $("#deleteEmployeeIdInput").val(); // 修改這裡的 ID
-
-  // 發送 AJAX 請求以刪除員工
-  $.ajax({
-    url: `/employee/delete/${employeeIdToDelete}`,
-    type: "DELETE",
-    success: function() {
-      $("#deleteEmployeeModal").modal("hide");
-      // 更新員工資料列表
-      loadEmployeeData();
-    }
-  });
-});
-
-
- // 載入會員資料
-  function loadEmployeeData() {
-    $.get("/employee/getAll", function(data) {
-      var tableBody = $("#employeeTableBody");
-      tableBody.empty();
-
-      data.forEach(function(employee) {
-        var row = `
-          <tr>
-            <td class="align-middle text-center">${employee.employeeId}</td>
-            <td class="align-middle text-center">${employee.employeeUserName}</td>
-            <td class="align-middle text-center">${employee.employeePassword}</td>
-            <td class="align-middle text-center">${employee.employeeName}</td>
-            <td class="align-middle text-center">${employee.employeeEmail}</td>
-            <td class="align-middle text-center">${employee.employeeRole}</td>
-            <td class="align-middle text-center">${employee.employeeStatus}</td>
-          </tr>`;
-        tableBody.append(row);
-      });
-    });
-  }
-
-  // 初始載入會員資料
-  loadEmployeeData();*/
 
 
 </script>
