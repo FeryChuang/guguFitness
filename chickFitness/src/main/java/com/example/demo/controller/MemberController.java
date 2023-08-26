@@ -1,24 +1,23 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,9 +25,6 @@ import com.example.demo.model.Chick;
 import com.example.demo.model.ChickRepository;
 import com.example.demo.model.Member;
 import com.example.demo.model.MemberRepository;
-
-
-
 
 @RestController
 public class MemberController {
@@ -44,6 +40,8 @@ public class MemberController {
         ModelAndView model = new ModelAndView("redirect:/index.html");
         
         // 新增 Member 資料
+        member.setRegistrationDate(new Date());
+        member.setLastLoginDate(new Date());
         Member savedMember = memberRepository.save(member);
         
         // 新增對應的 Chick 資料，設定預設值
@@ -59,11 +57,6 @@ public class MemberController {
         return model;
     }
  ////////////////////////////(用戶)登入////////////////////////////////////   
-    @Autowired
-    public MemberController(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
-
     @PostMapping("/login")
     public ModelAndView login(@RequestParam String userName, @RequestParam String password, HttpSession session) {
         Member member = memberRepository.findByUserNameAndPassword(userName, password);
@@ -71,17 +64,28 @@ public class MemberController {
         if (member != null) {
             // 将会员信息存储在 HttpSession 中
             session.setAttribute("loggedInMember", member);
-             System.out.println(session.getAttribute("loggedInMember"));
+            // 更新登入時間
+            member.setLastLoginDate(new Date());
+            memberRepository.save(member);
+            System.out.println(session.getAttribute("loggedInMember"));
             ModelAndView model = new ModelAndView("redirect:/home.html");
             return model;
         } else {
-            ModelAndView model = new ModelAndView("redirect:/index.html");
+        	ModelAndView model = new ModelAndView("redirect:/memberLogin.html");
             model.addObject("info", "Login failed"); // 传递错误信息到登录页面
             return model;
         }
-        
-     
     }
+    
+ // 登出
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session) {
+        // 清除登入session
+        session.removeAttribute("loggedInMember");
+        ModelAndView model = new ModelAndView("redirect:/memberLogin.html");
+        return model;
+    }
+    
     @RequestMapping(value="/session",method=RequestMethod.GET)
     public Member getSession(HttpSession session) {
    	 return (Member)session.getAttribute("loggedInMember");

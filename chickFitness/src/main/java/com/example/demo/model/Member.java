@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "member")
-@EntityListeners(MemberEntityListener.class)
 public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
