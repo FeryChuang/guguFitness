@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,37 +19,61 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.Courses;
 import com.example.demo.model.Employee;
 import com.example.demo.model.EmployeeRepository;
 
-
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
-	// 新增員工/管理者 
-	@RequestMapping(value = "/employee/add", method = RequestMethod.POST)
+	// 新增員工/管理者
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Employee addEmployee(@RequestBody Employee employee) {
 		employee.setEmployeeId(null);
 		employee.setRegistrationTime(new Date());
 		return employeeRepository.save(employee);
 	}
 	
-	
-	
 	// 查詢
 	// 查詢所有管理員
-	@RequestMapping(value = "/employee/getAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public List<Employee> getAllEmployee(Employee employee) {
 		List<Employee> data = employeeRepository.findAll();
 		return data;
 	}
 	
+	// 依id查詢管理員
+	@RequestMapping(value = "/search/{employeeId}", method = RequestMethod.GET)
+    public ResponseEntity<Object> getEmployeeById(@PathVariable("employeeId") Integer employeeId) {
+        Employee employee = employeeRepository.findByEmployeeId(employeeId);
+
+        if (employee != null) {
+            return new ResponseEntity<>(employee, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Employee with specified ID not found", HttpStatus.NOT_FOUND);
+        }
+    }
+	
+	/*
+	// 依id查詢管理員
+	@RequestMapping(value = "/get/{employeeId}", method = RequestMethod.GET)
+    public ResponseEntity<Object> getByEmployeeId(@PathVariable("employeeId") Integer employeeId) {
+        Employee existEmployee = employeeRepository.findByEmployeeId(employeeId);
+
+        if (existEmployee != null) {
+            return ResponseEntity.ok(existEmployee); // 回傳查詢到的員工資料
+        } else {
+            String message = "找不到id:" + employeeId + "的員工";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message); // 回傳錯誤訊息
+        }
+    }
+    */
+	
 	// 刪除
-	@RequestMapping(value = "/employee/delete/{employeeId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{employeeId}", method = RequestMethod.DELETE)
 	public String deleteEmployee(@PathVariable("employeeId") Integer employeeId) {
 		Employee existEmployee = employeeRepository.findByEmployeeId(employeeId);
 		
@@ -63,30 +86,12 @@ public class EmployeeController {
 		
 	}
 	
-	// 查詢
-	@RequestMapping(value = "/employee/search/{employeeId}", method = RequestMethod.GET)
-    public ResponseEntity<Object> getEmployeeById(@PathVariable("employeeId") Integer employeeId) {
-        Employee employee = employeeRepository.findByEmployeeId(employeeId);
-
-        if (employee != null) {
-            return new ResponseEntity<>(employee, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Employee with specified ID not found", HttpStatus.NOT_FOUND);
-        }
-    }
-
-
-	
-	
-	
-	
 	// 修改
-	@RequestMapping(value = "/employee/update/{employeeId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/{employeeId}", method = RequestMethod.PUT)
 	public String updateEmployee(@PathVariable("employeeId") Integer employeeId, @RequestBody Employee employee) {
 	
 		Employee existEmployee = employeeRepository.findByEmployeeId(employeeId);
 
-		 
 		if(existEmployee != null) {
 			existEmployee.setEmployeePassword(employee.getEmployeePassword());
 			existEmployee.setEmployeeName(employee.getEmployeeName());
@@ -100,14 +105,9 @@ public class EmployeeController {
 		}
 
 	}
-	
-	@Autowired
-    public EmployeeController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
-	
+		
 	//登入
-    @PostMapping("/employee/login")
+    @PostMapping("/login")
     public ModelAndView login(@RequestParam String employeeUserName, @RequestParam String employeePassword, HttpSession session) {
     	Employee existEmployee = employeeRepository.findByEmployeeUserNameAndEmployeePassword(employeeUserName, employeePassword);
         if (existEmployee != null) {
@@ -126,7 +126,7 @@ public class EmployeeController {
     }
     
     // 登入錯誤訊息
-    @GetMapping("/employee/loginerror")
+    @GetMapping("/loginerror")
     @ResponseBody
     public String getErrorMessage(HttpSession session) {
         String errorMessage = (String) session.getAttribute("loginFailedMessage");
@@ -139,7 +139,7 @@ public class EmployeeController {
     }
     
     // 登出
-    @GetMapping("/employee/logout")
+    @GetMapping("/logout")
     public ModelAndView logout(HttpSession session) {
         // 清除登入session
         session.removeAttribute("loggedInEmployee");
@@ -149,7 +149,7 @@ public class EmployeeController {
     
     
     // 取得session
-    @RequestMapping(value="/employee/session",method=RequestMethod.GET)
+    @RequestMapping(value="/session",method=RequestMethod.GET)
     public Employee getSession(HttpSession session) {
     	return (Employee)session.getAttribute("loggedInEmployee");
     }
