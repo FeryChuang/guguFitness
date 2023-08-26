@@ -86,8 +86,8 @@
                         <label for="status">狀態</label>
                         <select class="form-control" id="status" required>
                             <option value="" disabled selected>請選擇狀態</option>
-                            <option value="1">啟用</option>
-                            <option value="0">停用</option>
+                            <option value="啟用">啟用</option>
+                            <option value="停用">停用</option>
                         </select>
                         <div class="invalid-feedback">請選擇有效的狀態。</div>
                     </div>
@@ -128,7 +128,7 @@
 			employeeName : $("#name").val(),
 			employeeUserName : $("#eid").val(),
 			employeePassword : $("#password").val(),
-			employeeEmail : $("#password").val(),
+			employeeEmail : $("#email").val(),
             employeeRole : $("#role").val(),
             employeeStatus : $("#status").val()
 		};
@@ -140,7 +140,7 @@
 			success: function(response, status, xhr) {
                 if (xhr.status === 200) {
                     // Handle success response as needed
-                    alert("恭喜您多了一位隸屬於"+data.employeeRole+"的養雞場員工"+data.employeeName+" (拍拍手)");
+                    alert("恭喜您多了一位養雞場員工"+data.employeeName+" (拍拍手)");
                     window.location.href = "/employeeEdit.html"; // Redirect to the desired page
                 }
             },
