@@ -13,4 +13,6 @@ public interface Schedule3Repository extends JpaRepository<Schedule3, Integer> {
 
 	List<Schedule3> findByMid(Integer mid);
 
+	void deleteByMid(Integer memberId);
+
 }

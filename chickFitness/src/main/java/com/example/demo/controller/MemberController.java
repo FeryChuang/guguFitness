@@ -25,10 +25,13 @@ import com.example.demo.model.Chick;
 import com.example.demo.model.ChickRepository;
 import com.example.demo.model.Member;
 import com.example.demo.model.MemberRepository;
+import com.example.demo.model.Schedule3Repository;
 
 @RestController
 public class MemberController {
-
+	@Autowired
+	Schedule3Repository sReps;
+	
     @Autowired
     MemberRepository memberRepository;
 
@@ -148,20 +151,20 @@ public class MemberController {
     public Member getMemberById(@PathVariable Integer memberId) {
         Member member = memberRepository.findById(memberId).orElse(null);
 
-        if (member == null) {
-            // 如果找不到會員，可以根據需求返回一個錯誤訊息或採取其他處理方式
-            return null; // 或者返回一個適當的錯誤回應
-        }
+//        if (member == null) {
+//            // 如果找不到會員，可以根據需求返回一個錯誤訊息或採取其他處理方式
+//            return null; // 或者返回一個適當的錯誤回應
+//        }
+//
+//        // 創建一個新的 Member 對象，僅包含您要顯示的欄位
+//        Member filteredMember = new Member();
+//        filteredMember.setMemberId(member.getMemberId());
+//        filteredMember.setUserName(member.getUserName());
+//        filteredMember.setPassword(member.getPassword());
+//        filteredMember.setName(member.getName());
+//        filteredMember.setEmail(member.getEmail());
 
-        // 創建一個新的 Member 對象，僅包含您要顯示的欄位
-        Member filteredMember = new Member();
-        filteredMember.setMemberId(member.getMemberId());
-        filteredMember.setUserName(member.getUserName());
-        filteredMember.setPassword(member.getPassword());
-        filteredMember.setName(member.getName());
-        filteredMember.setEmail(member.getEmail());
-
-        return filteredMember;
+        return member;//filteredMember;
     }
     
 
@@ -193,17 +196,18 @@ public class MemberController {
  //////////////////////(管理員) 删除会员/////////////////////
     @Transactional
     @DeleteMapping("/delete/{memberId}")
-    public boolean deleteMember(@PathVariable Integer memberId) {
+    public boolean deleteMember(@PathVariable("memberId") Integer memberId) {
         // 首先删除 "chick" 表內的相關資料
         chickRepository.deleteByMemberId(memberId);
-
+        
+        // 再刪除"schedule3"表內的相關排程資料
+        sReps.deleteByMid(memberId);
+        
         // 接着删除 "member" 表內的會員資料
         memberRepository.deleteById(memberId);
 
         return true;
     }
-    
-  
-    
+
 
 }
