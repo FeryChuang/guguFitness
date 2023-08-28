@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>temp 各頁面超連結</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- 引入jQuery庫，使用Google的CDN服務 -->
+</head>
+<body>
+    <h1>Welcome to Your Home Page</h1> <!-- 顯示頁面標題 -->
+    <button id="memberLogout" class="btn  btn-secondary">Logout</button>
+    <!-- 包含一個連結到"chickinfo.html"的超鏈接，具有"id"屬性以便在JavaScript中識別 -->
+    <hr/>
+    <!--<p id="welcome-message">Hello, Loading... </p>--><!-- 顯示歡迎信息的段落，具有"id"屬性以便在JavaScript中識別 -->
+    <a id="home" href="home.html">Go home.html</a>→ Home頁面(有登出功能)→ 本頁面(TEMP 頁面連結統整)<br/>
+    <hr/>
+    <h2>前台：</h2>
+    <h3>課程與個人計畫</h3>
+    <a id="index" href="index.html">Go index.html</a>→ 前台首頁<br/>
+    <a id="courses" href="/courses.html">Go Course.html</a>→ 顯示所有可供選擇的課程並可以將課程加入自己的計畫中<br/>
+    <a id="schedule" href="/schedule-test.html">Go schedule-test.html</a>→ 依據周一至周日的排序顯示會員已加入的計劃<br/>
+    <hr/>
+    <h3>健身會員</h3>
+    <a id="memberLogin" href="/memberLogin.html">Go memberLogin.html</a>→ 會員登入頁面<br/>
+    <a id="memberSingup" href="/memberSignup.html">Go memberSignup.html</a>→ 會員註冊頁面<br/>
+    <h3>小雞</h3>
+    <a id="feed" href="/feed.html">Go feed.html</a>→ 會員的小雞資訊<br/>
+    <hr/>
+    <h2>後台系統</h2>
+    <a id="employeeCourses" href="/employeeCourses.html">Go employeeCourses.html</a>→ 課程管理系統<br/>
+    <a id="employeeEdit" href="/employeeEdit.html">Go employeeEdit.html</a>→ 員工管理系統<br/>
+    <a id="employeeHome" href="/employeeHome.html">Go employeeHome.html</a>→ 後台管理系統首頁<br/>
+    <a id="employeeMember" href="/employeeMember.html">Go employeeMember.html</a>→ 健身會員管理系統<br/>
+    <a id="employeeSignin" href="/employeeSignin.html">Go employeeSignin.html</a>→ 員工登入頁面<br/>
+    <a id="employeeSignup" href="/employeeSignup.html">Go employeeSignup.html</a>→ 新增員工頁面<br/>
+    <hr/>
+    <a id="privacy" href="/privacy.html">Go privacy.html</a>→ 隱私權公告<br/>
+    <a id="terms" href="/terms.html">Go terms.html</a>→ 線上課程條款<br/>
+    <hr/>
+    <button id="memberLogout" class="btn  btn-secondary">Logout</button>
+    <!-- 包含一個連結到"chickinfo.html"的超鏈接，具有"id"屬性以便在JavaScript中識別 -->
+    <hr/>
+    <script>
+        $(document).ready(start); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
+        function start(){
+            $.get('http://localhost:8080/session', function(data) {
+                // 發送一個AJAX GET請求到"http://localhost:8080/session"，並在成功後執行一個回調函數
+                // "data" 是從伺服器返回的數據
+                $("#welcome-message").html(data.userName);
+                // 將"welcome-message"段落的內容設置為從伺服器返回的數據中的"userNamen"
+            }); 
+        }
+
+        $(document).ready(function() {
+        // 給登出按鈕添加點擊事件處理程序
+        $("#memberLogout").click(function() {
+            $.ajax({
+                url: "/logout", // API位置
+                type: "get", //  後端 HTTP 方法
+                success: function(response) {
+                    // 成功後跳轉 employeeSignin.html
+                    window.location.href = "memberLogin.html";
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error logging out:", error);
+                }
+            });
+        });
+    });
+    </script>
+<!-- 包含JavaScript代碼，使用jQuery在文檔載入後執行AJAX請求並更新頁面內容 -->
+</body>
+</html>

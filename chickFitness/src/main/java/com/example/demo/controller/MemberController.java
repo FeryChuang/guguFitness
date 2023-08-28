@@ -68,7 +68,7 @@ public class MemberController {
             member.setLastLoginDate(new Date());
             memberRepository.save(member);
             System.out.println(session.getAttribute("loggedInMember"));
-            ModelAndView model = new ModelAndView("redirect:/index.html");
+            ModelAndView model = new ModelAndView("redirect:/home.html");
             return model;
         } else {
         	session.setAttribute("loginFailedMessage", "會員登入失敗，請確認您輸入的帳號與密碼是否正確"); // 儲存錯誤訊息到Session

@@ -8,27 +8,70 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+    
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
     </style>
-    <link href="css/signin.css" rel="stylesheet">
+    
 </head>
-<body class="text-center">
-    <div class="container">
-        
-        <form class="form-signin" action="/login" method="post"> <!-- 注意这里的 action 值 -->
+<body class="text-center bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+			<img src="img/egg-nav.png" height="30"
+				class="d-inline-block align-top " alt=""> <span
+				class="navbar-brand mb-0 h1">GUGU Fitness</span>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"
+						href="/index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<!-- <li class="nav-item">
+                        <a class="nav-link" href="/courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule.html">My Plan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chickie.html">My Chickie</a>
+                    </li> -->
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+				 	<a href="memberSignup.html" class="btn btn-outline-dark"
+						style="margin-right: 10px;">註冊</a><!-- <a href="memberLogin.html"
+						class="btn btn-outline-dark">登入</a> -->
+				</form>
+			</div>
+		</nav>
+    <div class="container" style="height:700px;">
+         <form class="form-signin" action="/login" method="post" style="padding-top:80px;"> <!-- 注意这里的 action 值 -->
             <img class="mb-4" src="img/chick.png" alt="" width="295">
             <div id="error-message"></div>
             <label for="inputId" class="sr-only">Id</label>
@@ -39,22 +82,66 @@
             
             <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
             <a href="memberSignup.html" class="btn btn-lg btn-warning btn-block">Sign up</a>
-            <p class="mt-5 mb-3 text-muted">&copy; GUGU Fitness</p>
+            
         </form>
     </div>
+    
+    		<footer class="footer"
+			style="padding: 50px 50px; background-color: gray;">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<p class="text-light">&copy; 2023 GuGuchick Fitness。保留所有權利。</p>
+						<p class="text-light" style="font-size: 8pt;">
+							免責聲明：<br>本網站提供的信息僅供一般信息目的。<br>在開始任何運動或飲食計劃前，請諮詢醫療專業人員。
+						</p>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<ul class="list-inline social-media">
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-facebook"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-twitter"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-instagram"></i></a></li>
+						</ul>
+						<p class="text-light">聯繫我們：Guguchick@gmail.com</p>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="scroll-to-top">
+							<!-- 將按鈕樣式改為簡約風格 -->
+							<a href="#" class="btn btn-outline-warning slogan-button "> <i
+								class="fas fa-arrow-up"></i> 返回頂部
+							</a>
+						</div>
+						<br>
+						<p class="text-light">
+							<a href="privacy.html" class="text-warning">隱私政策</a> | <a
+								href="terms.html" class="text-warning">使用條款</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
 </body>
 <script>
-    $(document).ready(function(){
-        // 使用ajax取得錯誤訊息
-        $.ajax({
-            url: "/loginerror",
-            method: "GET",
-            success: function(errorMessage) {
-                if (errorMessage) {
-                    $("#error-message").text(errorMessage);
-                }
+
+$(document).ready(function(){
+    // 使用ajax取得錯誤訊息
+    $.ajax({
+        url: "/loginerror",
+        method: "GET",
+        success: function(errorMessage) {
+            if (errorMessage) {
+                $("#error-message").text(errorMessage);
             }
-        });
+        }
     });
-  </script>
+});
+
+</script>
 </html>

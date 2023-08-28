@@ -1,47 +1,265 @@
-<!DOCTYPE html> 
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>temp 各頁面超連結</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- 引入jQuery庫，使用Google的CDN服務 -->
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+
+<title>GuGU Fitness</title>
+<style>
+#main {
+	background-image: url(/img/2new-one-chickie.jpg);
+	object-fit: contain;
+	background-color: rgba(255, 255, 255, 0.5);
+	background-blend-mode: soft-light;
+	max-width: 100%;
+	background-position: center 30%;
+	background-attachment: fixed;
+}
+
+#banner-images {
+	position: relative;
+}
+
+#chick-intro {
+	position: relative;
+}
+
+#courses-intro {
+	position: relative;
+	padding: 80px 20px;
+	background-color: whitesmoke;
+}
+
+#schedule-intro {
+	position: relative;
+}
+
+#level-intro {
+	position: relative;
+}
+
+.floating-circle {
+	position: absolute;
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	background-color: white;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	border-radius: 50%;
+	z-index: 10;
+}
+</style>
+
 </head>
+
 <body>
-    <h1>Welcome to Your Home Page</h1> <!-- 顯示頁面標題 -->
-    <button id="memberLogout" class="btn  btn-secondary">Logout</button>
-    <!-- 包含一個連結到"chickinfo.html"的超鏈接，具有"id"屬性以便在JavaScript中識別 -->
-    <hr/>
-    <!--<p id="welcome-message">Hello, Loading... </p>--><!-- 顯示歡迎信息的段落，具有"id"屬性以便在JavaScript中識別 -->
-    <a id="home" href="home.html">Go home.html</a>→ Home頁面(有登出功能)→ 本頁面(TEMP 頁面連結統整)<br/>
-    <hr/>
-    <h2>前台：</h2>
-    <h3>課程與個人計畫</h3>
-    <a id="index" href="index.html">Go index.html</a>→ 前台首頁<br/>
-    <a id="courses" href="/courses.html">Go Course.html</a>→ 顯示所有可供選擇的課程並可以將課程加入自己的計畫中<br/>
-    <a id="schedule" href="/schedule-test.html">Go schedule-test.html</a>→ 依據周一至周日的排序顯示會員已加入的計劃<br/>
-    <hr/>
-    <h3>健身會員</h3>
-    <a id="memberLogin" href="/memberLogin.html">Go memberLogin.html</a>→ 會員登入頁面<br/>
-    <a id="memberSingup" href="/memberSignup.html">Go memberSignup.html</a>→ 會員註冊頁面<br/>
-    <h3>小雞</h3>
-    <a id="feed" href="/feed.html">Go feed.html</a>→ 會員的小雞資訊<br/>
-    <hr/>
-    <h2>後台系統</h2>
-    <a id="employeeCourses" href="/employeeCourses.html">Go employeeCourses.html</a>→ 課程管理系統<br/>
-    <a id="employeeEdit" href="/employeeEdit.html">Go employeeEdit.html</a>→ 員工管理系統<br/>
-    <a id="employeeHome" href="/employeeHome.html">Go employeeHome.html</a>→ 後台管理系統首頁<br/>
-    <a id="employeeMember" href="/employeeMember.html">Go employeeMember.html</a>→ 健身會員管理系統<br/>
-    <a id="employeeSignin" href="/employeeSignin.html">Go employeeSignin.html</a>→ 員工登入頁面<br/>
-    <a id="employeeSignup" href="/employeeSignup.html">Go employeeSignup.html</a>→ 新增員工頁面<br/>
-    <hr/>
-    <a id="privacy" href="/privacy.html">Go privacy.html</a>→ 隱私權公告<br/>
-    <a id="terms" href="/terms.html">Go terms.html</a>→ 線上課程條款<br/>
-    <hr/>
-    <button id="memberLogout" class="btn  btn-secondary">Logout</button>
-    <!-- 包含一個連結到"chickinfo.html"的超鏈接，具有"id"屬性以便在JavaScript中識別 -->
-    <hr/>
+	<main id="main">
+		<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+			<img src="img/egg-nav.png" height="30"
+				class="d-inline-block align-top " alt=""> <span
+				class="navbar-brand mb-0 h1">GUGU Fitness</span>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"
+						href="/index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+                        <a class="nav-link" href="/courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedule.html">My Plan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chickie.html">My Chickie</a>
+                    </li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<a href="memberSignup.html" class="btn btn-outline-dark"
+						style="margin-right: 10px;">登出</a>
+				</form>
+			</div>
+		</nav>
+		<div id="banner-images"
+			style="height: 700px; background-color: whitesmoke;">
+			<div class="text-center">
+				<img src="img/banner.png" alt="">
+			</div>
+			<div class="text-center">
+				<a href="courses.html"
+					class="btn btn-outline-warning slogan-button btn-lg">立即開始！</a>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="chick-intro" style="height: 500px; padding-top: 100px;">
+			<div id="container-sm">
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-8 ">
+						<p class="text-center text-warning display-3 font-weight-bold">歡迎來到咕力無圓!</p>
+						<br>
+						<p class="text-dark h4 text-center">
+							在這裡，我們把健身變得有趣又有動力，<br>並將您的健康之旅與一隻可愛的虛擬小雞結合。<br>我們的網站以養小雞為主打特點，不僅讓您保持動力不斷，<br>還能享受與小夥伴一同成長的喜悅。
+						</p>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="courses-intro">
+			<div class="container">
+				<div class="row flex-column-reverse flex-md-row">
+					<div class="col-12 col-md-6 px-4 mb-5">
+						<div class="d-flex h-100 justify-content-center mb-5">
+							<div class="ratio ratio-1x1  align-self-center">
+								<img src="img/kettlebell.jpg" alt=""
+									style="height: 350px; object-fit: cover;">
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 px-4 mb-5">
+						<ul style="list-style-type: none; padding-left: 0;">
+							<li><br></li>
+							<li>
+								<p class="text-warning h1 ">定制您的運動計劃</p>
+								<p class="h5">我們為您提供了一個方便而實用的功能，讓您能夠輕鬆定制您的運動計劃。從有趣的有氧運動到挑戰性的肌肉鍛鍊，我們的運動影片清單將滿足您的所有需求。而您的小雞夥伴將在每次運動後得到成長，這不僅是一種激勵，更是一種生動的運動日誌。
+								</p>
+							</li>
+							<li><br></li>
+							<li>
+								<p class="text-warning h1 ">按您的節奏</p>
+								<p class="h5">我們明白生活總是忙碌而充實的，所以您可以根據自己的節奏來安排運動時間。您的小雞會一直陪伴著您，無論您是早上的快節奏運動，還是晚上的伸展舒展，都能讓您感受到小夥伴的支持和陪伴。
+								</p>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="schedule-intro" style="height: 500px; padding-top: 100px;">
+			<div id="container-sm">
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-8">
+						<p class="text-center text-warning display-3 font-weight-bold">培育您的運動小夥伴</p>
+						<br>
+						<p class="text-dark h4 text-center">
+							想像一下，在您的個人空間中有一隻可愛的小雞，<br>它將根據您實際的運動時間成長和升級。<br>每次您完成運動，您的小夥伴都會獲得經驗值，逐漸變得更加活潑可愛。<br>隨著小雞的成長，您將不僅看到自己的運動成果，<br>還能體會到一種獨特的成就感。
+						</p>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="level-intro"
+			style="height: 1100px; background-color: white; padding-top: 100px; padding-bottom: 100px;">
+			<div class="text-center">
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-6 ">
+						<p class="text-center text-warning display-3 font-weight-bold">達到新的高度</p>
+						<br>
+						<p class="text-dark h4 text-center">
+							隨著您和您的小雞一同努力，<br>您的小夥伴將隨著您的成長獲得獎勵點數。<br>這些點數可以用來兌換各種實際獎勵，<br>激勵您堅持下去，並不斷挑戰自己的極限。
+						</p>
+					</div>
+					<div class="col"></div>
+				</div>
+				<br> <br> <img src="img/gugugup.jpg" width="1200px" alt="">
+				<br> <br>
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-8">
+						<p class="text-dark h4 text-center">
+							這是一個充滿樂趣和成就感的健身之旅。與您的小雞夥伴一同前進，<br>將運動融入生活，讓您的每一步都更有動力和意義。<br>立即加入我們，開啟與小雞夥伴一起邁向健康的全新冒險！
+						</p>
+						<br>
+						<div class="text-center">
+							<a href="courses.html"
+								class="btn btn-outline-warning slogan-button btn-lg">立即開始！</a>
+						</div>
+					</div>
+					<div class="col"></div>
+
+				</div>
+
+			</div>
+		</div>
+		<footer class="footer"
+			style="padding: 50px 50px; background-color: gray;">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<p class="text-light">&copy; 2023 GuGuchick Fitness。保留所有權利。</p>
+						<p class="text-light" style="font-size: 8pt;">
+							免責聲明：<br>本網站提供的信息僅供一般信息目的。<br>在開始任何運動或飲食計劃前，請諮詢醫療專業人員。
+						</p>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<ul class="list-inline social-media">
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-facebook"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-twitter"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-instagram"></i></a></li>
+						</ul>
+						<p class="text-light">聯繫我們：Guguchick@gmail.com</p>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="scroll-to-top">
+							<!-- 將按鈕樣式改為簡約風格 -->
+							<a href="#" class="btn btn-outline-warning slogan-button "> <i
+								class="fas fa-arrow-up"></i> 返回頂部
+							</a>
+							
+						</div>
+						<br>
+						<p class="text-light">
+							<a href="privacy.html" class="text-warning">隱私政策</a> | <a
+								href="terms.html" class="text-warning">使用條款</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</main>
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+
+</body>
     <script>
-        $(document).ready(start); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
+        $(document).ready(start,logout); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
+   	
+        		
+        		
         function start(){
             $.get('http://localhost:8080/session', function(data) {
                 // 發送一個AJAX GET請求到"http://localhost:8080/session"，並在成功後執行一個回調函數
@@ -51,7 +269,9 @@
             }); 
         }
 
-        $(document).ready(function() {
+        
+        
+        function logout() {
         // 給登出按鈕添加點擊事件處理程序
         $("#memberLogout").click(function() {
             $.ajax({
@@ -62,12 +282,9 @@
                     window.location.href = "memberLogin.html";
                 },
                 error: function(xhr, status, error) {
-                    console.error("Error logging out:", error);
+                    console.log("Error logging out:", error);
                 }
             });
-        });
-    });
-    </script>
-<!-- 包含JavaScript代碼，使用jQuery在文檔載入後執行AJAX請求並更新頁面內容 -->
-</body>
-</html>
+        }
+        </script>
+        </html>

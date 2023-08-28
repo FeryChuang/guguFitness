@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>Registration</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+</style>
+<!-- Custom styles for this template -->
+<link href="css/form-validation.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+		<img src="img/egg-nav.png" height="30"
+			class="d-inline-block align-top " alt=""> <span
+			class="navbar-brand mb-0 h1">GUGU Fitness</span>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link"
+					href="/index.html">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/courses.html">Courses</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/chickie.html">My
+						Chickie</a></li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+
+				<a href="login.html" class="btn btn-outline-dark">登入</a>
+			</form>
+		</div>
+	</nav>
+	<div class="container" style="margin-bottom: 100px">
+		<div class="py-5 text-center">
+			<img class="d-block mx-auto mb-4" src="img/chick.png" alt=""
+				width="250">
+			<h2>加入我們，開始您的健康之旅！</h2>
+			<p class="lead">
+				歡迎來到GUGU Fitness，您的健身夥伴。<br>註冊成為我們的會員，將開啟一個全新的健康體驗，讓您享受到更多的樂趣和動力。
+			</p>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<h4 class="mb-3">基本資料</h4>
+				<form class="needs-validation" novalidate>
+					<div class="mb-3">
+						<label for="id">帳號</label> <input type="text" class="form-control"
+							id="id" placeholder="" value="" required>
+						<div class="invalid-feedback">Valid ID is required.</div>
+					</div>
+					<div class="mb-3">
+						<label for="name">暱稱</label> <input type="text"
+							class="form-control" id="name" required>
+						<div class="invalid-feedback">Valid name is required.</div>
+					</div>
+					<div class="mb-3">
+						<label for="email">Email</label> <input type="email"
+							class="form-control" id="email" placeholder="you@example.com"
+							required>
+						<div class="invalid-feedback">Valid Email is required.</div>
+					</div>
+					<div class="mb-3">
+						<label for="password">密碼</label> <input type="password"
+							class="form-control" id="password" required>
+						<div class="invalid-feedback">Valid password id required.</div>
+					</div>
+					<br />
+					<button class="btn btn-warning btn-lg btn-block" type="submit"
+						onclick="memberadd(event)">送出</button>
+				</form>
+				<br /> <a href="index.html"
+					class="btn btn-warning btn-lg btn-block">回到首頁</a>
+
+			</div>
+		</div>
+	</div>
+	<footer class="footer"
+		style="padding: 50px 50px; background-color: gray;">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6 text-center">
+					<p class="text-light">&copy; 2023 GuGuchick Fitness。保留所有權利。</p>
+					<p class="text-light">免責聲明：本網站提供的信息僅供一般信息目的。在開始任何運動或飲食計劃前，請諮詢醫療專業人員。</p>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-6 text-center">
+					<ul class="list-inline social-media">
+						<li class="list-inline-item"><a href="#"><i
+								class="fab fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i
+								class="fab fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i
+								class="fab fa-instagram"></i></a></li>
+					</ul>
+					<p class="text-light">聯繫我們：Guguchick@gmail.com</p>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-6 text-center">
+					<div class="scroll-to-top">
+						<!-- 將按鈕樣式改為簡約風格 -->
+						<a href="#" class="btn btn-outline-warning slogan-button "> <i
+							class="fas fa-arrow-up"></i> 返回頂部
+						</a>
+					</div>
+					<br>
+					<p class="text-light">
+						<a href="privacy.html" class="text-warning">隱私政策</a> | <a
+							href="terms.html" class="text-warning">使用條款</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+<script>
+	function memberadd(event) {
+		event.preventDefault();
+		var data = {
+			userName : $("#id").val(),
+			name : $("#name").val(),
+			email : $("#email").val(),
+			password : $("#password").val()
+		};
+		$.ajax({
+			url : '/membercreate',
+			type : 'POST',
+			contentType : 'application/json',
+			data : JSON.stringify(data),
+			success : function(response, status, xhr) {
+				if (xhr.status === 200) {
+					// Handle success response as needed
+					alert("Member added successfully!");
+					window.location.href = "/index.html"; // Redirect to the desired page
+				}
+			},
+			error : function(xhr, status, error) {
+				alert("An error occurred: " + error);
+			}
+		});
+	}
+</script>
+</html>

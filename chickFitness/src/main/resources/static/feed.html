@@ -42,7 +42,7 @@
 </div>
     <br>
     <!-- 这里是显示不同等级图片的 img 元素 -->
-    <img id="chickImage" class="rounded mx-auto d-block" width="200px" >
+    <img id="chickImage" class="rounded mx-auto d-block" width="200px" height="200px">
     <br>
 
     <div class="container">
@@ -56,7 +56,6 @@
                      aria-valuemin="0" aria-valuemax="100">0%
                 </div>
             </div>
-            
         </div>
 
         <br>
@@ -70,8 +69,6 @@
                     <p class="chick-label">重生次數: <span class="chick-value" id="lifecountValue"></span></p>
                     <p class="chick-label">階級: <span class="chick-value" id="chickStageValue"></span></p>
                     <p class="chick-label">經驗值: <span class="chick-value" id="currentExpValue"></span></p>
-                    <button id="resetExpButton" class="btn btn-danger">重生</button></p>
-                   
                 </div>
             </div>
         </div>
@@ -86,7 +83,9 @@
 
             if (data) {
                 // 如果会话数据存在，将小鸡信息显示在页面上
+              
                 $('#lifecountValue').html(data.lifecount);
+               
                 $('#currentExpValue').html(data.currentExp);
 
                 // 计算等级和更新经验条
@@ -96,53 +95,6 @@
                 updateProgressBar(data.currentExp, level);
                 // 调用更新階級的函数
                 stage();
-
-                // 重生功能/////////////////////////////////////
-                // 監聽經驗值變化
-                $('#currentExpValue').on('DOMSubtreeModified', function () {
-                    var currentExp = parseInt($('#currentExpValue').text());
-
-                    // 檢查是否達到270000經驗值
-                    if (currentExp >= 270000) {
-                        // 顯示重置經驗值按鈕
-                        $('#resetExpButton').show();
-                    } else {
-                        // 隱藏重置經驗值按鈕
-                        $('#resetExpButton').hide();
-                    }
-                });
-
-                // 監聽重置經驗值按鈕的點擊事件
-                $('#resetExpButton').click(function () {
-                    var currentExp = parseInt($('#currentExpValue').text());
-
-                    // 檢查經驗值是否大於等於270000
-                    if (currentExp >= 270000) {
-                        // 向後端的resetExp方法發送POST請求
-                        $.post("/chick/resetExp", function (response) {
-                            // 重置經驗值為0
-                            $('#currentExpValue').text('0');
-
-                            // 獲取並增加重生次數
-                            var lifecountValue = parseInt($('#lifecountValue').text());
-                            lifecountValue += 1;
-                            $('#lifecountValue').text(lifecountValue);
-                            
-                            // 重新加载页面
-                            window.location.reload();
-
-                            // 示範向控制台輸出消息
-                            console.log(response);
-                        })
-                            .fail(function (error) {
-                                // 如果後端操作失敗，顯示錯誤消息
-                                alert('操作失敗：' + error.responseText);
-                            });
-                    } else {
-                        // 如果經驗值不足，顯示提示消息
-                        alert('未達滿等無法重生');
-                    }
-                });
             } else {
                 // 如果会话数据不存在，显示相应的消息
                 $('#userNameValue').text("Chick Info Not Available");
@@ -153,7 +105,7 @@
             // 根据经验计算规则计算等级
             // 这里需要根据您的规则进行具体实现
             // 示例代码中是一个简单的等级计算规则
-            var requiredExpByLevel = [0, 6000, 18000, 36000, 60000, 90000, 126000, 168000, 216000, 270000];
+            var requiredExpByLevel = [0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500];
             for (var i = 1; i < requiredExpByLevel.length; i++) {
                 if (currentExp < requiredExpByLevel[i]) {
                     return i - 1;
@@ -164,15 +116,15 @@
 
         function updateProgressBar(currentExp, currentLevel) {
             // 计算经验条百分比
-            var requiredExpByLevel = [0, 6000, 18000, 36000, 60000, 90000, 126000, 168000, 216000, 270000];
+            var requiredExpByLevel = [0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500];
             var requiredExp = requiredExpByLevel[currentLevel];
             var nextLevelExp = requiredExpByLevel[currentLevel + 1];
-
+            
             // 将经验百分比默认值设置为0
             var expPercentage = 0;
 
-            if (currentExp >= 270000) {
-                // 如果经验值大于等于270000，将经验条百分比设置为100%
+            if (currentExp >= 4500) {
+                // 如果经验值大于等于4500，将经验条百分比设置为100%
                 expPercentage = 100;
             } else {
                 expPercentage = ((currentExp - requiredExp) / (nextLevelExp - requiredExp)) * 100;
@@ -180,7 +132,7 @@
 
             // 更新经验条显示
             $("#progressBar").css("width", expPercentage + "%").attr("aria-valuenow", expPercentage).text(expPercentage.toFixed(2) + "%");
-
+            
             // 在这里调用 updateChickImage 函数
             updateChickImage(currentLevel + 1);
         }
@@ -256,6 +208,7 @@
             case 10:
                 imagePath = "img/level9.png";
                 break;
+          
         }
 
         // 更新图片的 src 属性
@@ -270,6 +223,5 @@
         }
     });
     </script>
-
 </body>
 </html>

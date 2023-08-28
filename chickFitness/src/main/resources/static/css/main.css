@@ -1,0 +1,45 @@
+#main{
+    background-image: url(/img/new-one-chickie.jpg);
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 0.3);
+    background-blend-mode: soft-light;
+    max-width: 100%;
+    background-position: center 30%;
+    background-attachment: fixed;
+}
+
+
+
+#banner-images{
+    position: relative;
+}
+
+#chick-intro{
+    position: relative;
+}
+
+#courses-intro{
+    position: relative;
+    padding: 80px 20px;
+    background-color:whitesmoke;
+}
+#schedule-intro{
+    position: relative;
+}
+
+#level-intro{
+    position: relative;
+}
+
+.floating-circle{
+    position: absolute;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-color: white;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,50%);
+    border-radius: 50%;
+    z-index: 10;
+}

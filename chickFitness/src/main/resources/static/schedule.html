@@ -24,8 +24,8 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-warning">
 		<div class="container-fluid">
 			<img src="img/egg-nav.png" height="30"
-				class="d-inline-block align-top "> <span
-				class="navbar-brand mb-0 h1">GUGU Fitness</span>
+				class="d-inline-block align-top ">
+			<span class="navbar-brand mb-0 h1">GUGU Fitness</span>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -34,18 +34,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item active"><a class="nav-link"
-						href="/index.html">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="/courses.html">Courses</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="/schedule.html">My
-							Plan</a></li>
-					<li class="nav-item"><a class="nav-link" href="/chickie.html">My
-							Chickie</a></li>
+					<li class="nav-item active"><a class="nav-link" href="/index.html">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/courses.html">Courses</a></li>
+					<li class="nav-item"><a class="nav-link" href="/schedule-test.html">My Plan</a></li>
+					<li class="nav-item"><a class="nav-link" href="/feed.html">My Chick</a></li>
 				</ul>
 				<form class="d-flex">
 					<p id="memberId" style="display: none;"></p>
-					<a class="btn btn-outline-dark" href="member.html">會員專區</a>
+					<a class="btn btn-outline-dark" href="member.html">會員專區???要連結到?</a>
 				</form>
 			</div>
 		</div>
@@ -56,6 +52,7 @@
 		<!--主container-->
 
 		<div class="jumbotron">
+		<p id="memberId" style="display:none;"></p>
 			<h1 class="display-4">Planner</h1>
 			<p class="lead">
 				歡迎回到您的個人運動計劃頁面！這裡不僅是您的健身指南，更是與您的小雞夥伴一同成長的場所。<br>您的每一次努力都是成就更健康、更強壯的自己的一步。開始吧，您的小雞夥伴正期待著與您一同進步！
@@ -67,62 +64,283 @@
 				</p>
 
 			</div>
+
 			<hr class="my-4">
 		</div>
-		
+
 		<div class="container " style="height: 1400px;">
 			<div class="row" id="mon">
 				<div class="col-2">
-					<button type="button" class="btn btn-warning btn-lg">Monday</button>
+					<h2>
+						<span class="badge bg-warning text-dark">Monday</span>
+					</h2>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-10" id="monDiv">
+				<div class="row card-container"></div>
+				</div>
 			</div>
+
 			<hr style="width: 100%;">
 			<div class="row" id="tue">
 				<div class="col-2">
-					<button type="button" class="btn btn-warning btn-lg">Tuesday</button>
+					<h2>
+						<span class="badge bg-warning text-dark">Tuesday</span>
+					</h2>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-10" id="tueDiv">
+				<div class="row card-container"></div>
+				</div>
 			</div>
+
 			<hr style="width: 100%;">
 			<div class="row" id="wed">
 				<div class="col-2">
-					<button type="button" class="btn btn-warning btn-lg">Wednesday</button>
+					<h2>
+						<span class="badge bg-warning text-dark">Wednesday</span>
+					</h2>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-10" id="wedDiv">
+				
+				<div class="row card-container"></div>
+				
+				</div>
 			</div>
+
 			<hr style="width: 100%;">
 			<div class="row" id="thu">
 				<div class="col-2">
-					<button type="button" class="btn btn-warning btn-lg">Thursday</button>
+					<h2>
+						<span class="badge bg-warning text-dark">Thursday</span>
+					</h2>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-10" id="thuDiv">
+				<div class="row card-container"></div>
+				</div>
 			</div>
+
 			<hr style="width: 100%;">
 			<div class="row" id="fri">
 				<div class="col-2">
-					<button type="button" class="btn btn-warning btn-lg">Friday</button>
+					<h2>
+						<span class="badge bg-warning text-dark">Friday</span>
+					</h2>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-10" id="friDiv">
+				<div class="row card-container"></div>
+				</div>
 			</div>
+
 			<hr style="width: 100%;">
-			<div class="row"id="sat">
+			<div class="row" id="sat">
 				<div class="col-2">
-					<button type="button" class="btn btn-warning btn-lg">Saturday</button>
+					<h2>
+						<span class="badge bg-warning text-dark">Saturday</span>
+					</h2>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-10" id="satDiv">
+				<div class="row card-container"></div>
+				</div>
 			</div>
+
 			<hr style="width: 100%;">
 			<div class="row" id="sun">
 				<div class="col-2">
-					<button type="button" class="btn btn-warning btn-lg">Sunday</button>
+					<h2>
+						<span class="badge bg-warning text-dark">Sunday</span>
+					</h2>
 				</div>
-				<div class="col-10"></div>
+				<div class="col-10" id="sunDiv">
+				<div class="row card-container"></div>
+				</div>
 			</div>
 		</div>
+		<div class="card forClone" style="width: 270px; margin: 10px; display:none;">
+			
+			<div class="card-body">
+				<h5 class="card-title course_name">Card title</h5>
+				<p class="courese_id" style="display: none;"></p>
+				<p class="curl" style="display: none;"></p>
+				<div class="text-end">
+					<button type="button" class="btn btn-warning goStart"  data-course-name="" data-youtube-url=""
+						data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="goS(this)">
+						Start!</button>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+			data-bs-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="staticBackdropLabel">Modal
+							title</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="ratio ratio-16x9">
+							<iframe src="" title="YouTube video" allowfullscreen></iframe>
+						</div>
+						<div class="text-center" id="clock">
+							<div id="timer">
+								<p class="fs-1" id="time-text">00:00:00</p>
+							</div>
+							<div class="btn-group" role="group"
+								aria-label="Basic radio toggle button group">
+								<input type="radio" class="btn-check" name="btnradio" id="start"
+									autocomplete="off" checked> <label
+									class="btn btn-outline-warning" for="start">開始</label> <input
+									type="radio" class="btn-check" name="btnradio" id="pause"
+									autocomplete="off"> <label
+									class="btn btn-outline-warning" for="pause">暫停</label> <input
+									type="radio" class="btn-check" name="btnradio" id="stop"
+									autocomplete="off"> <label
+									class="btn btn-outline-warning" for="stop">結束</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" onclick="done(document.getElementById('time-text'))">完成運動</button>
+					</div>
+				</div>
+			</div>
+		<script>
+			// 辅助函数：更新计时器文本
+			function updateTimerText() {
+			    $("#time-text").text(
+			        (hours < 10 ? "0" : "") + hours + ":" +
+			        (minutes < 10 ? "0" : "") + minutes + ":" +
+			        (seconds < 10 ? "0" : "") + seconds
+			    );
+			}
 
+			// 辅助函数：重置计时器
+			function resetTimer() {
+			    clearInterval(timer);
+			    isRunning = false;
+			    hours = 0;
+			    minutes = 0;
+			    seconds = 0;
+			    updateTimerText(); // 调用这里以更新计时器文本
+			    $("#start").prop("disabled", false); // 启用开始按钮
+			    $("#pause").prop("disabled", false); // 启用暂停按钮
+			}
+        $(document).ready(function () {
+            var timer;
+            var isRunning = false;
+            var hours = 0;
+            var minutes = 0;
+            var seconds = 0;
+            
+
+
+            function updateTimerText() {
+                $("#time-text").text(
+                    (hours < 10 ? "0" : "") + hours + ":" +
+                    (minutes < 10 ? "0" : "") + minutes + ":" +
+                    (seconds < 10 ? "0" : "") + seconds
+                );
+            }
+
+            function startTimer() {
+                isRunning = true;
+                timer = setInterval(function () {
+                    seconds++;
+                    if (seconds === 60) {
+                        seconds = 0;
+                        minutes++;
+                        if (minutes === 60) {
+                            minutes = 0;
+                            hours++;
+                        }
+                    }
+                    updateTimerText();
+                }, 1000);
+            }
+
+
+
+            function pauseTimer() {
+                isRunning = false;
+                clearInterval(timer);
+            }
+
+            function stopTimer() {
+                isRunning = false;
+                clearInterval(timer);
+                // 不重置时间，只是更新文本显示
+                updateTimerText();
+                $("#start").prop("disabled", true);
+                $("#pause").prop("disabled", true);
+            }
+
+            $("#start").click(function () {
+                if (!isRunning) {
+                    startTimer();
+                }
+            });
+
+            $("#pause").click(function () {
+                if (isRunning) {
+                    pauseTimer();
+                }
+            });
+
+            $("#stop").click(function () {
+                stopTimer();
+            });
+
+        });
+      
+        function done(timeTextElement) {
+            var timeText = timeTextElement.innerText;
+            var memberId = $("#memberId").text(); // 从页面获取会员ID
+            var timeInSeconds = calculateTimeInSeconds(timeText); // 调用一个函数来将时间文本转换为秒数
+
+            // 打印获取的数据
+            console.log("donetime: " + timeText);
+            console.log("memberId: " + memberId);
+
+            // 发送POST请求到/chick/updateExp，传递会员ID和时间（以秒为单位）
+            $.post("/chick/updateExp", { memberId: memberId, timeInSeconds: timeInSeconds }, function (data) {
+                // 请求成功的回调函数，你可以在这里处理响应
+                console.log(data); // 打印响应信息
+
+                // 重置计时器
+                resetTimer();
+
+                // 关闭模态框
+                $('#staticBackdrop').modal('hide');
+
+                // 重新加载页面
+                window.location.reload();
+            })
+            .fail(function (error) {
+                // 请求失败的回调函数，你可以在这里处理错误
+                console.error(error); // 打印错误信息
+            });
+        }
+
+        
+     // 辅助函数：将时间文本转换为秒数
+        function calculateTimeInSeconds(timeText) {
+            // 这里需要编写代码将时间文本（格式如00:00:00）转换为秒数
+            // 例如：00:01:30 应该转换为 90 秒
+            // 你可以根据具体格式来编写解析的逻辑
+            // 以下是一个示例，假设时间格式是HH:MM:SS
+            var parts = timeText.split(":");
+            var hours = parseInt(parts[0], 10);
+            var minutes = parseInt(parts[1], 10);
+            var seconds = parseInt(parts[2], 10);
+            var totalTimeInSeconds = hours * 3600 + minutes * 60 + seconds;
+            return totalTimeInSeconds;
+        }
+
+    </script>
+		</div>
 	</div>
-
 	<footer class="footer"
 		style="padding: 50px 50px; background-color: gray;">
 		<div class="container">
@@ -166,58 +384,122 @@
 	</footer>
 </body>
 <script>
-$(document).ready(getAll);
-function getAll() {
-
-    $.get('http://localhost:8080/session', function (dataM) {
-        $("#welcome-message").html(dataM.userName);
-        $("#memberId").html(dataM.memberId);
-        var mId = dataM.memberId;
-        $.get('http://localhost:8080/schedule3/get/plan/'+mId,
-        		function(dataW){
-        	dataW.forEach(function (item) {
-                var dayDivId = getDayDivId(item); // 获取对应星期的 div id
-                $("#" + dayDivId).append("cid: " + item.cid + ", "); // 将 cid 添加到对应星期的 div 下
-            });
-    		}
-        );
-    });
-    
-}
-
-function getDayDivId(item) {
-    // 根据星期的值返回对应的 div id
-    switch (true) {
-        case item.mon:
-            return "mon";
-        case item.tue:
-            return "tue";
-        case item.wed:
-            return "wed";
-        case item.thu:
-            return "thu";
-        case item.fri:
-            return "fri";
-        case item.sat:
-            return "sat";
-        case item.sun:
-            return "sun";
-        default:
-            return "";
-    }
-}
+	$(document).ready(getAll);
 	
+	
+
+	function getAll() {
+		$.get('http://localhost:8080/session', function(dataM) {
+			$("#memberId").html(dataM.memberId);
+			var mId = dataM.memberId;
+			$.get('http://localhost:8080/schedule3/get/plan/' + mId, function(
+					dataW) {
+				// 创建一个对象来跟踪每个星期的cid
+				var weekCids = {
+					mon : [],
+					tue : [],
+					wed : [],
+					thu : [],
+					fri : [],
+					sat : [],
+					sun : []
+				};
+
+				// 遍历 dataW 数组
+				dataW.forEach(function(item) {
+					// 将 cid 添加到对应星期的数组中
+					if (item.mon)
+						weekCids.mon.push(item.cid);
+					if (item.tue)
+						weekCids.tue.push(item.cid);
+					if (item.wed)
+						weekCids.wed.push(item.cid);
+					if (item.thu)
+						weekCids.thu.push(item.cid);
+					if (item.fri)
+						weekCids.fri.push(item.cid);
+					if (item.sat)
+						weekCids.sat.push(item.cid);
+					if (item.sun)
+						weekCids.sun.push(item.cid);
+				});
+
+				// 将跟踪的cid显示在相应的星期div下
+				for ( var day in weekCids) {
+					var dayDivId = getDayDivId(day);
+					var dayDiv = $("#" + dayDivId);
+
+	                weekCids[day].forEach(function (cid) {
+	                    var cardClone = $(".forClone").clone().removeClass("forClone");
+	                    var matchingCourse = dataW.find(function (item) {
+	                        return item.cid === cid;
+	                    });
+
+	                    if (matchingCourse) {
+	                        cardClone.find(".course_name").html(matchingCourse.courseName);
+	                        cardClone.find(".curl").html(matchingCourse.url);
+	                        cardClone.find(".courese_id").html(matchingCourse.cid);
+	                        cardClone.find(".goStart").attr("data-course-name", matchingCourse.courseName);
+	                        cardClone.find(".goStart").attr("data-youtube-url", matchingCourse.url);
+	                        cardClone.css("display", "");
+	                       
+	                        var cardContainer = dayDiv.find(".card-container");
+	                        cardClone.appendTo(cardContainer);
+	                        
+	                        
+	                    }
+	                });
+	            }
+	        });
+	    });
+	}					
+					
+
+
+	function getDayDivId(day) {
+		// 根据星期的值返回对应的 div id
+		switch (day) {
+		case "mon":
+			return "monDiv";
+		case "tue":
+			return "tueDiv";
+		case "wed":
+			return "wedDiv";
+		case "thu":
+			return "thuDiv";
+		case "fri":
+			return "friDiv";
+		case "sat":
+			return "satDiv";
+		case "sun":
+			return "sunDiv";
+		default:
+			return "";
+		}
+	}
+	
+	function goS(button) {
+
+	    var courseName = $(button).data("course-name");
+	    var youtubeUrl = $(button).data("youtube-url");
+	    
+	    console.log("courseName:", courseName);
+	    console.log("youtubeUrl:", youtubeUrl);
+	    
+	    // 设置 modal 标题和 iframe 的 src
+	    $("#staticBackdropLabel").text(courseName);
+	    $("#staticBackdrop iframe").attr("src", 'https://www.youtube.com/embed/' + youtubeUrl);
+	    
+	    // 打开 modal
+	    $('#staticBackdrop').modal('show');
+	}
+	
+
 </script>
-<!-- Option 1: Bootstrap Bundle with Popper -->
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
-
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
--->
 
 </html>

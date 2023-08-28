@@ -2,153 +2,262 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>GuGU Fitness</title>
+<style>
+#main {
+	background-image: url(/img/2new-one-chickie.jpg);
+	object-fit: contain;
+	background-color: rgba(255, 255, 255, 0.5);
+	background-blend-mode: soft-light;
+	max-width: 100%;
+	background-position: center 30%;
+	background-attachment: fixed;
+}
 
-    <title>GuGU Fitness</title>
-    <link rel="stylesheet" type="text/css" href="main.css">
+#banner-images {
+	position: relative;
+}
+
+#chick-intro {
+	position: relative;
+}
+
+#courses-intro {
+	position: relative;
+	padding: 80px 20px;
+	background-color: whitesmoke;
+}
+
+#schedule-intro {
+	position: relative;
+}
+
+#level-intro {
+	position: relative;
+}
+
+.floating-circle {
+	position: absolute;
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	background-color: white;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	border-radius: 50%;
+	z-index: 10;
+}
+</style>
+
 </head>
 
 <body>
-    <main id="main">
-        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-            <img src="img/egg-nav.png" height="30" class="d-inline-block align-top " alt="">
-            <span class="navbar-brand mb-0 h1">GUGU Fitness</span>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
+	<main id="main">
+		<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+			<img src="img/egg-nav.png" height="30"
+				class="d-inline-block align-top " alt=""> <span
+				class="navbar-brand mb-0 h1">GUGU Fitness</span>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link"
+						href="/index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<!-- <li class="nav-item">
                         <a class="nav-link" href="/courses.html">Courses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/feed.html">My Chick</a>
+                        <a class="nav-link" href="/schedule.html">My Plan</a>
                     </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-        <div id="banner-images" style="height: 700px; background-color: whitesmoke;">
-            <div class="text-center">
-                <img src="img/banner.png" alt="">
-            </div>
-            <div class="text-center">
-                <a href="memberLogin.html" class="btn btn-outline-warning slogan-button btn-lg">立即開始！</a>
-            </div>
-            <div class="floating-circle"></div>
-        </div>
-        <div id="chick-intro" style="height: 500px; padding-top: 150px;">
-            <div id="container-sm">
-                <div class="row align-items-center">
-                    <div class="col"></div>
-                    <div class="col-6 ">
-                        <p class="text-center text-warning display-3 ">歡迎來到GUGU Fitness！</p>
-                        <br>
-                        <p class="text-dark h4 text-center">
-                            在這裡，我們把健身變得有趣又有動力，並將您的健康之旅與一隻可愛的虛擬小雞結合。我們的網站以養小雞為主打特點，不僅讓您保持動力不斷，還能享受與小夥伴一同成長的喜悅。</p>
-                    </div>
-                    <div class="col"></div>
-                </div>
-            </div>
-            <div class="floating-circle"></div>
-        </div>
-        <div id="courses-intro">
-            <div class="container">
-                <div class="row flex-column-reverse flex-md-row">
-                    <div class="col-12 col-md-6 px-4 mb-5">
-                        <div class="d-flex h-100 justify-content-center mb-5">
-                            <div class="ratio ratio-1x1  align-self-center">
-                                <img src="img/kettlebell.jpg" alt="" style="height: 350px; object-fit: cover; ">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 px-4 mb-5">
-                        <ul style="list-style-type: none; padding-left: 0;">
-                            <li><br></li>
-                            <li>
-                                <p class="text-warning h1 ">定制您的運動計劃</p>
-                                <p class="h5">我們為您提供了一個方便而實用的功能，讓您能夠輕鬆定制您的運動計劃。從有趣的有氧運動到挑戰性的肌肉鍛鍊，我們的運動影片清單將滿足您的所有需求。而您的小雞夥伴將在每次運動後得到成長，這不僅是一種激勵，更是一種生動的運動日誌。
-                                </p>
-                            </li>
-                            <li><br></li>
-                            <li>
-                                <p class="text-warning h1 ">按您的節奏</p>
-                                <p class="h5">我們明白生活總是忙碌而充實的，所以您可以根據自己的節奏來安排運動時間。您的小雞會一直陪伴著您，無論您是早上的快節奏運動，還是晚上的伸展舒展，都能讓您感受到小夥伴的支持和陪伴。
-                                </p>
-                            </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chickie.html">My Chickie</a>
+                    </li> -->
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<a href="memberSignup.html" class="btn btn-outline-dark"
+						style="margin-right: 10px;">註冊</a> <a href="memberLogin.html"
+						class="btn btn-outline-dark">登入</a>
+				</form>
+			</div>
+		</nav>
+		<div id="banner-images"
+			style="height: 700px; background-color: whitesmoke;">
+			<div class="text-center">
+				<img src="img/banner.png" alt="">
+			</div>
+			<div class="text-center">
+				<a href="memberLogin.html"
+					class="btn btn-outline-warning slogan-button btn-lg">立即開始！</a>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="chick-intro" style="height: 500px; padding-top: 100px;">
+			<div id="container-sm">
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-8 ">
+						<p class="text-center text-warning display-3 font-weight-bold">歡迎來到咕力無圓!</p>
+						<br>
+						<p class="text-dark h4 text-center">
+							在這裡，我們把健身變得有趣又有動力，<br>並將您的健康之旅與一隻可愛的虛擬小雞結合。<br>我們的網站以養小雞為主打特點，不僅讓您保持動力不斷，<br>還能享受與小夥伴一同成長的喜悅。
+						</p>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="courses-intro">
+			<div class="container">
+				<div class="row flex-column-reverse flex-md-row">
+					<div class="col-12 col-md-6 px-4 mb-5">
+						<div class="d-flex h-100 justify-content-center mb-5">
+							<div class="ratio ratio-1x1  align-self-center">
+								<img src="img/kettlebell.jpg" alt=""
+									style="height: 350px; object-fit: cover;">
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 px-4 mb-5">
+						<ul style="list-style-type: none; padding-left: 0;">
+							<li><br></li>
+							<li>
+								<p class="text-warning h1 ">定制您的運動計劃</p>
+								<p class="h5">我們為您提供了一個方便而實用的功能，讓您能夠輕鬆定制您的運動計劃。從有趣的有氧運動到挑戰性的肌肉鍛鍊，我們的運動影片清單將滿足您的所有需求。而您的小雞夥伴將在每次運動後得到成長，這不僅是一種激勵，更是一種生動的運動日誌。
+								</p>
+							</li>
+							<li><br></li>
+							<li>
+								<p class="text-warning h1 ">按您的節奏</p>
+								<p class="h5">我們明白生活總是忙碌而充實的，所以您可以根據自己的節奏來安排運動時間。您的小雞會一直陪伴著您，無論您是早上的快節奏運動，還是晚上的伸展舒展，都能讓您感受到小夥伴的支持和陪伴。
+								</p>
+							</li>
+						</ul>
 
-                    </div>
-                </div>
-            </div>
-            <div class="floating-circle"></div>
-        </div>
-        <div id="schedule-intro" style="height: 500px; padding-top: 120px;">
-            <div id="container-sm">
-                <div class="row align-items-center">
-                    <div class="col"></div>
-                    <div class="col-6 ">
-                        <p class="text-center text-warning display-3 ">培育您的運動小夥伴</p>
-                        <br>
-                        <p class="text-dark h4 text-center">
-                            想像一下，在您的個人空間中有一隻可愛的小雞，它將根據您實際的運動時間成長和升級。每次您完成運動，您的小夥伴都會獲得經驗值，逐漸變得更加活潑可愛。隨著小雞的成長，您將不僅看到自己的運動成果，還能體會到一種獨特的成就感。</p>
-                    </div>
-                    <div class="col"></div>
-                </div>
-            </div>
-            <div class="floating-circle"></div>
-        </div>
-        <div id="level-intro" style="height: 1000px; background-color: white; padding-top: 100px;">
-            <div class="text-center">
-                <div class="row align-items-center">
-                    <div class="col"></div>
-                    <div class="col-6 ">
-                        <p class="text-center text-warning display-3 ">達到新的高度</p>
-                        <br>
-                        <p class="text-dark h4 text-center">
-                            隨著您和您的小雞一同努力，您的小夥伴將隨著您的成長獲得獎勵點數。這些點數可以用來兌換各種實際獎勵，激勵您堅持下去，並不斷挑戰自己的極限。</p>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <br>
-                <br>
-                <img src="img/gugugup.jpg" width="1200px" alt="">
-                <br>
-                <br>
-                <div class="row align-items-center">
-                    <div class="col"></div>
-                    <div class="col-6 ">
-                        <p class="text-dark h4 text-center">
-                            這是一個充滿樂趣和成就感的健身之旅。與您的小雞夥伴一同前進，將運動融入生活，讓您的每一步都更有動力和意義。立即加入我們，開啟與小雞夥伴一起邁向健康的全新冒險！</p> 
-                    </div>
-                    <div class="col"></div>
-                </div>
-                
-            </div>
-        </div>
-        <footer style="height:200px; background-color: grey;">
+					</div>
+				</div>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="schedule-intro" style="height: 500px; padding-top: 100px;">
+			<div id="container-sm">
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-8">
+						<p class="text-center text-warning display-3 font-weight-bold">培育您的運動小夥伴</p>
+						<br>
+						<p class="text-dark h4 text-center">
+							想像一下，在您的個人空間中有一隻可愛的小雞，<br>它將根據您實際的運動時間成長和升級。<br>每次您完成運動，您的小夥伴都會獲得經驗值，逐漸變得更加活潑可愛。<br>隨著小雞的成長，您將不僅看到自己的運動成果，<br>還能體會到一種獨特的成就感。
+						</p>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+			<div class="floating-circle"></div>
+		</div>
+		<div id="level-intro"
+			style="height: 1100px; background-color: white; padding-top: 100px; padding-bottom: 100px;">
+			<div class="text-center">
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-6 ">
+						<p class="text-center text-warning display-3 font-weight-bold">達到新的高度</p>
+						<br>
+						<p class="text-dark h4 text-center">
+							隨著您和您的小雞一同努力，<br>您的小夥伴將隨著您的成長獲得獎勵點數。<br>這些點數可以用來兌換各種實際獎勵，<br>激勵您堅持下去，並不斷挑戰自己的極限。
+						</p>
+					</div>
+					<div class="col"></div>
+				</div>
+				<br> <br> <img src="img/gugugup.jpg" width="1200px" alt="">
+				<br> <br>
+				<div class="row align-items-center">
+					<div class="col"></div>
+					<div class="col-8">
+						<p class="text-dark h4 text-center">
+							這是一個充滿樂趣和成就感的健身之旅。與您的小雞夥伴一同前進，<br>將運動融入生活，讓您的每一步都更有動力和意義。<br>立即加入我們，開啟與小雞夥伴一起邁向健康的全新冒險！
+						</p>
+						<br>
+						<div class="text-center">
+							<a href="memberLogin.html"
+								class="btn btn-outline-warning slogan-button btn-lg">立即開始！</a>
+						</div>
+					</div>
+					<div class="col"></div>
 
-        </footer>
-    </main>
+				</div>
+
+			</div>
+		</div>
+		<footer class="footer"
+			style="padding: 50px 50px; background-color: gray;">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<p class="text-light">&copy; 2023 GuGuchick Fitness。保留所有權利。</p>
+						<p class="text-light" style="font-size: 8pt;">
+							免責聲明：<br>本網站提供的信息僅供一般信息目的。<br>在開始任何運動或飲食計劃前，請諮詢醫療專業人員。
+						</p>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<ul class="list-inline social-media">
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-facebook"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-twitter"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i
+									class="fab fa-instagram"></i></a></li>
+						</ul>
+						<p class="text-light">聯繫我們：Guguchick@gmail.com</p>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<div class="scroll-to-top">
+							<!-- 將按鈕樣式改為簡約風格 -->
+							<a href="#" class="btn btn-outline-warning slogan-button "> <i
+								class="fas fa-arrow-up"></i> 返回頂部
+							</a>
+														<a href="employeeSignin.html" class="btn btn-outline-warning slogan-button "> <i
+								class="fas fa-arrow-up"></i> 管理者者入口
+							</a>
+						</div>
+						<br>
+						<p class="text-light">
+							<a href="privacy.html" class="text-warning">隱私政策</a> | <a
+								href="terms.html" class="text-warning">使用條款</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</main>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-        crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
 
 </body>
+
 
 </html>

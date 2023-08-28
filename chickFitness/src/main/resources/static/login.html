@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chick Fitness</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+<body class="text-center">
+    <div class="container">
+        <div id="error-message"></div>
+        <form class="form-signin" action="/login" method="post"> <!-- 注意这里的 action 值 -->
+            <img class="mb-4" src="img/chick.png" alt="" width="295">
+            <label for="inputId" class="sr-only">Id</label>
+            <input type="text" id="inputEmail" name="userName" class="form-control" placeholder="Username" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
+            <a href="signup.html" class="btn btn-lg btn-warning btn-block">Sign up</a>
+            <p class="mt-5 mb-3 text-muted">&copy; GUGU Fitness</p>
+        </form>
+    </div>
+</body>
+<script>
+$(document).ready(function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const infoMessage = urlParams.get('info');
+    if (infoMessage) {
+        $("#error-message").text(infoMessage);
+        $("#error-message").show();
+    }
+});
+</script>
+</html>
