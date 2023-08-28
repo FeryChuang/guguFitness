@@ -68,16 +68,29 @@ public class MemberController {
             member.setLastLoginDate(new Date());
             memberRepository.save(member);
             System.out.println(session.getAttribute("loggedInMember"));
-            ModelAndView model = new ModelAndView("redirect:/home.html");
+            ModelAndView model = new ModelAndView("redirect:/index.html");
             return model;
         } else {
-        	ModelAndView model = new ModelAndView("redirect:/memberLogin.html");
-            model.addObject("info", "Login failed"); // 传递错误信息到登录页面
+        	session.setAttribute("loginFailedMessage", "登入失敗，請確認您輸入的帳號與密碼是否正確"); // 儲存錯誤訊息到Session
+            ModelAndView model = new ModelAndView("redirect:/memberLogin.html");
             return model;
         }
     }
     
- // 登出
+    // 登入錯誤訊息
+    @GetMapping("/loginerror")
+    @ResponseBody
+    public String getErrorMessage(HttpSession session) {
+        String errorMessage = (String) session.getAttribute("loginFailedMessage");
+        if (errorMessage != null) {
+            session.removeAttribute("loginFailedMessage"); // 清除錯誤訊息
+            return errorMessage;
+        } else {
+            return ""; // 如果沒有錯誤訊息，回傳空字串
+        }
+    }
+    
+    // 登出
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession session) {
         // 清除登入session

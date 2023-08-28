@@ -51,8 +51,9 @@
   <body class="text-center">
     
 <form class="form-signin" action="/employee/login" method="post">
-    <img class="mb-4" src="img/chick.png" alt="" width="295">
-   <h3 class="employee-title">員工登入系統</h3>
+  <img class="mb-4" src="img/chick.png" alt="" width="295">
+  <div id="error-message" style="color: red;"></div>
+  <h3 class="employee-title">員工登入系統</h3>
   <label for="inputEmployeeUserName" class="sr-only">Employee UserName</label>
   <input type="text" name="employeeUserName" class="form-control" placeholder="Employee UserName" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
@@ -62,7 +63,7 @@
   </div>
   
   <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
-  <div id="error-message" style="color: red;"></div>
+  
    <p class="mt-5 mb-3 text-muted">&copy; GUGU Fitness</p>
 </form>
 

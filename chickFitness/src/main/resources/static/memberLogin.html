@@ -27,18 +27,16 @@
 </head>
 <body class="text-center">
     <div class="container">
-        <div id="error-message"></div>
+        
         <form class="form-signin" action="/login" method="post"> <!-- 注意这里的 action 值 -->
             <img class="mb-4" src="img/chick.png" alt="" width="295">
+            <div id="error-message"></div>
             <label for="inputId" class="sr-only">Id</label>
             <input type="text" name="userName" class="form-control" placeholder="Username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password" required>
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
+
+            
             <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
             <a href="memberSignup.html" class="btn btn-lg btn-warning btn-block">Sign up</a>
             <p class="mt-5 mb-3 text-muted">&copy; GUGU Fitness</p>
@@ -46,13 +44,17 @@
     </div>
 </body>
 <script>
-$(document).ready(function(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const infoMessage = urlParams.get('info');
-    if (infoMessage) {
-        $("#error-message").text(infoMessage);
-        $("#error-message").show();
-    }
-});
-</script>
+    $(document).ready(function(){
+        // 使用ajax取得錯誤訊息
+        $.ajax({
+            url: "/loginerror",
+            method: "GET",
+            success: function(errorMessage) {
+                if (errorMessage) {
+                    $("#error-message").text(errorMessage);
+                }
+            }
+        });
+    });
+  </script>
 </html>
