@@ -71,11 +71,30 @@ public class MemberController {
             ModelAndView model = new ModelAndView("redirect:/index.html");
             return model;
         } else {
-        	session.setAttribute("loginFailedMessage", "登入失敗，請確認您輸入的帳號與密碼是否正確"); // 儲存錯誤訊息到Session
+        	session.setAttribute("loginFailedMessage", "會員登入失敗，請確認您輸入的帳號與密碼是否正確"); // 儲存錯誤訊息到Session
             ModelAndView model = new ModelAndView("redirect:/memberLogin.html");
             return model;
         }
     }
+    
+    // 確認會員登入狀態
+    @GetMapping("/checkLoginStatus")
+    public ModelAndView checkLoginStatus(HttpSession session) {
+    	ModelAndView modelAndView;
+    	
+    	// 取得session
+    	Member loggedInMember = (Member) session.getAttribute("loggedInMember");
+        
+        if (loggedInMember != null) {
+        	modelAndView = new ModelAndView("redirect:/home.html");
+        } else {
+        	modelAndView = new ModelAndView("redirect:/index.html");
+        }
+        
+        return modelAndView;
+    }
+
+
     
     // 登入錯誤訊息
     @GetMapping("/loginerror")
