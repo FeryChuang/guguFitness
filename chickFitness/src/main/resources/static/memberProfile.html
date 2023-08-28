@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>會員資料</title>
+	
+<!-- Bootstrap CSS -->
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+rel="stylesheet"
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+crossorigin="anonymous">
+
+<title>Courses</title>
+<link rel="stylesheet" type="text/css" href="css/courses.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- <style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		@media (min-width : 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style> -->
+	<!-- Custom styles for this template -->
+	<link href="css/form-validation.css" rel="stylesheet">
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+	<div class="container-fluid">
+		<img src="img/egg-nav.png" height="30" class="d-inline-block align-top ">
+		<span class="navbar-brand mb-0 h1">GUGU Fitness</span>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item active"><a class="nav-link" href="/index.html">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="/courses.html">Courses</a></li>
+				<li class="nav-item"><a class="nav-link" href="/schedule-test.html">My Plan</a></li>
+				<li class="nav-item"><a class="nav-link" href="/feed.html">My Chick</a></li>
+			</ul>
+			<form class="d-flex">
+				<a class="btn btn-outline-dark" href="member.html">會員專區???要連結到?</a>
+				<button id="mLogout" class="btn btn-outline-dark" style="margin-left: 10px;">登出</a>
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+<body class="bg-light">
+	<div class="container">
+		<div class="py-5 text-center">
+			<img class="d-block mx-auto mb-4" src="img/chick.png" alt="" width="250">
+			<p id="mId" style="display:none;"></p><!--儲存從session讀取到的memberId-->
+			<p id="mName">您尚未登入，請先登入會員</p>
+			<h2>會員資料</h2>
+			<p class="lead">&#127775; 趣味健身 x &#128035; 虛擬小雞成長 &#128036;</p>
+
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<h4 class="mb-3">基本資料</h4>
+				<form class="needs-validation" novalidate>
+					<div class="mb-3">
+						<label for="id">會員ID</label>
+						<input type="text" class="form-control" id="idText" placeholder="" value="" required readonly>
+						<div class="invalid-feedback">Valid ID is required.</div>
+					</div>
+					<div class="mb-3">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="nameText" required>
+						<div class="invalid-feedback">Valid name is required.</div>
+					</div>
+					<div class="mb-3">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="emailText" placeholder="you@example.com" required>
+						<div class="invalid-feedback">Valid Email is required.</div>
+					</div>
+					<div class="mb-3">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="passwordText" required>
+						<div class="invalid-feedback">Valid password id required.</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="regisDate">註冊會員時間</label>
+						<input type="text" class="form-control" id="regisDate" readonly>
+
+					</div>
+
+					<div class="mb-3">
+						<label for="loginDate">最後登入時間</label>
+						<input type="text" class="form-control" id="loginDate" readonly>
+
+					</div>
+					<br />
+					<button class="btn btn-warning btn-lg btn-block" type="submit" onclick="memberUpdate(event)" style="width:100%">修改</button>
+				</form>
+				<br />
+				<a href="index.html" class="btn btn-warning btn-lg btn-block" style="width:100%">返回</a>
+				<footer class="my-5 pt-5 text-muted text-center text-small">
+					<p class="mb-1">&copy; 2023 GUGU Fitness</p>
+					<ul class="list-inline">
+						<li class="list-inline-item"><a href="#">Privacy</a></li>
+						<li class="list-inline-item"><a href="#">Terms</a></li>
+						<li class="list-inline-item"><a href="#">Support</a></li>
+					</ul>
+				</footer>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$(document).ready(start); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
+	var mId;
+	var mName;
+	function start() {
+		$.get('http://localhost:8080/session', function (data) {
+			// 發送一個AJAX GET請求到"http://localhost:8080/session"，並在成功後執行一個回調函數
+			// "data" 是從伺服器返回的數據
+			$("#mName").html(data.name != null 
+					? "&#x2764;親愛的小雞主人您好<br/>在這裡您可以修改您的基本資料喔&#x2764;" 
+					: "<a href='memberLogin.html'>您尚未登入，請點此登入會員</a>");
+			$("#mId").html(data.memberId); // 將"mId"段落的內容設置為從伺服器返回的數據中的"memberId"
+			mId = data.memberId;
+			getMemberData(mId);
+			logout();
+		});
+	}
+
+	function formatDate(date) {
+		const YYYY = date.getFullYear();
+		const MM = String(date.getMonth() + 1).padStart(2, '0');
+		const DD = String(date.getDate()).padStart(2, '0');
+		const hour = String(date.getHours()).padStart(2, '0');
+		const min = String(date.getMinutes()).padStart(2, '0');
+		const sec = String(date.getSeconds()).padStart(2, '0');
+
+		return `${YYYY}-${MM}-${DD} ${hour}:${min}:${sec}`;
+	}
+
+	function getMemberData(mId) {
+		$.get('http://localhost:8080/members/' + mId, function (member) {
+			// 檢查是否找到了會員
+			if (member) {
+				// 填充其他欄位
+				$('#idText').val(member.userName);
+				$('#nameText').val(member.name);
+				$('#emailText').val(member.email);
+				$('#passwordText').val(member.password);
+
+				// $('#regisDate').val(member.registrationDate);
+				// $('#loginDate').val(member.lastLoginDate);
+
+				// 格式化日期時間為 "YYYY-MM-DD hh:mm:ss" 格式
+				const regisDate = new Date(member.registrationDate);
+				const formatRD = formatDate(regisDate);//傳送至formatDate()處理日期格式
+				$('#regisDate').val(formatRD);
+
+				const loginDate = new Date(member.lastLoginDate);
+				const formatLD = formatDate(loginDate);
+				$('#loginDate').val(formatLD);
+
+				// 在此處設置 memberId，以確保它是最新的
+				// mId = member.memberId;
+			} else {
+				// 如果未找到會員，您可以顯示一個錯誤訊息
+				alert('您目前未登入，請登入會員');
+			}
+		});
+	}
+
+	function memberUpdate(event) {
+		event.preventDefault();
+		var data = {
+			memberId: mId,
+			userName: $("#idText").val(),
+			name: $("#nameText").val(),
+			email: $("#emailText").val(),
+			password: $("#passwordText").val()
+		};
+		$.ajax({
+			url: 'http://localhost:8080/update',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: function (response) {
+				if (response) {
+					alert('資料修改成功');
+					//重新整理目前頁面
+					window.location.reload();
+				} else {
+					alert('儲存失敗');
+				}
+			},
+			error: function () {
+				alert('儲存失敗');
+			}
+		});
+	}
+
+	function logout() {
+        // 給登出按鈕添加點擊事件處理程序
+        $("#mLogout").click(function() {
+            $.ajax({
+                url: "/logout", // API位置
+                type: "get", //  後端 HTTP 方法
+                success: function(response) {
+                    // 成功後跳轉 employeeSignin.html
+                    window.location.href = "memberLogin.html";
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error logging out:", error);
+                }
+            });
+        });
+    }
+
+	$(document).ready(function() {
+        // 給登出按鈕添加點擊事件處理程序
+        $("#memberLogout").click(function() {
+            $.ajax({
+                url: "/logout", // API位置
+                type: "get", //  後端 HTTP 方法
+                success: function(response) {
+                    // 成功後跳轉 employeeSignin.html
+                    window.location.href = "memberLogin.html";
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error logging out:", error);
+                }
+            });
+        });
+    });
+
+
+</script>
+
+</html>
