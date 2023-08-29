@@ -38,7 +38,9 @@
       </ul>
       <form class="d-flex">
 					<p id="memberId" style="display:none;"></p>
-        <a class="btn btn-outline-dark" href="memberProfile.html">會員專區</a>
+        <a class="btn btn-outline-dark" href="memberProfile.html" style="margin-right: 10px;">會員專區</a>	
+        <button id="memberLogout" class="btn btn-outline-dark"
+						style="margin-right: 10px;">登出</button>
       </form>
     </div>
   </div>
@@ -59,7 +61,7 @@
 					只需瀏覽我們的課程庫存，點擊您感興趣的課程，即可查看詳細信息，並加入「我的課程」開始學習。<br>無論您是想增強體能、減肥塑形，還是只是想保持健康的生活方式，我們都有適合您的選擇。
 					<br> 不要再猶豫，立即開始挑選適合您的課程，讓運動成為您生活中的一部分，開啟更健康、更充實的每一天！
 				</p>
-				<a class="btn btn-warning  " href="/schedule-test.html" role="button">我的課程</a>
+				<a class="btn btn-warning  " href="/schedule.html" role="button">我的課程</a>
 			</div>
 			<hr class="my-4">
 		</div>
@@ -205,6 +207,8 @@
 </body>
 <script>
 	$(document).ready(getAll);
+
+
 	function getAll() {
 		$.get('http://localhost:8080/courses/all', function(dataC) {
 			$(dataC).each(
@@ -228,8 +232,13 @@
 					})
 		});
 		$.get('http://localhost:8080/session', function(dataM) {
+			if(dataM==null){
+				window.location.href = 'memberLogin.html';
+				return;
+			}else{
 			$("#welcome-message").html(dataM.userName);
 			$("#memberId").html(dataM.memberId);
+			}
 		});
 	}
 
@@ -292,6 +301,24 @@
 				});
 			}
 		
+    $("#memberLogout").click(function() {
+    	 $.ajax({
+             url: '/logout', // API位置
+             type: 'GET', //  後端 HTTP 方法
+             success: function(response) {              
+  // //成功後清除歷史記錄 //此方法配合replace跳轉頁面，歷史紀錄會出現目前頁面
+  if (window.history && window.history.pushState) {
+    window.history.pushState({}, '', '/');
+   }
+
+  // 跳轉到登入頁面 //只有此語法不保留當前頁面歷史紀錄
+  location.replace('memberLogin.html');
+             },
+             error: function(xhr, status, error) {
+                 console.error('Error logging out:', error);
+             }
+         });
+    });
 
 </script>
 <!-- Option 1: Bootstrap Bundle with Popper -->

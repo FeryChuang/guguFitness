@@ -44,7 +44,8 @@
   
 <ul class="navbar-nav px-3">
   <li class="nav-item text-nowrap">
-    <a class="nav-link" href="employeeSignin.html">Sign out</a>
+  <a type="botton" class="btn nav-link btn-light" href="employeeHome.html">Home</a>
+  <!--    <a class="nav-link" href="employeeSignin.html">Sign out</a>-->
   </li>
 </ul>
 
@@ -269,9 +270,9 @@ function updateTable(data) {
     $(data).each(function(index, employee) {
         const newRow = $("<tr>");
         newRow.append(`<td class="align-middle text-center">${employee.employeeId}</td>`);
+        newRow.append(`<td class="align-middle text-center">${employee.employeeName}</td>`);
         newRow.append(`<td class="align-middle text-center">${employee.employeeUserName}</td>`);
         newRow.append(`<td class="align-middle text-center">${employee.employeePassword}</td>`);
-        newRow.append(`<td class="align-middle text-center">${employee.employeeName}</td>`);
         newRow.append(`<td class="align-middle text-center">${employee.employeeEmail}</td>`);
         newRow.append(`<td class="align-middle text-center">${employee.employeeRole}</td>`);
         newRow.append(`<td class="align-middle text-center">${employee.employeeStatus}</td>`);

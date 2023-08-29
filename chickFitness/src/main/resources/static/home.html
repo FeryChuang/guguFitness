@@ -61,6 +61,7 @@
 }
 </style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -72,7 +73,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link"
-						href="/home.html">Home <span class="sr-only">(current)</span></a>
+						href="/index.html">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
                         <a class="nav-link" href="/courses.html">Courses</a>
@@ -85,9 +86,10 @@
                     </li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
+				<p id="welcome-message" style="display:none;"></p>
 				<a class="btn btn-outline-dark" href="memberProfile.html" style="margin-right: 10px;">會員專區</a>
-					<a href="memberSignup.html" class="btn btn-outline-dark"
-						style="margin-right: 10px;">登出</a>
+					<button id="memberLogout" class="btn btn-outline-dark"
+						style="margin-right: 10px;">登出</button>
 				</form>
 			</div>
 		</nav>
@@ -245,7 +247,7 @@
 	</main>
 
 
-
+<!--  
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -254,38 +256,48 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
 		crossorigin="anonymous"></script>
+		-->
 
 </body>
     <script>
-        $(document).ready(start,logout); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
-   	
-        		
-        		
-        function start(){
-            $.get('http://localhost:8080/session', function(data) {
-                // 發送一個AJAX GET請求到"http://localhost:8080/session"，並在成功後執行一個回調函數
-                // "data" 是從伺服器返回的數據
-                $("#welcome-message").html(data.userName);
-                // 將"welcome-message"段落的內容設置為從伺服器返回的數據中的"userNamen"
-            }); 
-        }
+    $(document).ready(start); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
+	var mId;
+	var mName;
+    function start(){
+        $.get('http://localhost:8080/session', function(data) {
+            // 發送一個AJAX GET請求到"http://localhost:8080/session"，並在成功後執行一個回調函數
+            // "data" 是從伺服器返回的數據
+            mId = data.memberId; 
+			mName = data.name;
+			if (mId == null) {
+				window.location.href = 'memberLogin.html';
+				return; // 執行跳轉後結束函數
+        	}else{
+            $("#welcome-message").html(data.userName);}
+            // 將"welcome-message"段落的內容設置為從伺服器返回的數據中的"userNamen"
+        }); 
+    }
 
-        
-        
-        function logout() {
-        // 給登出按鈕添加點擊事件處理程序
-        $("#memberLogout").click(function() {
-            $.ajax({
-                url: "/logout", // API位置
-                type: "get", //  後端 HTTP 方法
-                success: function(response) {
-                    // 成功後跳轉 employeeSignin.html
-                    window.location.href = "memberLogin.html";
-                },
-                error: function(xhr, status, error) {
-                    console.log("Error logging out:", error);
-                }
-            });
-        }
+   
+    $("#memberLogout").click(function() {
+    	 $.ajax({
+             url: '/logout', // API位置
+             type: 'GET', //  後端 HTTP 方法
+             success: function(response) {              
+  // //成功後清除歷史記錄 //此方法配合replace跳轉頁面，歷史紀錄會出現目前頁面
+  if (window.history && window.history.pushState) {
+    window.history.pushState({}, '', '/');
+   }
+
+  // 跳轉到登入頁面 //只有此語法不保留當前頁面歷史紀錄
+  location.replace('memberLogin.html');
+             },
+             error: function(xhr, status, error) {
+                 console.error('Error logging out:', error);
+             }
+         });
+    });
+
+
         </script>
         </html>
