@@ -6,17 +6,17 @@
 	<title>會員資料</title>
 	
 <!-- Bootstrap CSS -->
-<link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-rel="stylesheet"
-integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+		crossorigin="anonymous">
 
 <title>memberProfile</title>
 <link rel="stylesheet" type="text/css" href="css/courses.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link href="css/form-validation.css" rel="stylesheet">
 </head>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
 	<div class="container-fluid">
 		<img src="img/egg-nav.png" height="30" class="d-inline-block align-top ">
@@ -27,29 +27,27 @@ crossorigin="anonymous">
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="/index.html">Home</a></li>
+				<li class="nav-item active"><a class="nav-link" href="/home.html">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="/courses.html">Courses</a></li>
-				<li class="nav-item"><a class="nav-link" href="/schedule-test.html">My Plan</a></li>
+				<li class="nav-item"><a class="nav-link" href="/schedule.html">My Plan</a></li>
 				<li class="nav-item"><a class="nav-link" href="/feed.html">My Chick</a></li>
 			</ul>
 			<form class="d-flex">
-			<!--	<a class="btn btn-outline-dark" href="memberProfile.html">會員專區</a>-->
 				<button id="mLogout" class="btn btn-outline-dark" style="margin-left: 10px;">登出</button>
 			</form>
 		</div>
 	</div>
 </nav>
 
-
 <body class="bg-light">
 	<div class="container">
 		<div class="py-5 text-center">
 			<img class="d-block mx-auto mb-4" src="img/chick.png" alt="" width="250">
-			<p id="mName"><!--依據是否登入改變顯示的內容--></p>
+			<p id="mName"></p>
 			<h2>會員資料</h2>
 			<p class="lead">&#127775; 趣味健身 x &#128035; 虛擬小雞成長 &#128036;</p>
-
 		</div>
+
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
@@ -90,10 +88,15 @@ crossorigin="anonymous">
 					</div>
 
 					<br />
-					<button class="btn btn-warning btn-lg btn-block" type="submit" onclick="memberUpdate(event)" style="width:100%">修改</button>
+					<button class="btn btn-warning btn-lg btn-block" 
+							type="submit" 
+							onclick="memberUpdate(event)" 
+							style="width:100%">修改
+					</button>
 				</form>
 				<br />
-				<a href="index.html" class="btn btn-warning btn-lg btn-block" style="width:100%">返回</a>
+				<a href="home.html" class="btn btn-warning btn-lg btn-block" style="width:100%">返回</a>
+
 				<footer class="my-5 pt-5 text-muted text-center text-small">
 					<p class="mb-1">&copy; 2023 GUGU Fitness</p>
 					<ul class="list-inline">
@@ -109,7 +112,7 @@ crossorigin="anonymous">
 <script>
 	$(document).ready(start); // 當文檔已經完全載入時，執行名為"start"的JavaScript函數
 	//全域變數
-	var mId; 
+	var mId;
 	var mName;
 
 	//function: 載入網頁就執行
@@ -120,10 +123,17 @@ crossorigin="anonymous">
 			// 將session資料放入變數
 			mId = data.memberId; 
 			mName = data.name;
-			$("#mName").html(mName != null 
-					? "&#x2764;親愛的小雞主人"+mName+"您好<br/>在這裡您可以修改您的基本資料喔&#x2764;" 
-					: "<a href='memberLogin.html'>您尚未登入，請點此登入會員</a>");
-				
+
+			// 判斷 mId 是否為空，如果是則進行頁面跳轉
+			if (mId == null) {
+				window.location.href = 'memberLogin.html';
+				return; // 執行跳轉後結束函數
+        	}
+
+			// $("#mName").html(mName != null 
+			// 	? "&#x2764;&#x2764;親愛的小雞主人"+mName+"您好<br/>在這裡您可以修改您的基本資料喔&#x2764;" 
+			// 	: "<a href='memberLogin.html'>您尚未登入，請點此登入會員</a>");
+
 			getMemberData(mId);
 			logout();
 		});
@@ -145,7 +155,7 @@ crossorigin="anonymous">
 	function getMemberData(mId) {
 		$.get('http://localhost:8080/members/' + mId, function (member) {
 			// 檢查是否找到了會員
-			if (member!= null) {
+		//	if (member!= null) {
 				// 會員資料放入對應位置
 				$('#idText').val(member.userName);
 				$('#nameText').val(member.name);
@@ -162,14 +172,13 @@ crossorigin="anonymous">
 				$('#loginDate').val(formatLD);
 				
 				mName = member.name;
-				$("#mName").html(mName != null 
-					? "&#x2764;親愛的小雞主人"+mName+"您好<br/>在這裡您可以修改您的基本資料喔&#x2764;" 
-					: "<a href='memberLogin.html'>您尚未登入，請點此登入會員</a>");
+				$("#mName").html("&#x2764;&#x2764;親愛的小雞主人"+mName+"您好<br/>"
+								+"在這裡您可以修改您的基本資料喔&#x2764;&#x2764;");
 				
-			} else {
-				// 如果未找到會員，您可以顯示一個錯誤訊息
-				alert('您目前未登入，請登入會員');
-			}
+			// } else {
+			// 	// 如果未找到會員，您可以顯示一個錯誤訊息
+			// 	alert('您目前未登入，請登入會員');
+			// }
 		});
 	}
 
@@ -179,7 +188,6 @@ crossorigin="anonymous">
         // 先執行表單驗證確認無空白
         var isValid = true;
         var roleSelect = document.getElementById("role");
-
         $("form :input").each(function() {
             if ($(this).prop("required") && $(this).val().trim() === "") {
                 isValid = false;
@@ -188,7 +196,6 @@ crossorigin="anonymous">
                 $(this).removeClass("is-invalid");
             }
         });
-
         if (!isValid) {
             return; // 如果驗證失敗，不執行後續AJAX請求
         }
@@ -209,8 +216,7 @@ crossorigin="anonymous">
 			success: function (response) {
 				if (response) {
 					alert('資料修改成功');
-					//重新整理目前頁面
-					
+					//重新整理目前頁面					
 					window.location.reload();
 										
 				} else {
@@ -227,14 +233,15 @@ crossorigin="anonymous">
         // 給登出按鈕添加點擊事件處理程序
         $("#mLogout").click(function() {
             $.ajax({
-                url: "/logout", // API位置
-                type: "get", //  後端 HTTP 方法
+                url: '/logout', // API位置
+                type: 'GET', //  後端 HTTP 方法
                 success: function(response) {
-                    // 成功後跳轉 employeeSignin.html
-                    window.location.href = "memberLogin.html";
+                    // 成功後跳轉
+					mId = null;
+                //	window.location.href = 'memberLogin.html?v=' + Math.random();
                 },
                 error: function(xhr, status, error) {
-                    console.error("Error logging out:", error);
+                    console.error('Error logging out:', error);
                 }
             });
         });
