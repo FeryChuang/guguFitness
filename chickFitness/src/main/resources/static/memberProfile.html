@@ -6,75 +6,83 @@
 	<title>會員資料</title>
 	
 <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-		crossorigin="anonymous">
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<!--<link rel="stylesheet" type="text/css" href="css/courses.css">
+	<link href="css/form-validation.css" rel="stylesheet">-->
+	<style>
+		label {
+            font-weight: bold;
+        }
+	</style>
 
-<title>memberProfile</title>
-<link rel="stylesheet" type="text/css" href="css/courses.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link href="css/form-validation.css" rel="stylesheet">
+
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-warning">
-	<div class="container-fluid">
-		<img src="img/egg-nav.png" height="30" class="d-inline-block align-top ">
-		<span class="navbar-brand mb-0 h1">GUGU Fitness</span>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="/home.html">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="/courses.html">Courses</a></li>
-				<li class="nav-item"><a class="nav-link" href="/schedule.html">My Plan</a></li>
-				<li class="nav-item"><a class="nav-link" href="/feed.html">My Chick</a></li>
-			</ul>
-			<form class="d-flex">
-				<button id="mLogout" class="btn btn-outline-dark" style="margin-left: 10px;">登出</button>
-			</form>
-		</div>
-	</div>
-</nav>
-
 <body class="bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+		<div class="container-fluid">
+			<img src="img/egg-nav.png" height="30" class="d-inline-block align-top ">
+			<span class="navbar-brand mb-0 h1">GUGU Fitness</span>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item active"><a class="nav-link" href="/home.html">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/courses.html">Courses</a></li>
+					<li class="nav-item"><a class="nav-link" href="/schedule.html">My Plan</a></li>
+					<li class="nav-item"><a class="nav-link" href="/feed.html">My Chick</a></li>
+				</ul>
+			<!--	<form class="d-flex">-->
+				<form class="ml-auto my-2 my-lg-0">
+					<button id="mLogout" class="btn btn-outline-dark">登出</button>
+				</form>
+			</div>
+		</div>
+	</nav>
 	<div class="container">
-		<div class="py-5 text-center">
-			<img class="d-block mx-auto mb-4" src="img/chick.png" alt="" width="250">
-			<p id="mName"></p>
+		<div class="mb-4 text-center">
+			<img class="d-block mx-auto mb-0" src="img/chick.png" alt="" width="250">
 			<h2>會員資料</h2>
 			<p class="lead">&#127775; 趣味健身 x &#128035; 虛擬小雞成長 &#128036;</p>
+			<div id="mName"></div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
-				<h4 class="mb-3">基本資料</h4>
-				<form class="needs-validation" novalidate>
+			<!--	<h4 class="mb-3">基本資料</h4> -->
+				<form class="needs-validation" 
+						style="background-color: #fff;
+							border-radius: 10px;
+							padding: 20px;
+							box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);" novalidate>
 					<div class="mb-3">
-						<label for="id">會員ID</label>
-						<input type="text" class="form-control" id="idText" placeholder="" value="" required readonly>
-						<div class="invalid-feedback">Valid ID is required.</div>
+						<label for="id">會員帳號</label>
+						<input type="text" class="form-control" id="idText" required readonly>
 					</div>
 
 					<div class="mb-3">
-						<label for="name">Name</label>
+						<label for="name">姓名</label>
 						<input type="text" class="form-control" id="nameText" required>
-						<div class="invalid-feedback">Valid name is required.</div>
+						<div class="invalid-feedback">請輸入有效的姓名。</div>
 					</div>
 
 					<div class="mb-3">
-						<label for="email">Email</label>
+						<label for="email">電子郵件</label>
 						<input type="email" class="form-control" id="emailText" placeholder="you@example.com" required>
-						<div class="invalid-feedback">Valid Email is required.</div>
+						<div class="invalid-feedback">請輸入有效的電子郵件地址。</div>
 					</div>
 
 					<div class="mb-3">
-						<label for="password">Password</label>
+						<label for="password">密碼</label>
 						<input type="password" class="form-control" id="passwordText" required>
-						<div class="invalid-feedback">Valid password id required.</div>
+						<div class="invalid-feedback">請輸入有效的密碼。</div>
 					</div>
 
 					<div class="mb-3">
@@ -88,14 +96,14 @@
 					</div>
 
 					<br />
-					<button class="btn btn-warning btn-lg btn-block" 
-							type="submit" 
-							onclick="memberUpdate(event)" 
-							style="width:100%">修改
-					</button>
+					<button class="btn btn-warning btn-lg btn-block"
+                            type="submit"
+                            onclick="memberUpdate(event)"
+                            style="width:100%">修改
+                    </button>
+					<br/>
+					<a href="home.html" class="btn btn-warning btn-lg btn-block" style="width:100%;">返回</a>
 				</form>
-				<br />
-				<a href="home.html" class="btn btn-warning btn-lg btn-block" style="width:100%">返回</a>
 
 				<footer class="my-5 pt-5 text-muted text-center text-small">
 					<p class="mb-1">&copy; 2023 GUGU Fitness</p>
