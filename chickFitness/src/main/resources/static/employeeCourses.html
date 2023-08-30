@@ -364,6 +364,7 @@ function delCourse() {
         },
         error: function(error) {
             console.error('Error deleting course:', error);
+		alert('刪除課程時發生錯誤: 該課程可能已被加入排程'); // 彈出視窗顯示錯誤訊息
             // 處理錯誤
         }
     });
