@@ -22,3 +22,13 @@ html {
 	max-width: 50rem;
 	
 }
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.65; }
+    100% { opacity: 1; }
+}
+
+.blinking {
+    animation: blink 0.65s infinite;
+}
